@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -26,4 +26,11 @@
 <body>
     <button type="button" onclick="fun()">Submit</button>
 </body>
-</html>
+</html> -->
+
+<script type="text/javascript">
+var width=screen.width;
+</script>
+<?php
+     echo $myPhpVar= "<script>document.writeln(width);</script>";
+?>

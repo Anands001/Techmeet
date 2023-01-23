@@ -1,3 +1,11 @@
+<?php
+session_start();
+if(isset($_SESSION['clg_name'])&&isset($_SESSION['dept'])){
+    
+}else{
+    header('Location:step1.php');
+}
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -1594,7 +1602,7 @@ p {
               <h3 class="mb-0">Event Registration</h3>
             </div>
             <div class="table-responsive">
-            <!-- <form action="" method="POST"> -->
+            <form action="reg.php" method="POST" id="myForm">
               <table class="table align-items-center table-flush">
                 <thead class="thead-light">
                   
@@ -1650,7 +1658,7 @@ p {
                     while($row2=mysqli_fetch_assoc($result2)){
                         $eid[$t++]=$row2['event_id'];
                     }
-                    var_dump($eid);
+                    // var_dump($eid);
                   }
 
                   $var=0;
@@ -1670,7 +1678,7 @@ p {
                                   <div class="form-outline">
                                       <input type="text" id="typeText" name=name[] class="form-control" />
                                       <label class="form-label" for="typeText">Name:</label>
-                                      <input type="text" id="typeText" name==regno[] class="form-control" />
+                                      <input type="text" id="typeText" name=regno[] class="form-control" />
                                       <label class="form-label" for="typeText">Reg no:</label>
                                   </div>
                                 </span>
@@ -1702,7 +1710,7 @@ p {
               </table>
 
               <input type="submit" class="btn btn-secondary" value="submit" name="submit" onclick=submit();>
-            <!-- </form> -->
+            </form>
             </div>
             
       </div>
@@ -1775,38 +1783,40 @@ p {
         const submit=function() {
             
             for(let i=0;i<7;i++){
+                arr[i] = new Array(participants.length);
                 for(let j=0;j<participants.length;j++){
                     const chkBoxID=String(i)+String(j);
-                   // const myID="#"+chkBoxID;
-                   // console.log(chkBoxID,myID);
+                   
                     const checkBoxElement=document.getElementById(chkBoxID);
-                    arr[i] = new Array(participants.length);
-                    //console.log(checkBoxElement.checked);
-                    if(checkBoxElement.checked){
-                        //console.log(i,j,"OK");
                     
-                        arr[i][j]="OK";
+                    if(checkBoxElement.checked){                   
+                        arr[i][j]=checkBoxElement.value;
                     }else{
-                        //console.log(i,j,"Not");
-                        arr[i][j]="NOT";
+                        arr[i][j]=null;
                     }
                 }
                 
             }
             
-            console.log(arr.toString());
+            console.log(arr);
+            // fetch("reg.php", {
+            // method: "POST",
+            // body: JSON.stringify({jsVar: arr})
+            // })
+            
+            // document.getElementById("myForm").submit();
+
+            
+            
         }
         
-            // for(let i=0;i<7;i++){
-            //     for(let j=0;j<participants.length;j++){
-            //         console.log(arr[i][j]);
-            //     }
-            // }
+        
 
     </script>
-    // <?php
-    //     echo "<script>const b=10;</script>";
-    //     $var=
-    // ?>
-    
+    <?php
+                // echo $myPhpVar= "<script>document.writeln(arr);</script>";
+                // session_start();
+                // $_SESSION["err"] = $myPhpVar;
+
+            ?>
 </html>
