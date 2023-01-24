@@ -1602,7 +1602,7 @@ p {
               <h3 class="mb-0">Event Registration</h3>
             </div>
             <div class="table-responsive">
-            <form action="reg.php" method="POST" id="myForm">
+            <form action="reg.php" method="POST" id="myForm" name="myForm" >
               <table class="table align-items-center table-flush">
                 <thead class="thead-light">
                   
@@ -1676,9 +1676,9 @@ p {
                               <div class="media-body">
                                 <span class="mb-0 text-sm">
                                   <div class="form-outline">
-                                      <input type="text" id="typeText" name=name[] class="form-control" />
+                                      <input type="text"  name=name[] class="form-control" id="name'.$var.'" />
                                       <label class="form-label" for="typeText">Name:</label>
-                                      <input type="text" id="typeText" name=regno[] class="form-control" />
+                                      <input type="text"  name=regno[] class="form-control" id="reg'.$var.'"/>
                                       <label class="form-label" for="typeText">Reg no:</label>
                                   </div>
                                 </span>
@@ -1692,7 +1692,7 @@ p {
                               <ul class="ks-cboxtags">
                               <li>
                                 <input type="checkbox" id="'.$var.''.$var2.'" name="check['.$x.']['.$y.']" value="'.$eid[$y].'" onclick="return myFun(this)">
-                                <label for="'.$var.''.$var2.'">Select</label>
+                                <label for="'.$var.''.$var2.'" id="label'.$var.''.$var2.'">Select</label>
                               </li>
                              
                             </ul>
@@ -1709,7 +1709,7 @@ p {
                 </tbody>
               </table>
 
-              <input type="submit" class="btn btn-secondary" value="submit" name="submit" onclick=submit();>
+              <input type="submit" class="btn btn-secondary" value="submit" name="submit" onclick= return submit();>
             </form>
             </div>
             
@@ -1730,6 +1730,8 @@ p {
          console.log(participants);
          let count=0;
          let count1=0;
+
+         //MyFunction
         function myFun(b){
             console.log(b);
             console.log(b.id);
@@ -1799,24 +1801,105 @@ p {
             }
             
             console.log(arr);
-            // fetch("reg.php", {
-            // method: "POST",
-            // body: JSON.stringify({jsVar: arr})
-            // })
+            for(let i=0;i<7;i++){
+            const nameID="name"+String(i);
+            const regID="reg"+String(i);
+            console.log(nameID);
             
-            // document.getElementById("myForm").submit();
+            const nameElement=document.getElementById(nameID);
+            console.log(nameElement.value);
+            console.log(nameElement);
+            const regElement=document.getElementById(regID);
+            console.log(regElement);
+            
+            
 
-            
-            
+            for(let j=0;j<participants.length;j++){
+                const chkBoxID=String(i)+String(j);
+                const checkBoxElement=document.getElementById(chkBoxID);
+                
+                if(checkBoxElement.checked){
+                   
+                    
+                    if(nameElement.value === ""){
+                        //event.preventDefault();
+                        console.log("hello");
+                        nameElement.focus();
+                        //return false;
+                    } else if(regElement.value === ""){
+                        //event.preventDefault();
+                        regElement.focus();
+                        return false;
+                    }
+                }     
+            }
+        }
+          
         }
         
+        const form = document.getElementById('myForm');
+            form.addEventListener("submit", function(event){
+                for(let i=0;i<7;i++){
+                    const nameID="name"+String(i);
+                    const regID="reg"+String(i);
+                
+                    const nameElement=document.getElementById(nameID);
+                    
+                    const regElement=document.getElementById(regID);
+                    if(nameElement.value === "" && regElement.value !== ""){
+                        nameElement.focus();
+                         event.preventDefault();
+                    }
+                    if(nameElement.value !== "" && regElement.value === ""){
+                        regElement.focus();
+                        event.preventDefault();
+                    }
+
+                    if(nameElement.value !== "" && regElement.value !== ""){
+                        let value=false;
+                        for(let j=0;j<participants.length;j++){
+                            const chkBoxID=String(i)+String(j);
+                            const checkBoxElement=document.getElementById(chkBoxID);
+                            if(checkBoxElement.checked){
+                                value=true;
+                                break;
+                            }
+                    }
+                    if(!value){
+                        event.preventDefault();
+                        alert("Please select atleast one event");
+                        let myID="label"+String(i)+"0";
+                        const checkBoxElement2=document.getElementById(myID);
+                        console.log(checkBoxElement2);
+                        checkBoxElement2.focus();
+                    }
+                    }
+                    for(let j=0;j<participants.length;j++){
+                        const chkBoxID=String(i)+String(j);
+                        const checkBoxElement=document.getElementById(chkBoxID);
+                        if(checkBoxElement.checked){
+                            if(nameElement.value === ""){
+                                console.log("hello");
+                                nameElement.focus();
+                                event.preventDefault();
+
+                            } else if(regElement.value === ""){
+                                regElement.focus();
+                                event.preventDefault();
+
+                            }
+                        } 
+                        
+                        
+                    }
+                    
+                }           
+            });
+        
+
+
         
 
     </script>
-    <?php
-                // echo $myPhpVar= "<script>document.writeln(arr);</script>";
-                // session_start();
-                // $_SESSION["err"] = $myPhpVar;
-
-            ?>
+    
 </html>
