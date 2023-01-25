@@ -163,44 +163,28 @@ Thanking You</p></marquee>
                                 </div>
                             </div>
                         </div>';
-
+                        // $array = explode(".\n", $rules);
+                        // var_dump($array);
                         echo '
-                        <!-- Portfolio item 1 modal popup-->
-                        <div class="portfolio-modal modal fade" id="portfolioModal'.$cnt.'" tabindex="-1" role="dialog" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
-                                    <div class="container">
-                                        <div class="row justify-content-center">
-                                            <div class="col-lg-8">
-                                                <div class="modal-body">
-                                                    <!-- Project details-->
-                                                    <h2 class="text-uppercase">GENERAL PROTOCOLS</h2>
-                                                    <p class="item-intro">Lorem ipsum dolor sit amet consectetur.</p>
-                                                    <!-- <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/1.jpg" alt="..." /> -->
-                <pre class="" style="text-align:left;">
-                '.$rules.'
-                </pre>
-                                                    <ul class="list-inline">
-                                                        <li>
-                                                            <strong>Client:</strong>
-                                                            Threads
-                                                        </li>
-                                                        <li>
-                                                            <strong>Category:</strong>
-                                                            Illustration
-                                                        </li>
-                                                    </ul>
-                                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
-                                                        <i class="fas fa-xmark me-1"></i>
-                                                        Close
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="portfolioModal'.$cnt.'" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        
+                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel">PROTOCOLS</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
+                            <div class="modal-body">
+                            <pre class="font-weight-normal" style="text-align:left;">
+'.$rules.'
+                            </pre>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                            </div>
+                        </div>
                         </div>
                         ';
                         $cnt=$cnt+1;

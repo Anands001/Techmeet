@@ -394,6 +394,7 @@
     $sql="Select * from events";
     $result=mysqli_query($con,$sql);
     if($result){
+      $cnt=40;
         while($row=mysqli_fetch_assoc($result)){
           $id=$row['event_id'];
           $name=$row['event_name'];
@@ -404,7 +405,7 @@
           $rules=$row['rules'];
           $nop=$row['partic_no'];
           $date=explode("-",$row['date']);
-
+          
           $mon = array("01"=>"JAN", "02"=>"FEB", "03"=>"MAR", "04"=>"APR", "05"=>"MAY", "06"=>"JUN", "07"=>"JUL", "08"=>"AUG", "09"=>"SEP", "10"=>"OCT", "11"=>"NOV", "12"=>"DEC");
           
           echo '<div class="col-lg-4">
@@ -438,14 +439,38 @@
                   </li>
                 </ol>
                 <div class="widget-49-meeting-action">
-                  <a href="regform/register.php?event_id='.$id.'" class="btn btn-sm btn-flash-border-primary"
-                    >register</a
+                  <a href="#portfolioModal'.$cnt.'" class="btn btn-sm btn-flash-border-primary"
+                    >Details</a
                   >
                 </div>
               </div>
             </div>
           </div>
         </div>';
+        echo '
+        <!-- Modal -->
+                        <div class="modal fade" id="portfolioModal'.$cnt.'" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        
+                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel">PROTOCOLS</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                            <pre class="font-weight-normal" style="text-align:left;">
+'.$rules.'
+                            </pre>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                        ';
+                        
+                      $cnt=$cnt+1;
         }
       }
 ?>
