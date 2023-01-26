@@ -38,17 +38,18 @@
                 $row1=mysqli_fetch_assoc($result1);
                 $id=$row1['std_id'];
             }
-        }
-        for($j=0;$j<$c;$j++){
-            if(isset($revents[$i][$j])){
-                echo 'id='.$id;
-                $eid=$revents[$i][$j];
-                echo 'eid='.$eid;
-                $isql="INSERT INTO `manage_events` (`std_id`, `event_id`) VALUES ('$id', '$eid')";
-                $result2=mysqli_query($con,$isql);
-                 
+        
+            for($j=0;$j<$c;$j++){
+                if(isset($revents[$i][$j])){
+                    echo 'id='.$id;
+                    $eid=$revents[$i][$j];
+                    echo 'eid='.$eid;
+                    $isql="INSERT INTO `manage_events` (`std_id`, `event_id`) VALUES ('$id', '$eid')";
+                    $result2=mysqli_query($con,$isql);
+                    
+                }
+                // echo "<hr>";
             }
-            // echo "<hr>";
         }
     }
     
@@ -76,6 +77,7 @@
 //         echo $_SESSION['err'];
 //     }
 //
+
 header("Location:success.php?clg_name=$clg_name&dept=$dept");
 ?>
 

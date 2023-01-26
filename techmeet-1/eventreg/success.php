@@ -100,7 +100,6 @@ if($result){
         if($result1){
             echo '<tr>
             <th rowspan="'.$crow.'">'.$eid.'</th>
-            
             </tr>';
             while($row1=mysqli_fetch_assoc($result1)){
                 $name=$row1['std_name'];

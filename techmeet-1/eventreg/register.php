@@ -1692,7 +1692,7 @@ p {
                               <ul class="ks-cboxtags">
                               <li>
                                 <input type="checkbox" id="'.$var.''.$var2.'" name="check['.$x.']['.$y.']" value="'.$eid[$y].'" onclick="return myFun(this)">
-                                <label for="'.$var.''.$var2.'" id="label'.$var.''.$var2.'">Select</label>
+                                <label for="'.$var.''.$var2.'" id="label'.$var.''.$var2.'">Select('.$eid[$y].')</label>
                               </li>
                              
                             </ul>
