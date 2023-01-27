@@ -610,7 +610,7 @@ Thanking You</p></marquee>
                                     <div class="portfolio-hover">
                                         <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                                     </div>
-                                    <img class="img-fluid" src="/techmeet-1/eventimgs/'.$img.'" alt="..." />
+                                    <img class="img-fluid" src="/techmeet-1/eventimgs/kevin-ku-w7ZyuGYNpRQ-unsplash.jpg" alt="..." />
                                 </a>
                                 <div class="portfolio-caption">
                                     <div class="portfolio-caption-heading">'.$name.'</div>

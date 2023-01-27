@@ -69,8 +69,8 @@ include 'dbconnect.php';
     }
     echo '<h5 class="text-uppercase mb-1 text-muted">College:&nbsp'.$clgname.'&nbsp&nbsp&nbspDepartment:&nbsp'.$dept.'</h5>';
 ?>
-<table class="table ex1" id="partlist">
-  <thead class="thead-dark">
+<table class="table ex1 table-bordered" id="partlist">
+  <thead class="thead-light">
     <tr>
       <th scope="col">Events</th>
       <th scope="col">Participant Names</th>

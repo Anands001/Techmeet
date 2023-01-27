@@ -1677,9 +1677,11 @@ p {
                                 <span class="mb-0 text-sm">
                                   <div class="form-outline">
                                       <input type="text"  name=name[] class="form-control" id="name'.$var.'" />
-                                      <label class="form-label" for="typeText">Name:</label>
+                                      <label class="form-label text-muted" for="typeText">Name:</label>
                                       <input type="text"  name=regno[] class="form-control" id="reg'.$var.'"/>
-                                      <label class="form-label" for="typeText">Reg no:</label>
+                                      <label class="form-label text-muted" for="typeText">Reg no:</label>
+                                      <input type="email"  name=email[] class="form-control" id=""/>
+                                      <label class="form-label text-muted" for="typeText">Email(optional):</label>
                                   </div>
                                 </span>
                               </div>

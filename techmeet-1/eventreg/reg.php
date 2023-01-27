@@ -2,6 +2,7 @@
     $revents=$_POST['check'];
     $name=$_POST['name'];
     $regno=$_POST['regno'];
+    $email=$_POST['email'];
     var_dump($name);
     var_dump($regno);
     var_dump($revents);
@@ -30,7 +31,7 @@
 
     for($i=0;$i<7;$i++){
         if(isset($name[$i])&&!empty($name[$i])){
-            $query="INSERT INTO `user` (`std_id`, `std_name`, `std_regno`, `mobile`, `email`, `clg_name`, `dept`) VALUES (NULL, '$name[$i]', '$regno[$i]', '', '', '$clg_name', '$dept')";
+            $query="INSERT INTO `user` (`std_id`, `std_name`, `std_regno`, `mobile`, `email`, `clg_name`, `dept`) VALUES (NULL, '$name[$i]', '$regno[$i]', '', '$email[$i]', '$clg_name', '$dept')";
             $result=mysqli_query($con,$query);
             $query1="SELECT std_id from user where std_regno='$regno[$i]'";
             $result1=mysqli_query($con,$query1);
