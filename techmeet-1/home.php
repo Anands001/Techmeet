@@ -407,7 +407,7 @@
                     <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
                         <li class="nav-item"><a class="nav-link" href="#services">Announcements</a></li>
                         <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#about">Shedule</a></li>
                         <li class="nav-item"><a class="nav-link" href="#team">Team</a></li>
                         <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                     </ul>
@@ -584,56 +584,79 @@ Thanking You</p></marquee>
                     <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
                 </div>
                 <div class="row">
-                    <?php
-                      $sql="Select * from events";
-                      $result=mysqli_query($con,$sql);
-                      if($result){
-                        $cnt=10;
-                          while($row=mysqli_fetch_assoc($result)){
-                            $id=$row['event_id'];
-                            $name=$row['event_name'];
-                            $name1=$row['event_name1'];
-                            $date=$row['date'];
-                            $time=$row['time'];
-                            $det=$row['details'];
-                            $rules=$row['rules'];
-                            $nop=$row['partic_no'];
-                            $img=$row['cimage'];
-                            $date=explode("-",$row['date']);
-                            
-
-                            echo '
-                            <div class="col-lg-4 col-sm-6 mb-4">
+                <div class="col-lg-4 col-sm-6 mb-4">
                             <!-- Portfolio item 1-->
                             <div class="portfolio-item">
-                                <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal'.$cnt.'">
+                                <a class="portfolio-link" data-bs-toggle="modal" href="#scheduleModal">
                                     <div class="portfolio-hover">
                                         <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                                     </div>
                                     <img class="img-fluid" src="/techmeet-1/eventimgs/kevin-ku-w7ZyuGYNpRQ-unsplash.jpg" alt="..." />
                                 </a>
                                 <div class="portfolio-caption">
-                                    <div class="portfolio-caption-heading">'.$name.'</div>
-                                    <div class="portfolio-caption-subheading text-muted">PROTOCOLS</div>
+                                    <div class="portfolio-caption-heading">GENERAL PROTOCOLS</div>
+                                    <div class="portfolio-caption-subheading text-muted"></div>
                                 </div>
                             </div>
                         </div>';
-                        // $array = explode(".\n", $rules);
-                        // var_dump($array);
-                        echo '
+                    
+                      
+                            
+                            
+                            
                         <!-- Modal -->
-                        <div class="modal fade" id="portfolioModal'.$cnt.'" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal fade" id="scheduleModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                         
                         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                             <div class="modal-content">
                             <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="staticBackdropLabel">PROTOCOLS</h1>
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Event Schedule</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                            <pre class="font-weight-normal" style="text-align:left;">
-'.$rules.'
-                            </pre>
+                            <?php
+                            $sql="Select * from events";
+                            $result=mysqli_query($con,$sql);
+                            if($result){
+                              $cnt=10;
+                                while($row=mysqli_fetch_assoc($result)){
+                                  $id=$row['event_id'];
+                                  $name=$row['event_name'];
+                                  $name1=$row['event_name1'];
+                                  $date=$row['date'];
+                                  $time=$row['time'];
+                                  $det=$row['details'];
+                                  $rules=$row['rules'];
+                                  $nop=$row['partic_no'];
+                                  $img=$row['cimage'];
+                                  $date=explode("-",$row['date']);
+                            echo '
+                            <ul class="timeline">
+                            <li>
+                             <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/1.jpg" alt="..." /></div>
+                             <div class="timeline-panel">
+                                 <div class="timeline-heading">
+                                     <h4>Head</h4>
+                                     <h4 class="subheading">sss</h4>
+                                 </div>
+                                 <div class="timeline-body"><p class="text-muted">ss</p></div>
+                             </div>
+                             </li>
+                             <li class="timeline-inverted">
+                                    <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/2.jpg" alt="..." /></div>
+                                    <div class="timeline-panel">
+                                        <div class="timeline-heading">
+                                            <h4>March 2011</h4>
+                                            <h4 class="subheading">An Agency is Born</h4>
+                                        </div>
+                                        <div class="timeline-body"><p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p></div>
+                                    </div>
+                             </li>
+                             </ul>
+                            ';
+                             }
+                            }
+                            ?>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -641,12 +664,10 @@ Thanking You</p></marquee>
                             </div>
                         </div>
                         </div>
-                        ';
-                        $cnt=$cnt+1;
-                          }
-                        }
+                            
+                          
                         
-                    ?>
+
                     <!-- <div class="col-lg-4 col-sm-6 mb-4">
                         
                         <div class="portfolio-item">
@@ -742,43 +763,41 @@ Thanking You</p></marquee>
         <section class="page-section" id="about">
             <div class="container">
                 <div class="text-center">
-                    <h2 class="section-heading text-uppercase">About</h2>
+                    <h2 class="section-heading text-uppercase">Event Schedule</h2>
                     <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
                 </div>
                 <ul class="timeline">
                     <?php
-                     $sql="Select * from about";
+                     $sql="SELECT * FROM `events` ORDER BY date,time;";
                      $result=mysqli_query($con,$sql);
                      if($result){
+                        $t=1;
+                        
                          while($row=mysqli_fetch_assoc($result)){
-                             $id=$row['id'];
-                             $head1=$row['head1'];
-                             $head2=$row['head2'];
-                             $text=$row['text'];
-
+                           $tvar='';
+                           $id=$row['event_id'];
+                           $name=$row['event_name'];
+                           $name1=$row['event_name1'];
+                           $date=$row['date'];
+                           $time=$row['time'];
+                           if($t%2==0){
+                            $tvar='class="timeline-inverted"';
+                           }
                              echo '
-                             <li>
+                             <li '.$tvar.'>
                              <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/1.jpg" alt="..." /></div>
                              <div class="timeline-panel">
                                  <div class="timeline-heading">
-                                     <h4>'.$head1.'</h4>
-                                     <h4 class="subheading">'.$head2.'</h4>
+                                     <h4>'.$name.'</h4>
+                                     <h4 class="subheading">'.$date.'</h4>
                                  </div>
-                                 <div class="timeline-body"><p class="text-muted">'.$text.'</p></div>
+                                 <div class="timeline-body"><p class="text-muted">'.$time.'</p></div>
                              </div>
                              </li>
-                             <li class="timeline-inverted">
-                                    <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/2.jpg" alt="..." /></div>
-                                    <div class="timeline-panel">
-                                        <div class="timeline-heading">
-                                            <h4>March 2011</h4>
-                                            <h4 class="subheading">An Agency is Born</h4>
-                                        </div>
-                                        <div class="timeline-body"><p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p></div>
-                                    </div>
-                             </li>
+                            
                             ';
-                         }
+                            $t++;
+                        }
                         }
                     ?>
                     <!-- <li>
