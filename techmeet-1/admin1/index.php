@@ -1,9 +1,14 @@
 <?php
-if(isset($_POST['inc'])){
+if(isset($_GET['inc'])){
 ob_start();
 $inc=$_GET['inc'];
-include 'C:/xampp/htdocs/techmeet-1/admin1/admin/'.$inc;
+include $inc;
 $addevent = ob_get_clean();
+}else{
+  ob_start();
+  $inc='dashboard.php';
+  include $inc;
+  $addevent = ob_get_clean();
 }
 ?>
 <!DOCTYPE html>
@@ -51,7 +56,7 @@ $addevent = ob_get_clean();
           <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
           </div>
-          <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+          <div class="sidebar-brand-text mx-3">Admin <sup></sup></div>
         </a>
 
         <!-- Divider -->
@@ -59,7 +64,7 @@ $addevent = ob_get_clean();
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item">
-          <a class="nav-link" href="index.html">
+          <a class="nav-link" href="index.php?inc=dashboard.php">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a
           >
@@ -179,7 +184,7 @@ $addevent = ob_get_clean();
 
         <!-- Nav Item - Tables -->
         <li class="nav-item">
-          <a class="nav-link" href="tables.html">
+          <a class="nav-link" href="index.php?inc=participants.php">
             <i class="fas fa-fw fa-table"></i>
             <span>Tables</span></a
           >
@@ -569,6 +574,13 @@ $addevent = ob_get_clean();
 
     <!-- Core plugin JavaScript-->
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+                   
+    <!-- Page level custom scripts -->
+    <script src="js/demo/datatables-demo.js"></script> 
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>

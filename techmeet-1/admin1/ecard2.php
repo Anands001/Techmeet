@@ -388,6 +388,9 @@
     }
   </style>
 </head>
+
+
+
 <div class="container">
   <div class="row">
   <?php
@@ -395,7 +398,7 @@
     $sql="Select * from events";
     $result=mysqli_query($con,$sql);
     if($result){
-      
+      $cnt=0;
         while($row=mysqli_fetch_assoc($result)){
           $id=$row['event_id'];
           $name=$row['event_name'];
@@ -440,15 +443,37 @@
                   </li>
                 </ol>
                 <div class="widget-49-meeting-action">
-                  <a href="/techmeet-1/admin1/index.php?inc=editevent.php&event_id='.$id.'" class="btn btn-sm btn-flash-border-primary"
+                  <a href="index.php?inc=editevent.php&event_id='.$id.'" class="btn btn-sm btn-flash-border-primary"
                     >Edit</a
+                  >
+                  <a href="" class="btn btn-sm btn-flash-border-primary" data-bs-toggle="modal" data-bs-target="#deleteModal'.$cnt.'"
+                    >Remove</a
                   >
                 </div>
               </div>
             </div>
           </div>
-        </div>';
-    
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="deleteModal'.$cnt.'" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Are you sure.</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                This will delete the event - '.$name.'
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <a type="button" class="btn btn-danger" href="deleteevent.php?event_id='.$id.'">Delete</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        ';
+          $cnt++;
         }
       }
 ?>
