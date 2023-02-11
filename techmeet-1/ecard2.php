@@ -440,7 +440,7 @@
                   </li>
                 </ol>
                 <div class="widget-49-meeting-action">
-                  <a href="#portfolioModal'.$cnt.'" class="btn btn-sm btn-flash-border-primary"
+                  <a href="#portfolioModal'.$cnt.'" class="btn btn-sm btn-flash-border-primary" data-bs-toggle="modal"
                     >Details</a
                   >
                 </div>
@@ -448,7 +448,7 @@
             </div>
           </div>
         </div>';
-        echo '
+            echo '
         <!-- Modal -->
                         <div class="modal fade" id="portfolioModal'.$cnt.'" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                         
@@ -470,8 +470,8 @@
                         </div>
                         </div>
                         ';
-                        
-                      $cnt=$cnt+1;
+
+            $cnt=$cnt+1;
         }
       }
 ?>

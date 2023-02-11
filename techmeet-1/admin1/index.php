@@ -97,7 +97,8 @@ $addevent = ob_get_clean();
           >
             <div class="bg-white py-2 collapse-inner rounded">
               <h6 class="collapse-header">Custom Components:</h6>
-              <a class="collapse-item active" href="index.php?inc=addevent.php">Addevent</a>
+                <a class="collapse-item active" href="index.php?inc=../ecard2.php">View events</a>
+              <a class="collapse-item active" href="index.php?inc=addevent.php">Add event</a>
               <a class="collapse-item" href="index.php?inc=ecard2.php">Edit event</a>
             </div>
           </div>
