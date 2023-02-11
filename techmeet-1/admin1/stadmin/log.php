@@ -8,11 +8,18 @@ if (isset($_POST['submit'])) {
 // Perform action for Submit 1
         $user=$_POST['username'];
         $pass=$_POST['password'];
+
         $sql="Select username from staff where username='$user' and password='$pass'";
 
         $result=mysqli_query($con,$sql);
         if(isset($result)){
-            header('Location:../index.php?inc=dashboard.php');
+            if($user=='admin') {
+                header('Location:../index.php?inc=dashboard.php');
+            }else{
+                header('Location:../index.php?inc=dashboard.php');
+            }
+        }else{
+            header('Location:login.php');
         }
     }
 }
