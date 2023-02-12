@@ -1,3 +1,4 @@
+<?php include 'dbconnect.php';?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -25,6 +26,18 @@
     </head>
     <?php
     // session_start();
+//    $sqlquery='SELECT * FROM `info`';
+//    $result1=mysqli_query($con,$sqlquery);
+//    $row1=mysqli_fetch_assoc($result1);
+//    while($row1) {
+//        if(isset($row['title'])) {
+//            $title = $row['title'];
+//        }if (isset($navtitle)) {
+//            $navtitle = $row['title'];
+//        }if (isset($date)) {
+//            $date = $row['date'];
+//        }
+//    }
     // session_destroy();
     ?>
     <body id="page-top">
@@ -55,7 +68,7 @@
                 <a class="btn btn-primary btn-xl text-uppercase" href="/techmeet-1/eventreg/step1.php">REGISTER NOW</a>
             </div>
         </header>
-        <?php include 'dbconnect.php';?>
+
 
             <!--Announcements-->
             <?php

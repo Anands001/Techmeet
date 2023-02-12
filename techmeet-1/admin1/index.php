@@ -1,10 +1,13 @@
 <?php
-if(isset($_GET['inc'])){
+if(isset($_GET['inc'])&&$_GET['inc']!='home.php'){
 ob_start();
 $inc=$_GET['inc'];
 include $inc;
 $addevent = ob_get_clean();
-}else{
+}elseif ($_GET['inc']=='home.php'){
+    $home = "home";
+}
+else{
   ob_start();
   $inc='dashboard.php';
   include $inc;
@@ -40,6 +43,24 @@ $addevent = ob_get_clean();
 
 
 
+      <?php
+//      if($inc=='../home.php'){
+//          echo '
+// <!-- Favicon-->
+//        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+//        <!-- Font Awesome icons (free version)-->
+//        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous">
+//        </script>
+//        <!-- Google fonts-->
+//        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+//        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+//        <link href="https://fonts.googleapis.com/css2?family=Monoton&display=swap" rel="stylesheet">
+//<!-- Core theme CSS (includes Bootstrap)-->
+//                <link href="../css/styles.css" rel="stylesheet" />
+//        ';
+//      }
+      ?>
+
       <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet" />
   </head>
@@ -74,8 +95,19 @@ $addevent = ob_get_clean();
           >
         </li>
 
+
         <!-- Divider -->
         <hr class="sidebar-divider" />
+
+          <!-- Nav Item - Dashboard -->
+          <li class="nav-item">
+              <a class="nav-link" href="index.php?inc=home.php">
+                  <i class="fas fa-fw fa-tachometer-alt"></i>
+                  <span>Preview</span></a
+              >
+          </li>
+          <!-- Divider -->
+          <hr class="sidebar-divider" />
 
         <!-- Heading -->
         <div class="sidebar-heading">Interface</div>
@@ -179,6 +211,13 @@ $addevent = ob_get_clean();
           </div>
         </li>
 
+          <!-- Nav Item - Charts -->
+          <li class="nav-item">
+              <a class="nav-link" href="index.php?inc=staff.php">
+                  <i class="fas fa-fw fa-chart-area"></i>
+                  <span>Staffs</span></a
+              >
+          </li>
         <!-- Nav Item - Charts -->
         <li class="nav-item">
           <a class="nav-link" href="charts.html">
@@ -508,8 +547,23 @@ $addevent = ob_get_clean();
 
             <!-- add event -->
             <?php
-              echo $addevent;
-            ?>
+            if(isset($home)){
+                echo '<div
+              class="d-sm-flex align-items-center justify-content-between mb-4"
+            >
+              <h1 class="h3 mb-0 text-gray-800">Home Page</h1>
+              <a
+                href="#"
+                class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
+                ><i class="fas fa-download fa-sm text-white-50"></i> Edit</a
+              >
+            </div>';
+                echo '<iframe src="../home.php" height="700px" width="100%"></iframe>';
+
+            }else {
+                echo $addevent;
+            }
+              ?>
           </div>
           <!-- /.container-fluid -->
         </div>

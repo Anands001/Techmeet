@@ -1,5 +1,9 @@
 <?php
-
+include 'dbconnect.php';
+$sql="select count(std_id) as total from user";
+$result=mysqli_query($con,$sql);
+$row=mysqli_fetch_assoc($result);
+$total=$row['total'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -70,7 +74,7 @@
                           Registered (Total)
                         </div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">
-                          $40,000
+                          <?php echo $total ?>
                         </div>
                       </div>
                       <div class="col-auto">
