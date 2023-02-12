@@ -1,3 +1,4 @@
+<?php include 'dbconnect.php'; ?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -81,7 +82,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.0/css/boxicons.min.css" integrity="sha512-pVCM5+SN2+qwj36KonHToF2p1oIvoU3bsqxphdOIWMYmgr4ZqD3t5DjKvvetKhXGc/ZG5REYTT6ltKfExEei/Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.css" integrity="sha256-NAxhqDvtY0l4xn+YVa6WjAcmd94NNfttjNsDmNatFVc=" crossorigin="anonymous" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<!--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>-->
 </head>
 <body>
 
@@ -89,7 +90,15 @@
     <div class="row align-items-center">
         <div class="col-md-6">
             <div class="mb-3">
-                <h5 class="card-title">Contact List <span class="text-muted fw-normal ms-2">(834)</span></h5>
+                <?php
+                $sql1="Select count(*) as count from staff";
+                $result1=mysqli_query($con,$sql1);
+                if($result1){
+                    $row=mysqli_fetch_assoc($result1);
+                    $tot=$row['count'];
+                }
+                ?>
+                <h5 class="card-title">Staff List <span class="text-muted fw-normal ms-2">(<?php echo $tot ?>)</span></h5>
             </div>
         </div>
         <div class="col-md-6">
@@ -120,7 +129,7 @@
     </div>
     <div class="row">
         <?php
-        include 'dbconnect.php';
+
         $sql="Select * from staff";
         $result=mysqli_query($con,$sql);
         if($result){
@@ -138,7 +147,7 @@
                             <div class="avatar-title bg-soft-primary text-primary display-6 m-0 rounded-circle"><i class="bx bxs-user-circle"></i></div>
                         </div>';
                 }
-                echo '<div class="col-xl-4 col-sm-6">
+                echo '<div class="col-xl-3 col-sm-6">
             <div class="card">
                 <div class="card-body">
                     <div class="dropdown float-end">
@@ -148,7 +157,7 @@
                     <div class="d-flex align-items-center">
                         '.$icode.'
                         <div class="flex-1 ms-3">
-                            <h6 class="font-size-16 mb-1"><a href="#" class="text-dark">'.$name.'</a></h6>
+                            <h6 class="font-size-16 mb-1" data-toggle="tooltip" data-placement="top" title="'.$name.'" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 16ch;">'.$name.'</h6>
                             <span class="badge badge-soft-success mb-0">'.$desg.'</span>
                         </div>
                     </div>

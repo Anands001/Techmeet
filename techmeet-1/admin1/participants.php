@@ -101,7 +101,7 @@
                                             <th>Email</th>
                                             <th>clg_Name</th>
                                             <th>Dept</th>
-                                            <th>Event Name</th>
+<!--                                            <th>Event Name</th>-->
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -111,12 +111,13 @@
                                             <th>Email</th>
                                             <th>clg_Name</th>
                                             <th>Dept</th>
-                                            <th>Event Name</th>
+<!--                                            <th>Event Name</th>-->
                                         </tr>
                                     </tfoot>
                                     <tbody>
                                     <?php
-                        $sql="select user.std_name,user.std_regno,user.mobile,user.email,user.clg_name,user.dept,events.event_name from user JOIN (manage_events JOIN events USING(event_id)) USING(std_id);";
+//                        $sql="select user.std_name,user.std_regno,user.mobile,user.email,user.clg_name,user.dept,events.event_name from user JOIN (manage_events JOIN events USING(event_id)) USING(std_id);";
+                        $sql="select * from user";
                         $result=mysqli_query($con,$sql);
                         if($result){
                             while($row=mysqli_fetch_assoc($result)){
@@ -126,7 +127,7 @@
                                 $email=$row['email'];
                                 $clgname=$row['clg_name'];
                                 $dept=$row['dept'];
-                                $eventname=$row['event_name'];     
+//                                $eventname=$row['event_name'];
                                 
                                 echo '
                                 <tr>
@@ -135,7 +136,7 @@
                                             <td>'.$email.'</td>
                                             <td>'.$clgname.'</td>
                                             <td>'.$dept.'</td>
-                                            <td>'.$eventname.'</td>
+                                            
                                         </tr>
                                 ';
                             }

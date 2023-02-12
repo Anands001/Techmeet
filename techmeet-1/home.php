@@ -26,25 +26,26 @@
     </head>
     <?php
     // session_start();
-//    $sqlquery='SELECT * FROM `info`';
-//    $result1=mysqli_query($con,$sqlquery);
-//    $row1=mysqli_fetch_assoc($result1);
-//    while($row1) {
-//        if(isset($row['title'])) {
-//            $title = $row['title'];
-//        }if (isset($navtitle)) {
-//            $navtitle = $row['title'];
-//        }if (isset($date)) {
-//            $date = $row['date'];
-//        }
-//    }
+    $sqlquery='SELECT * FROM `info`';
+    $result1=mysqli_query($con,$sqlquery);
+    while($row1=mysqli_fetch_assoc($result1)) {
+        if($row1['ikey']=='title'){
+            $title=$row1['ivalue'];
+        }
+        if($row1['ikey']=='navtitle'){
+            $ntitle=$row1['ivalue'];
+        }
+        if($row1['ikey']=='date'){
+            $date=$row1['ivalue'];
+        }
+    }
     // session_destroy();
     ?>
     <body id="page-top">
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
             <div class="container">
-                <a class="navbar-brand" href="#page-top"><!--<img src="assets/img/navbar-logo.svg" alt="..." />-->  ICAPO 2023</a>
+                <a class="navbar-brand" href="#page-top"><!--<img src="assets/img/navbar-logo.svg" alt="..." />-->  <?php echo $ntitle?></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars ms-1"></i>
@@ -63,8 +64,8 @@
         <!-- Masthead-->
         <header class="masthead">
             <div class="container">
-                <div class="masthead-subheading">Welcome To Our Department!</div>
-                <div class="masthead-heading text-uppercase">It's Nice To Meet You</div>
+                <div class="masthead-subheading"><?php echo $date ?></div>
+                <div class="masthead-heading text-uppercase"><?php echo $title ?></div>
                 <a class="btn btn-primary btn-xl text-uppercase" href="/techmeet-1/eventreg/step1.php">REGISTER NOW</a>
             </div>
         </header>
