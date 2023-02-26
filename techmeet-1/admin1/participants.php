@@ -22,6 +22,11 @@
 
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
     <script type="text/javascript">
         function Export() {
             html2canvas(document.getElementById('dataTable'), {
@@ -36,6 +41,30 @@
                     pdfMake.createPdf(docDefinition).download("Table.pdf");
                 }
             });
+        }
+    </script>
+    <script>
+        'use strict'
+        function myFunction() {
+            // Declare variables
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("dropDown");
+            console.log(input);
+            filter = input.value.toUpperCase();
+            table = document.getElementById("dataTable");
+            tr = table.getElementsByTagName("tr");
+
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[5];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].classList.remove("hidden"); // remove the "hidden" class if it exists
+                    } else {
+                        tr[i].classList.add("hidden"); // add the "hidden" class if the row should be hidden
+                    }
+                }
+            }
         }
     </script>
 </head>
@@ -66,15 +95,15 @@
                             <!-- pdf download -->
                             <div class="d-flex">
                                 <input type="button" class="btn btn-outline-primary mb-2" id="btnExport" value="Download" onclick="Export()" />
-                                <select class="ml-auto form-select form-select-lg mb-3" aria-label="" name="eventfilter">
-                                <option disabled="disabled" selected="selected">filter</option>
+                                <select id ="dropDown" onchange="myFunction()" class="ml-auto form-select form-select-lg mb-3" aria-label="" name="eventfilter">
+<!--                                <option disabled="disabled" selected="selected">filter</option>-->
                                 <?php
                                      $sql="select event_name from events";
                                      $result=mysqli_query($con,$sql);
                                      if($result){
                                         while($row=mysqli_fetch_assoc($result)){
                                             $eventfilt=$row['event_name'];
-                                             echo '<option>'.$eventfilt.'</option>';
+                                             echo '<option value="'.$eventfilt.'">'.$eventfilt.'</option>';
                                         }
                                       }
                                 ?>
@@ -101,7 +130,7 @@
                                             <th>Email</th>
                                             <th>clg_Name</th>
                                             <th>Dept</th>
-<!--                                            <th>Event Name</th>-->
+                                            <th>Event Name</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -111,13 +140,13 @@
                                             <th>Email</th>
                                             <th>clg_Name</th>
                                             <th>Dept</th>
-<!--                                            <th>Event Name</th>-->
+                                            <th>Event Name</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
                                     <?php
-//                        $sql="select user.std_name,user.std_regno,user.mobile,user.email,user.clg_name,user.dept,events.event_name from user JOIN (manage_events JOIN events USING(event_id)) USING(std_id);";
-                        $sql="select * from user";
+                        $sql="select user.std_name,user.std_regno,user.mobile,user.email,user.clg_name,user.dept,events.event_name from user JOIN (manage_events JOIN events USING(event_id)) USING(std_id);";
+//                        $sql="select * from user";
                         $result=mysqli_query($con,$sql);
                         if($result){
                             while($row=mysqli_fetch_assoc($result)){
@@ -127,7 +156,7 @@
                                 $email=$row['email'];
                                 $clgname=$row['clg_name'];
                                 $dept=$row['dept'];
-//                                $eventname=$row['event_name'];
+                                $eventname=$row['event_name'];
                                 
                                 echo '
                                 <tr>
@@ -136,7 +165,7 @@
                                             <td>'.$email.'</td>
                                             <td>'.$clgname.'</td>
                                             <td>'.$dept.'</td>
-                                            
+                                            <td>'.$eventname.'</td>
                                         </tr>
                                 ';
                             }
