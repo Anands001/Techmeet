@@ -27,6 +27,8 @@
 (function( factory ) {
 	"use strict";
 
+
+
 	if ( typeof define === 'function' && define.amd ) {
 		// AMD
 		define( ['jquery'], function ( $ ) {
@@ -6517,7 +6519,7 @@
 			}
 	
 			if ( type == 'alert' ) {
-				alert( msg );
+				// alert( msg );
 			}
 			else if ( type == 'throw' ) {
 				throw new Error(msg);

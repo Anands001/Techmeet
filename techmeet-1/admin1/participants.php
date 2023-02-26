@@ -66,6 +66,9 @@
                 }
             }
         }
+        document.addEventListener('DOMContentLoaded', function() {
+            myFunction();
+        });
     </script>
 </head>
 
@@ -100,10 +103,18 @@
                                 <?php
                                      $sql="select event_name from events";
                                      $result=mysqli_query($con,$sql);
+                                     $i =0;
                                      if($result){
                                         while($row=mysqli_fetch_assoc($result)){
                                             $eventfilt=$row['event_name'];
-                                             echo '<option value="'.$eventfilt.'">'.$eventfilt.'</option>';
+                                            if($i=0){
+                                                echo '<option value="'.$eventfilt.'" selected="selected">'.$eventfilt.'</option>';
+                                                $i++;
+
+                                            }else{
+                                                echo '<option value="'.$eventfilt.'">'.$eventfilt.'</option>';
+
+                                            }
                                         }
                                       }
                                 ?>
