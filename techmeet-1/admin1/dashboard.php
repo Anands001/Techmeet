@@ -186,7 +186,7 @@ $total=$row['total'];
                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between"
                   >
                     <h6 class="m-0 font-weight-bold text-primary">
-                      Earnings Overview
+                      Registered Participants (Last 7 days)
                     </h6>
                     <div class="dropdown no-arrow">
                       <a
@@ -233,7 +233,7 @@ $total=$row['total'];
                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between"
                   >
                     <h6 class="m-0 font-weight-bold text-primary">
-                      Revenue Sources
+                      Registered Participants (Each event)
                     </h6>
                     <div class="dropdown no-arrow">
                       <a

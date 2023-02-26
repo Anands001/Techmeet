@@ -73,7 +73,8 @@ include 'dbconnect.php';
   <thead class="thead-light">
     <tr>
       <th scope="col">Events</th>
-      <th scope="col">Participant Names</th>
+        <th scope="col">regno</th>
+      <th scope="col">Name</th>
     </tr>
   </thead>
 <tbody>
@@ -106,6 +107,7 @@ if($result){
                 $regno=$row1['std_regno'];
                 echo '
                     <tr>
+                    <td>'.$regno.'</td>
                     <td>'.$name.'</td>
                     </tr>
                     ';
@@ -117,6 +119,8 @@ if($result){
 ?>
   </tbody>
 </table>
+
+
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>

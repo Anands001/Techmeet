@@ -448,7 +448,7 @@ Thanking You</p></marquee>
                            $simg=$row['image'];
                            echo '<div class="col-lg-4">
                            <div class="team-member">
-                               <img class="mx-auto rounded-circle" src="/techmeet-1/images/staff/'.$img.'" alt="..." />
+                               <img class="mx-auto rounded-circle" style="object-fit: cover" src="/techmeet-1/images/staff/'.$img.'" alt="..." />
                                <h4>'.$name.'</h4>
                                <p class="text-muted">'.$desg.'</p>
                                <a class="btn btn-dark btn-social mx-2" href="'.$gmail.'" aria-label="Parveen Anand Twitter Profile"><i class="fab fa-solid fa-envelope"></i></a>

@@ -70,11 +70,11 @@ if ($uploadOk == 0) {
     $_SESSION['error']= "Sorry, there was an error uploading your file.";
   }
  }
- $sql="UPDATE `events` SET `event_name` = '$ename',event_name1='$ename1',date='$date',time='$time',rules='$protocols',partic_no='$nop',cimage='$file_name' WHERE `events`.`event_id` = 15;";
+ $sql="UPDATE `events` SET `event_name` = '$ename',event_name1='$ename1',date='$date',time='$time',rules='$protocols',partic_no='$nop',cimage='$file_name' WHERE `events`.`event_id` = $eid;";
 		$result=mysqli_query($con,$sql);
 
 		if(isset($result)){
-			// header("location:/techmeet-1/home.php");
+			header("location:/techmeet-1/home.php");
 		}
 
 		if(isset($_SESSION['msg'])){
@@ -86,11 +86,11 @@ if ($uploadOk == 0) {
 }else{
 		
 
-		$sql="UPDATE `events` SET `event_name` = '$ename',event_name1='$ename1',date='$date',time='$time',rules='$protocols',partic_no='$nop',cimage='$cimg'   WHERE `events`.`event_id` = 15;";
+		$sql="UPDATE `events` SET `event_name` = '$ename',event_name1='$ename1',date='$date',time='$time',rules='$protocols',partic_no='$nop',cimage='$cimg'   WHERE `events`.`event_id` = $eid;";
 		$result=mysqli_query($con,$sql);
 
 		if(isset($result)){
-			header("location:/techmeet-1/home.php");
+			header("location:index.php?inc=ecard2.php");
 		}
 
 		if(isset($_SESSION['msg'])){

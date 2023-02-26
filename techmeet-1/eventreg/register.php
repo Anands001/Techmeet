@@ -1711,7 +1711,7 @@ p {
                 </tbody>
               </table>
 
-              <input type="submit" class="btn btn-secondary" value="submit" name="submit" onclick= return submit();>
+              <input type="submit" class="btn btn-secondary" value="Register" name="submit" onclick= return submit();>
             </form>
             </div>
             
