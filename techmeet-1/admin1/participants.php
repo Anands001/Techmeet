@@ -57,7 +57,7 @@
             tr = table.getElementsByTagName("tr");
 
             for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[5];
+                td = tr[i].getElementsByTagName("td")[6];
                 if (td) {
                     txtValue = td.textContent || td.innerText;
                     if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -148,7 +148,7 @@
                                 </div>                                    
                                     <thead>
                                         <tr>
-                                            
+                                            <th>Sno</th>
                                             <th>Name</th>
                                             <th>Reg no</th>
                                             <th>Email</th>
@@ -159,6 +159,7 @@
                                     </thead>
                                     <tfoot>
                                         <tr>
+                                            <th>Sno</th>
                                             <th>Name</th>
                                             <th>Reg no</th>
                                             <th>Email</th>
@@ -169,11 +170,18 @@
                                     </tfoot>
                                     <tbody>
                                     <?php
-                        $sql="select user.std_name,user.std_regno,user.mobile,user.email,user.clg_name,user.dept,events.event_name from user JOIN (manage_events JOIN events USING(event_id)) USING(std_id);";
+                        $sql="select user.std_name,user.std_regno,user.mobile,user.email,user.clg_name,user.dept,events.event_name from user JOIN (manage_events JOIN events USING(event_id)) USING(std_id) ORDER BY user.clg_name, user.dept;
+;";
 //                        $sql="select * from user";
                         $result=mysqli_query($con,$sql);
+                                    $clgname=null;
+                                    $dept=null;
                         if($result){
+                            $sno=0;
                             while($row=mysqli_fetch_assoc($result)){
+                                if($row['clg_name']!=$clgname||$row['dept']!=$dept){
+                                    $sno++;
+                                }
                                 $name=$row['std_name'];
                                 $regno=$row['std_regno'];
                                 $mobile=$row['mobile'];
@@ -184,6 +192,7 @@
                                 
                                 echo '
                                 <tr>
+                                            <td>'.$sno.'</td>
                                             <td>'.$name.'</td>
                                             <td>'.$regno.'</td>
                                             <td>'.$email.'</td>
@@ -192,20 +201,14 @@
                                             <td>'.$eventname.'</td>
                                         </tr>
                                 ';
+
                             }
                         }
                                             ?>
-                                       <!--  
-                                        <tr>
-                                            <td>Donna Snider</td>
-                                            <td>Customer Support</td>
-                                            <td>New York</td>
-                                            <td>27</td>
-                                            <td>2011/01/25</td>
-                                            <td>$112,000</td>
-                                        </tr> -->
                                     </tbody>
                                 </table>
+
+
                             </div>
                         </div>
                     </div>
