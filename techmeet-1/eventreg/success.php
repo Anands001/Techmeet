@@ -60,7 +60,7 @@ include 'dbconnect.php';
      $clgname=$_GET['clg_name'];
      $dept=$_GET['dept'];
 
-    
+
     $sql="Select count(event_id) as count from events";
     $result=mysqli_query($con,$sql);
     if($result){
@@ -69,27 +69,75 @@ include 'dbconnect.php';
     }
     echo '<h5 class="text-uppercase mb-1 text-muted">College:&nbsp'.$clgname.'&nbsp&nbsp&nbspDepartment:&nbsp'.$dept.'</h5>';
 ?>
+
+
 <table class="table ex1 table-bordered" id="partlist">
-  <thead class="thead-light">
+    <thead class="thead-light">
     <tr>
-      <th scope="col">Events</th>
-        <th scope="col">regno</th>
-      <th scope="col">Name</th>
+        <th scope="col">Name</th>
+        <th scope="col">Reg No</th>
+        <th scope="col">Events</th>
     </tr>
-  </thead>
-<tbody>
+    </thead>
+    <tbody>
+    <?php
+    include 'dbconnect.php';
+
+    $sql = "SELECT event_name FROM events";
+    $result = mysqli_query($con, $sql);
+
+    if ($result) {
+        $events = array();
+
+        while ($row = mysqli_fetch_assoc($result)) {
+            $events[] = $row['event_name'];
+        }
+
+        $sql = "SELECT std_name, std_regno, event_name FROM user JOIN (manage_events JOIN events USING(event_id)) USING(std_id) WHERE UPPER(user.clg_name) = UPPER('$clgname') AND UPPER(user.dept) = UPPER('$dept')";
+        $result = mysqli_query($con, $sql);
+
+        if ($result) {
+            $participants = array();
+
+            while ($row = mysqli_fetch_assoc($result)) {
+                $regno = $row['std_regno'];
+                $participants[$regno]['name'] = $row['std_name'];
+                $participants[$regno]['events'][] = $row['event_name'];
+            }
+
+            foreach ($participants as $regno => $participant) {
+                echo '<tr><td>'.$participant['name'].'</td><td>'.$regno.'</td><td>'.implode(", ", $participant['events']).'</td></tr>';
+            }
+        }
+    }
+    ?>
+    </tbody>
+</table>
+
+<!--table2-->
 <?php
 include 'dbconnect.php';
+
+// start HTML table
+echo '<table class="table ex1 table-bordered" id="partlist">';
+echo '<thead class="thead-light">';
+echo '<tr>';
+echo '<th scope="col">Event Name</th>';
+echo '<th scope="col">Registration Number</th>';
+echo '<th scope="col">Name</th>';
+echo '</tr>';
+echo '</thead>';
+echo '<tbody>';
 
 $sql="select event_name from events";
 $result=mysqli_query($con,$sql);
 if($result){
     while($row=mysqli_fetch_assoc($result)){
         $eid=$row['event_name'];
-        
+
         $sql1="select user.std_name,user.std_regno,events.event_name from user JOIN (manage_events JOIN events USING(event_id)) USING(std_id) WHERE events.event_name='$eid' AND UPPER(user.clg_name)=UPPER('$clgname') AND UPPER(user.dept)=UPPER('$dept');";
         $sql2="select COUNT(user.std_name) as count from user JOIN (manage_events JOIN events USING(event_id)) USING(std_id) WHERE events.event_name='$eid' AND UPPER(user.clg_name)=UPPER('$clgname') AND UPPER(user.dept)=UPPER('$dept');";
-        
+
         $result2=mysqli_query($con,$sql2);
         if($result2){
             $row2=mysqli_fetch_assoc($result2);
@@ -99,27 +147,24 @@ if($result){
         $result1=mysqli_query($con,$sql1);
 
         if($result1){
-            echo '<tr>
-            <th rowspan="'.$crow.'">'.$eid.'</th>
-            </tr>';
+            echo '<tr>';
+            echo '<td rowspan="'.$crow.'">'.$eid.'</td>';
             while($row1=mysqli_fetch_assoc($result1)){
                 $name=$row1['std_name'];
                 $regno=$row1['std_regno'];
-                echo '
-                    <tr>
-                    <td>'.$regno.'</td>
-                    <td>'.$name.'</td>
-                    </tr>
-                    ';
+                echo '<td>'.$regno.'</td>';
+                echo '<td>'.$name.'</td>';
+                echo '</tr>';
+                echo '<tr>';
             }
         }
     }
 }
-    
-?>
-  </tbody>
-</table>
 
+// end HTML table
+echo '</tbody>';
+echo '</table>';
+?>
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>

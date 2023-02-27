@@ -1,0 +1,14 @@
+{
+  "name": "vendor_name/techmeet-1",
+  "description": "description",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "sssan",
+      "email": "email@example.com"
+    }
+  ],
+  "require": {
+  }
+}

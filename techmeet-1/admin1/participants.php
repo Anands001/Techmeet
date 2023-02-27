@@ -16,9 +16,11 @@
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
+<!--    <link href="../css/mdb.min.css">-->
 
     <!-- Custom styles for this template -->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
 
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
@@ -97,7 +99,18 @@
                             href="https://datatables.net">official DataTables documentation</a>.</p>
                             <!-- pdf download -->
                             <div class="d-flex">
-                                <input type="button" class="btn btn-outline-primary mb-2" id="btnExport" value="Download" onclick="Export()" />
+                                <input type="button" class="btn btn-outline-primary mb-3" id="btnExport" value="Download" onclick="Export()" />
+                                <!--search-->
+                                <div class="input-group ml-auto">
+                                    <div class="form-outline ml-auto mr-3">
+                                        <input type="search" id="form1" class="form-control" />
+<!--                                        <label class="form-label" for="form1">Search</label>-->
+                                    </div>
+
+<!--                                   <button type="button" class="btn btn-primary">-->
+<!--                                        <i class="fas fa-search"></i>-->
+<!--                                    </button>-->
+                                </div>
                                 <select id ="dropDown" onchange="myFunction()" class="ml-auto form-select form-select-lg mb-3" aria-label="" name="eventfilter">
 <!--                                <option disabled="disabled" selected="selected">filter</option>-->
                                 <?php
@@ -256,7 +269,9 @@
     <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
                    
     <!-- Page level custom scripts -->
-    <script src="js/demo/datatables-demo.js"></script> 
+    <script src="js/demo/datatables-demo.js"></script>
+
+<!--    <script src="js/mdb.min.js"></script>-->
 
 </body>
 
