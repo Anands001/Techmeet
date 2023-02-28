@@ -1605,9 +1605,9 @@ p {
             <form action="reg.php" method="POST" id="myForm" name="myForm" >
               <table class="table align-items-center table-flush">
                 <thead class="thead-light">
+
                   
                     <?php
-                    
 
                     echo'<tr>
                           <th scope="col">Participants(7 per dept)</th>';

@@ -29,9 +29,36 @@
         $dept=$_SESSION['dept'];
     }
 
-    for($i=0;$i<7;$i++){
+
+
+$tname = null;
+$team2 = array();
+$query = "select tname from user";
+$result5 = mysqli_query($con, $query);
+if ($result5) {
+    while ($row = mysqli_fetch_assoc($result5)) {
+        $teams = $row['tname'];
+        array_push($team2, $teams);
+    }
+}
+
+$team1 = array();
+$query = "select tname from teams";
+$result5 = mysqli_query($con, $query);
+if ($result5) {
+    while ($row = mysqli_fetch_assoc($result5)) {
+        $teams = $row['tname'];
+        if (!in_array($teams, $team2)) {
+            $tname = $teams;
+            break;
+        }
+    }
+}
+
+
+for($i=0;$i<7;$i++){
         if(isset($name[$i])&&!empty($name[$i])){
-            $query="INSERT INTO `user` (`std_id`, `std_name`, `std_regno`, `mobile`, `email`, `clg_name`, `dept`) VALUES (NULL, '$name[$i]', '$regno[$i]', '', '$email[$i]', '$clg_name', '$dept')";
+            $query="INSERT INTO `user` (`std_id`, `std_name`, `std_regno`, `mobile`, `email`, `clg_name`, `dept`, `tname`) VALUES (NULL, '$name[$i]', '$regno[$i]', '', '$email[$i]', '$clg_name', '$dept','$tname')";
             $result=mysqli_query($con,$query);
             $query1="SELECT std_id from user where std_regno='$regno[$i]'";
             $result1=mysqli_query($con,$query1);

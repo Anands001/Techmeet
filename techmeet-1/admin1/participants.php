@@ -100,6 +100,9 @@
                             <!-- pdf download -->
                             <div class="d-flex">
                                 <input type="button" class="btn btn-outline-primary mb-3" id="btnExport" value="Download" onclick="Export()" />
+
+                                <a class="btn btn-sm btn-info float-right mr-1 d-print-none" href="#" onclick="javascript:window.print();" data-abc="true">Print</a>
+
                                 <!--search-->
                                 <div class="input-group ml-auto">
                                     <div class="form-outline ml-auto mr-3">

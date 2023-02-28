@@ -28,6 +28,8 @@
      </style>
 </head>
 <body class="container">
+<div id="table">hi</div>
+
 <div class="alert alert-success d-flex align-items-center mt-4" role="alert">
   <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
   <div>
@@ -60,6 +62,15 @@ include 'dbconnect.php';
      $clgname=$_GET['clg_name'];
      $dept=$_GET['dept'];
 
+     $tname=null;
+     $query="Select tname from user WHERE UPPER(user.clg_name) = UPPER('$clgname') AND UPPER(user.dept) = UPPER('$dept')";
+    $results=mysqli_query($con,$query);
+    if($results){
+        while ($row=mysqli_fetch_assoc($results)){
+            $tname=$row['tname'];
+            break;
+        }
+    }
 
     $sql="Select count(event_id) as count from events";
     $result=mysqli_query($con,$sql);
@@ -67,7 +78,7 @@ include 'dbconnect.php';
         $row=mysqli_fetch_assoc($result);
         $c=$row['count'];
     }
-    echo '<h5 class="text-uppercase mb-1 text-muted">College:&nbsp'.$clgname.'&nbsp&nbsp&nbspDepartment:&nbsp'.$dept.'</h5>';
+    echo '<h5 class="text-uppercase mb-1 text-muted">College:&nbsp'.$clgname.'&nbsp&nbsp&nbsp Department:&nbsp'.$dept.'&nbsp&nbsp&nbsp Team Name:&nbsp'.$tname.'</h5>';
 ?>
 
 
