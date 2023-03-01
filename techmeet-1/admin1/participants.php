@@ -57,7 +57,7 @@
             tr = table.getElementsByTagName("tr");
 
             for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[6];
+                td = tr[i].getElementsByTagName("td")[7];
                 if (td) {
                     txtValue = td.textContent || td.innerText;
                     if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -94,9 +94,9 @@
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-                    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
-                        For more information about DataTables, please visit the <a target="_blank"
-                            href="https://datatables.net">official DataTables documentation</a>.</p>
+<!--                    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.-->
+<!--                        For more information about DataTables, please visit the <a target="_blank"-->
+<!--                            href="https://datatables.net">official DataTables documentation</a>.</p>-->
                             <!-- pdf download -->
                             <div class="d-flex">
                                 <input type="button" class="btn btn-outline-primary mb-3" id="btnExport" value="Download" onclick="Export()" />
@@ -106,7 +106,7 @@
                                 <!--search-->
                                 <div class="input-group ml-auto">
                                     <div class="form-outline ml-auto mr-3">
-                                        <input type="search" id="form1" class="form-control" />
+                                        <input type="search" id="form1" placeholder="Search" class="form-control" />
 <!--                                        <label class="form-label" for="form1">Search</label>-->
                                     </div>
 
@@ -137,7 +137,10 @@
                                 </select>
 
                             </div>
-                    
+
+                    <?php
+
+                    ?>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
@@ -152,6 +155,7 @@
                                     <thead>
                                         <tr>
                                             <th>Sno</th>
+                                            <th>Team Name</th>
                                             <th>Name</th>
                                             <th>Reg no</th>
                                             <th>Email</th>
@@ -163,6 +167,7 @@
                                     <tfoot>
                                         <tr>
                                             <th>Sno</th>
+                                            <th>Team Name</th>
                                             <th>Name</th>
                                             <th>Reg no</th>
                                             <th>Email</th>
@@ -192,10 +197,21 @@
                                 $clgname=$row['clg_name'];
                                 $dept=$row['dept'];
                                 $eventname=$row['event_name'];
-                                
+
+                                $tname=null;
+                                $query="Select tname from user WHERE UPPER(user.clg_name) = UPPER('$clgname') AND UPPER(user.dept) = UPPER('$dept')";
+                                $results=mysqli_query($con,$query);
+                                if($results){
+                                    while ($row=mysqli_fetch_assoc($results)){
+                                        $tname=$row['tname'];
+                                        break;
+                                    }
+                                }
+
                                 echo '
                                 <tr>
                                             <td>'.$sno.'</td>
+                                            <td>'.$tname.'</td>
                                             <td>'.$name.'</td>
                                             <td>'.$regno.'</td>
                                             <td>'.$email.'</td>
