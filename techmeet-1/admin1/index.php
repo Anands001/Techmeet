@@ -230,7 +230,7 @@ if(isset($_GET['inc'])){
 
         <!-- Nav Item - Tables -->
         <li class="nav-item">
-          <a class="nav-link" href="index.php?inc=participants.php">
+          <a class="nav-link" href="index.php?inc=eventpart.php">
             <i class="fas fa-fw fa-table"></i>
             <span>Tables</span></a
           >

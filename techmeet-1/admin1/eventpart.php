@@ -57,7 +57,7 @@
             tr = table.getElementsByTagName("tr");
 
             for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[7];
+                td = tr[i].getElementsByTagName("td")[6];
                 if (td) {
                     txtValue = td.textContent || td.innerText;
                     if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -69,8 +69,15 @@
             }
         }
         document.addEventListener('DOMContentLoaded', function() {
-            myFunction();
+            // myFunction();
+            // handleSelect(document.getElementById("dropDown"));
         });
+    </script>
+    <script type="text/javascript">
+        function handleSelect(elm)
+        {
+            window.location = elm.value;
+        }
     </script>
 </head>
 
@@ -114,7 +121,8 @@
                         <!--                                        <i class="fas fa-search"></i>-->
                         <!--                                    </button>-->
                     </div>
-                    <select id ="dropDown" onchange="myFunction()" class="ml-auto form-select form-select-lg mb-3" aria-label="" name="eventfilter">
+                    <select id ="dropDown" onchange="handleSelect(this)" class="ml-auto form-select form-select-lg mb-3" aria-label="" name="eventfilter">
+
                         <!--                                <option disabled="disabled" selected="selected">filter</option>-->
                         <?php
                         $sql="select event_name from events";
@@ -124,11 +132,11 @@
                             while($row=mysqli_fetch_assoc($result)){
                                 $eventfilt=$row['event_name'];
                                 if($i=0){
-                                    echo '<option value="'.$eventfilt.'" selected="selected">'.$eventfilt.'</option>';
+                                    echo '<option value="index.php?inc=eventpart.php&event_name='.$eventfilt.'" selected="selected" >'.$eventfilt.'</option>';
                                     $i++;
 
                                 }else{
-                                    echo '<option value="'.$eventfilt.'">'.$eventfilt.'</option>';
+                                    echo '<option value="index.php?inc=eventpart.php&event_name='.$eventfilt.'">'.$eventfilt.'</option>';
 
                                 }
                             }
@@ -139,7 +147,7 @@
                 </div>
 
                 <?php
-
+                $ename=$_GET['event_name'];
                 ?>
 
                 <!-- DataTales Example -->
@@ -178,16 +186,17 @@
                         </tfoot>
                         <tbody>
                         <?php
-                        $sql="select user.std_name,user.std_regno,user.mobile,user.email,user.clg_name,user.dept,events.event_name from user JOIN (manage_events JOIN events USING(event_id)) USING(std_id) ORDER BY user.clg_name, user.dept;
+                        $sql="select user.std_name,user.std_regno,user.mobile,user.email,user.clg_name,user.dept,user.tname,events.event_name from user JOIN (manage_events JOIN events USING(event_id)) USING(std_id) where events.event_name='$ename' ORDER BY user.clg_name, user.dept;
 ;";
-//                                                $sql="select * from user";
+                        //                        $sql="select * from user";
                         $result=mysqli_query($con,$sql);
-                        $clgname=null;
-                        $dept=null;
+
                         if($result){
                             $sno=0;
+                            $tname=null;
                             while($row=mysqli_fetch_assoc($result)){
-                                if($row['clg_name']!=$clgname||$row['dept']!=$dept){
+                                if($tname!=$row['tname']){
+                                    $flag=1;
                                     $sno++;
                                 }
                                 $name=$row['std_name'];
@@ -197,29 +206,51 @@
                                 $clgname=$row['clg_name'];
                                 $dept=$row['dept'];
                                 $eventname=$row['event_name'];
+                                $tname=$row['tname'];
 
-                                $tname=null;
-                                $query="Select tname from user WHERE UPPER(user.clg_name) = UPPER('$clgname') AND UPPER(user.dept) = UPPER('$dept')";
-                                $results=mysqli_query($con,$query);
-                                if($results){
-                                    while ($row=mysqli_fetch_assoc($results)){
-                                        $tname=$row['tname'];
-                                        break;
-                                    }
+                                if($flag==1) {
+                                    $query = "select count(user.std_name) as count from user JOIN (manage_events JOIN events USING(event_id)) USING(std_id) where events.event_name='$ename' and user.tname='$tname' ORDER BY user.clg_name, user.dept";
+                                    $result1 = mysqli_query($con, $query);
+                                    $row1 = mysqli_fetch_assoc($result1);
+                                    $rowspan = $row1['count'];
+                                    echo $rowspan;
+
+                                    echo '<tr>';
+                                    echo '  <td rowspan="' . $rowspan . '">' . $sno . '</td>';
+                                    echo '  <td rowspan="' . $rowspan . '">' . $tname . '</td>';
+                                    echo '  <td>' . $name . '</td>';
+                                    echo '  <td>' . $regno . '</td>';
+                                    echo '  <td>' . $email . '</td>';
+                                    echo '  <td>' . $clgname . '</td>';
+                                    echo '  <td>' . $dept . '</td>';
+                                    echo '  <td>' . $eventname . '</td>';
+                                    echo '  </tr>';
+                                } else{
+                                    echo '<tr>';
+//                                    echo '  <td></td>';
+                                    echo '  <td>'.$name.'</td>';
+                                    echo '  <td>'.$regno.'</td>';
+                                    echo '  <td>'.$email.'</td>';
+                                    echo '  <td>'.$clgname.'</td>';
+                                    echo '  <td>'.$dept.'</td>';
+                                    echo '  <td>'.$eventname.'</td>';
+                                    echo  '  </tr>';
+
                                 }
+                                $flag=0;
 
-                                echo '
-                                <tr>
-                                            <td>'.$sno.'</td>
-                                            <td>'.$tname.'</td>
-                                            <td>'.$name.'</td>
-                                            <td>'.$regno.'</td>
-                                            <td>'.$email.'</td>
-                                            <td>'.$clgname.'</td>
-                                            <td>'.$dept.'</td>
-                                            <td>'.$eventname.'</td>
-                                        </tr>
-                                ';
+//                                    echo '
+//                                <tr>
+//                                            <td>' . $tname . '</td>
+//                                            <td>' . $name . '</td>
+//                                            <td>' . $regno . '</td>
+//                                            <td>' . $email . '</td>
+//                                            <td>' . $clgname . '</td>
+//                                            <td>' . $dept . '</td>
+//                                            <td>' . $eventname . '</td>
+//                                        </tr>
+//                                ';
+
 
                             }
                         }

@@ -57,7 +57,7 @@
             tr = table.getElementsByTagName("tr");
 
             for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[7];
+                td = tr[i].getElementsByTagName("td")[6];
                 if (td) {
                     txtValue = td.textContent || td.innerText;
                     if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -69,7 +69,7 @@
             }
         }
         document.addEventListener('DOMContentLoaded', function() {
-            myFunction();
+            // myFunction();
         });
     </script>
 </head>
@@ -154,7 +154,7 @@
                         </div>
                         <thead>
                         <tr>
-                            <th>Sno</th>
+<!--                            <th>Sno</th>-->
                             <th>Team Name</th>
                             <th>Name</th>
                             <th>Reg no</th>
@@ -166,7 +166,7 @@
                         </thead>
                         <tfoot>
                         <tr>
-                            <th>Sno</th>
+<!--                            <th>Sno</th>-->
                             <th>Team Name</th>
                             <th>Name</th>
                             <th>Reg no</th>
@@ -178,18 +178,17 @@
                         </tfoot>
                         <tbody>
                         <?php
-                        $sql="select user.std_name,user.std_regno,user.mobile,user.email,user.clg_name,user.dept,events.event_name from user JOIN (manage_events JOIN events USING(event_id)) USING(std_id) ORDER BY user.clg_name, user.dept;
+                        $sql="select user.std_name,user.std_regno,user.mobile,user.email,user.clg_name,user.dept,user.tname,events.event_name from user JOIN (manage_events JOIN events USING(event_id)) USING(std_id) ORDER BY user.clg_name, user.dept;
 ;";
-//                                                $sql="select * from user";
+                        //                        $sql="select * from user";
                         $result=mysqli_query($con,$sql);
-                        $clgname=null;
-                        $dept=null;
+
                         if($result){
-                            $sno=0;
+                            $tname=null;
+                            $rs=0;
                             while($row=mysqli_fetch_assoc($result)){
-                                if($row['clg_name']!=$clgname||$row['dept']!=$dept){
-                                    $sno++;
-                                }
+
+
                                 $name=$row['std_name'];
                                 $regno=$row['std_regno'];
                                 $mobile=$row['mobile'];
@@ -197,20 +196,29 @@
                                 $clgname=$row['clg_name'];
                                 $dept=$row['dept'];
                                 $eventname=$row['event_name'];
+                                $tname=$row['tname'];
+                                if($tname!=$row['tname']){
+                                    $rs=1;
+                                }
 
-                                $tname=null;
-                                $query="Select tname from user WHERE UPPER(user.clg_name) = UPPER('$clgname') AND UPPER(user.dept) = UPPER('$dept')";
-                                $results=mysqli_query($con,$query);
-                                if($results){
-                                    while ($row=mysqli_fetch_assoc($results)){
-                                        $tname=$row['tname'];
-                                        break;
-                                    }
+                                if($tname==$row['tname']){
+                                    echo '<tr>';
+
+                                    echo '  <td rowspan="'.$rs.'">'.$tname.'</td>';
+
+                                    echo '  <td>'.$name.'</td>';
+                                    echo '  <td>'.$regno.'</td>';
+                                    echo '  <td>'.$email.'</td>';
+                                    echo '  <td>'.$clgname.'</td>';
+                                    echo '  <td>'.$dept.'</td>';
+                                    echo '  <td>'.$eventname.'</td>';
+                                    echo  '  </tr>';
+
+                                    $rs++;
                                 }
 
                                 echo '
                                 <tr>
-                                            <td>'.$sno.'</td>
                                             <td>'.$tname.'</td>
                                             <td>'.$name.'</td>
                                             <td>'.$regno.'</td>
