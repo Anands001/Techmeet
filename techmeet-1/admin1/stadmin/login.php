@@ -15,6 +15,11 @@
         href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
     />
     <!-- MDB -->
+    <script
+            type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"
+    ></script>
+    <!-- MDB -->
     <link rel="stylesheet" href="css/mdb.min.css" />
     <style>
         .divider:after,

@@ -1,4 +1,5 @@
 <?php
+session_start();
 $con =null;
 include '../dbconnect.php';
 if (isset($_POST['submit'])) {
@@ -6,6 +7,7 @@ if (isset($_POST['submit'])) {
     echo $submitValue;
     if ($submitValue == 'login') {
 // Perform action for Submit 1
+
         $user=$_POST['username'];
         $pass=$_POST['password'];
 
@@ -16,6 +18,7 @@ if (isset($_POST['submit'])) {
             if($user=='admin') {
                 header('Location:../index.php?inc=dashboard.php');
             }else{
+                $_SESSION['username']=$user;
                 header('Location:../index.php?inc=dashboard.php');
             }
         }else{

@@ -1,4 +1,8 @@
 <?php
+session_start();
+if(!(isset($_SESSION['username']))||$_SESSION['username']==null){
+    header('Location:stadmin/login.php');
+}
 if(isset($_GET['inc'])){
     if ($_GET['inc'] != 'home.php') {
         ob_start();
@@ -14,6 +18,7 @@ if(isset($_GET['inc'])){
   include $inc;
   $addevent = ob_get_clean();
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -59,7 +64,7 @@ if(isset($_GET['inc'])){
 //<!-- Core theme CSS (includes Bootstrap)-->
 //                <link href="../css/styles.css" rel="stylesheet" />
 //        ';
-//      }
+//
       ?>
 
       <!-- Custom styles for this template-->
@@ -500,8 +505,11 @@ if(isset($_GET['inc'])){
                   aria-expanded="false"
                 >
                   <span class="mr-2 d-none d-lg-inline text-gray-600 small"
-                    >Douglas McGee</span
-                  >
+                    ><?php
+                      if(isset($_SESSION['username'])){
+                          echo $_SESSION['username'];
+                      }
+                      ?></span>
                   <img
                     class="img-profile rounded-circle"
                     src="img/undraw_profile.svg"
@@ -527,7 +535,7 @@ if(isset($_GET['inc'])){
                   <div class="dropdown-divider"></div>
                   <a
                     class="dropdown-item"
-                    href="#"
+                    href=""
                     data-toggle="modal"
                     data-target="#logoutModal"
                   >
@@ -627,7 +635,7 @@ if(isset($_GET['inc'])){
             >
               Cancel
             </button>
-            <a class="btn btn-primary" href="login.html">Logout</a>
+            <a class="btn btn-primary" href="stadmin/logout.php">Logout</a>
           </div>
         </div>
       </div>
