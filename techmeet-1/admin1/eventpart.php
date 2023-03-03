@@ -100,7 +100,7 @@
             <div class="container-fluid">
 
                 <!-- Page Heading -->
-                <h1 class="h3 mb-2 text-gray-800">Tables</h1>
+                <h1 class="h3 mb-2 text-gray-800">Participants List</h1>
                 <!--                    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.-->
                 <!--                        For more information about DataTables, please visit the <a target="_blank"-->
                 <!--                            href="https://datatables.net">official DataTables documentation</a>.</p>-->
@@ -108,7 +108,7 @@
                 <div class="d-flex">
                     <input type="button" class="btn btn-outline-primary mb-3" id="btnExport" value="Download" onclick="Export()" />
 
-                    <a class="btn btn-sm btn-info float-right mr-1 d-print-none" href="#" onclick="javascript:window.print();" data-abc="true">Print</a>
+                    <a class="btn btn-outline-info ml-2 mb-3 d-print-none" href="#" onclick="javascript:window.print();" data-abc="true">Print</a>
 
                     <!--search-->
                     <div class="input-group ml-auto">
@@ -123,8 +123,9 @@
                     </div>
                     <select id ="dropDown" onchange="handleSelect(this)" class="ml-auto form-select form-select-lg mb-3" aria-label="" name="eventfilter">
 
-                        <!--                                <option disabled="disabled" selected="selected">filter</option>-->
+                                                        <option disabled="disabled" selected="selected">filter</option>
                         <?php
+                        $ename=null;
                         $sql="select event_name from events";
                         $result=mysqli_query($con,$sql);
                         $i =0;
@@ -132,7 +133,7 @@
                             while($row=mysqli_fetch_assoc($result)){
                                 $eventfilt=$row['event_name'];
                                 if($i=0){
-                                    echo '<option value="index.php?inc=eventpart.php&event_name='.$eventfilt.'" selected="selected" >'.$eventfilt.'</option>';
+//                                    echo '<option selected="selected" disabled>Events</option>';
                                     $i++;
 
                                 }else{
@@ -147,13 +148,15 @@
                 </div>
 
                 <?php
-                $ename=$_GET['event_name'];
+                if(isset($_GET['event_name'])) {
+                    $ename = $_GET['event_name'];
+                }
                 ?>
 
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Participation list</h6>
+                        <h6 class="m-0 font-weight-bold text-primary"><?php echo $ename?></h6>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -161,6 +164,8 @@
 
                         </div>
                         <thead>
+<!--                        <center><h4 class="m-0 mb-2 font-weight-bold text-primary">--><?php //echo $ename ?><!--</h4></center>-->
+
                         <tr>
                             <th>Sno</th>
                             <th>Team Name</th>
@@ -213,7 +218,7 @@
                                     $result1 = mysqli_query($con, $query);
                                     $row1 = mysqli_fetch_assoc($result1);
                                     $rowspan = $row1['count'];
-                                    echo $rowspan;
+//                                    echo $rowspan;
 
                                     echo '<tr>';
                                     echo '  <td rowspan="' . $rowspan . '">' . $sno . '</td>';
