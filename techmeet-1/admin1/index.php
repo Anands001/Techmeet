@@ -659,3 +659,6 @@ if(isset($_GET['inc'])){
     <script src="js/sb-admin-2.min.js"></script>
   </body>
 </html>
+<?php
+session_destroy();
+?>
