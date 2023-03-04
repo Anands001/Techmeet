@@ -344,6 +344,15 @@ Thanking You</p></marquee>
                            $name1=$row['event_name1'];
                            $date=$row['date'];
                            $time=$row['time'];
+                           if(isset($row['venue']))
+                               $venue = $row['venue'];
+                           else{
+                               $venue='Will be announced soon';
+                           }
+
+
+
+
                            if($t%2==0){
                             $tvar='class="timeline-inverted"';
                            }
@@ -355,7 +364,10 @@ Thanking You</p></marquee>
                                      <h4>'.$name.'</h4>
                                      <h4 class="subheading">'.$date.'</h4>
                                  </div>
-                                 <div class="timeline-body"><p class="text-muted">'.$time.'</p></div>
+                                 <div class="timeline-body">
+                                 <p class="text-muted">'.$time.'</p>
+                                 <p class="text-muted">Venue: '.$venue.'</p>
+                                 </div>
                              </div>
                              </li>
                             

@@ -520,7 +520,7 @@ if(isset($_GET['inc'])){
                   class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                   aria-labelledby="userDropdown"
                 >
-                  <a class="dropdown-item" href="#">
+                  <a class="dropdown-item" href="index.php?inc=stadmin/profile.php">
                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                     Profile
                   </a>
@@ -660,5 +660,5 @@ if(isset($_GET['inc'])){
   </body>
 </html>
 <?php
-session_destroy();
+//session_destroy();
 ?>
