@@ -14,8 +14,9 @@ if (isset($_POST['submit'])) {
         $sql="Select username from staff where username='$user' and password='$pass'";
 
         $result=mysqli_query($con,$sql);
-        if(isset($result)){
+        if(($row=mysqli_fetch_assoc($result))!=null){
             if($user=='admin') {
+                $_SESSION['username']=$user;
                 header('Location:../index.php?inc=dashboard.php');
             }else{
                 $_SESSION['username']=$user;

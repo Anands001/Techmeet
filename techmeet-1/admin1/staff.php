@@ -91,7 +91,7 @@
         <div class="col-md-6">
             <div class="mb-3">
                 <?php
-                $sql1="Select count(*) as count from staff";
+                $sql1="Select count(*) as count from staff where status!='requested'";
                 $result1=mysqli_query($con,$sql1);
                 if($result1){
                     $row=mysqli_fetch_assoc($result1);
@@ -103,37 +103,46 @@
         </div>
         <div class="col-md-6">
             <div class="d-flex flex-wrap align-items-center justify-content-end gap-2 mb-3">
+<!--                <div>-->
+<!--                    <ul class="nav nav-pills">-->
+<!--                        <li class="nav-item">-->
+<!--                            <a href="#" class="nav-link" data-bs-toggle="tooltip" data-bs-placement="top" title="List"><i class="bx bx-list-ul"></i></a>-->
+<!--                        </li>-->
+<!--                        <li class="nav-item">-->
+<!--                            <a aria-current="page" href="#" class="router-link-active router-link-exact-active nav-link active" data-bs-toggle="tooltip" data-bs-placement="top" title="Grid"><i class="bx bx-grid-alt"></i></a>-->
+<!--                        </li>-->
+<!--                    </ul>-->
+<!--                </div>-->
+                <?php
+                $sql2="Select count(*) as count from staff where status='requested'";
+                $result2=mysqli_query($con,$sql2);
+                if($result2){
+                    $row2=mysqli_fetch_assoc($result2);
+                    $rtot=$row2['count'];
+                }
+                ?>
                 <div>
-                    <ul class="nav nav-pills">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link" data-bs-toggle="tooltip" data-bs-placement="top" title="List"><i class="bx bx-list-ul"></i></a>
-                        </li>
-                        <li class="nav-item">
-                            <a aria-current="page" href="#" class="router-link-active router-link-exact-active nav-link active" data-bs-toggle="tooltip" data-bs-placement="top" title="Grid"><i class="bx bx-grid-alt"></i></a>
-                        </li>
-                    </ul>
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#staffreqmodal" class="btn btn-primary"><span class="badge badge-soft-danger ms-2"><?php echo $rtot;?></span> Requests</a>
                 </div>
-                <div>
-                    <a href="#" data-bs-toggle="modal" data-bs-target=".add-new" class="btn btn-primary"><i class="bx bx-plus me-1"></i> Add New</a>
-                </div>
-                <div class="dropdown">
-                    <a class="btn btn-link text-muted py-1 font-size-16 shadow-none dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bx bx-dots-horizontal-rounded"></i></a>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                </div>
+<!--                <div class="dropdown">-->
+<!--                    <a class="btn btn-link text-muted py-1 font-size-16 shadow-none dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bx bx-dots-horizontal-rounded"></i></a>-->
+<!--                    <ul class="dropdown-menu dropdown-menu-end">-->
+<!--                        <li><a class="dropdown-item" href="#">Action</a></li>-->
+<!--                        <li><a class="dropdown-item" href="#">Another action</a></li>-->
+<!--                        <li><a class="dropdown-item" href="#">Something else here</a></li>-->
+<!--                    </ul>-->
+<!--                </div>-->
             </div>
         </div>
     </div>
     <div class="row">
         <?php
 
-        $sql="Select * from staff";
+        $sql="Select * from staff where status!='requested'";
         $result=mysqli_query($con,$sql);
         if($result){
             while($row=mysqli_fetch_assoc($result)){
+                $sid=$row['staff_id'];
                 $name=$row['name'];
                 $desg=$row['desg'];
                 $img=$row['image'];
@@ -152,7 +161,7 @@
                 <div class="card-body">
                     <div class="dropdown float-end">
                         <a class="text-muted dropdown-toggle font-size-16" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true"><i class="bx bx-dots-horizontal-rounded"></i></a>
-                        <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item" href="#">Edit</a><a class="dropdown-item" href="#">Action</a><a class="dropdown-item" href="#">Remove</a></div>
+                        <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item" href="#">Edit</a><a class="dropdown-item" href="#">Action</a><a class="dropdown-item" href="stadmin/staccept.php?stid='.$sid.'&req=false">Remove</a></div>
                     </div>
                     <div class="d-flex align-items-center">
                         '.$icode.'
@@ -164,7 +173,7 @@
                     <div class="mt-3 pt-1">
                         <p class="text-muted mb-0"><i class="mdi mdi-phone font-size-15 align-middle pe-2 text-primary"></i> '.$mobile.'</p>
                         <p class="text-muted mb-0 mt-2"><i class="mdi mdi-email font-size-15 align-middle pe-2 text-primary"></i> '.$gmail.'</p>
-                        <p class="text-muted mb-0 mt-2"><i class="mdi mdi-google-maps font-size-15 align-middle pe-2 text-primary"></i> 52 Ilchester MYBSTER 9WX</p>
+                        
                     </div>
                     <div class="d-flex gap-2 pt-4">
                         <button type="button" class="btn btn-soft-primary btn-sm w-50"><i class="bx bx-user me-1"></i> Profile</button>
@@ -311,6 +320,94 @@
 <!--                </div>-->
 <!--            </div>-->
 <!--        </div>-->
+    </div>
+</div>
+<div
+        class="modal fade"
+        id="staffreqmodal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">REQUESTS</h5>
+                <button
+                        class="close"
+                        type="button"
+                        data-dismiss="modal"
+                        aria-label="Close"
+                >
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <?php
+
+                    $sql="Select * from staff where status='requested'";
+                    $result=mysqli_query($con,$sql);
+                    if($result){
+                        while($row=mysqli_fetch_assoc($result)){
+                            $sid=$row['staff_id'];
+                            $name=$row['name'];
+                            $desg=$row['desg'];
+                            $img=$row['image'];
+                            $gmail=$row['gmail'];
+                            $mobile=$row['mobile'];
+                            $simg=$row['image'];
+                            if($simg!=null){
+                                $icode='<div><img src="../images/staff/'.$img.'" style="object-fit: contain" alt="" class="avatar-md rounded-circle img-thumbnail" /></div>';
+                            }else{
+                                $icode='<div class="avatar-md">
+                            <div class="avatar-title bg-soft-primary text-primary display-6 m-0 rounded-circle"><i class="bx bxs-user-circle"></i></div>
+                        </div>';
+                            }
+                            echo '<div class="col-xl-12 col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="dropdown float-end">
+                        <a class="text-muted dropdown-toggle font-size-16" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true"><i class="bx bx-dots-horizontal-rounded"></i></a>
+                        <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item" href="#">Edit</a><a class="dropdown-item" href="#">Action</a><a class="dropdown-item" href="#">Remove</a></div>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        '.$icode.'
+                        <div class="flex-1 ms-3">
+                            <h6 class="font-size-16 mb-1" data-toggle="tooltip" data-placement="top" title="'.$name.'" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 16ch;">'.$name.'</h6>
+                            <span class="badge badge-soft-success mb-0">'.$desg.'</span>
+                        </div>
+                    </div>
+                    <div class="mt-3 pt-1">
+                        <p class="text-muted mb-0"><i class="mdi mdi-phone font-size-15 align-middle pe-2 text-primary"></i> '.$mobile.'</p>
+                        <p class="text-muted mb-0 mt-2"><i class="mdi mdi-email font-size-15 align-middle pe-2 text-primary"></i> '.$gmail.'</p>
+                        
+                    </div>
+                    <div class="d-flex gap-2 pt-4">
+                        <a type="button" class="btn btn-danger btn-sm w-50" href="stadmin/staccept.php?stid='.$sid.'&req=false"> Cancel</a>
+                        <a type="button" class="btn btn-outline-info btn-sm w-50" href="stadmin/staccept.php?stid='.$sid.'&req=true"> Accept</a>
+                    </div>
+                </div>
+            </div>
+        </div>';
+                        }
+                    }
+                    ?>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button
+                        class="btn btn-secondary"
+                        type="button"
+                        data-dismiss="modal"
+                >
+                    Cancel
+                </button>
+<!--                <a class="btn btn-primary" href="stadmin/logout.php">Logout</a>-->
+            </div>
+        </div>
     </div>
 </div>
 </body>
