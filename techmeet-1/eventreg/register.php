@@ -9,7 +9,7 @@ if(isset($_SESSION['clg_name'])&&isset($_SESSION['dept'])){
 <!doctype html>
 <html lang="en">
   <head>
-  	<title>Checkbox 03</title>
+  	<title>Registration</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -1524,7 +1524,16 @@ p {
         margin-bottom: 10px;
     }
 }
-
+        .input-group.md-form.form-sm.form-3 input {
+            border: 1px solid #bdbdbd;
+            border-top-right-radius: 0.25rem;
+            border-bottom-right-radius: 0.25rem;
+        }
+        .input-group.md-form.form-sm.form-3 input {
+            border: 1px solid #bdbdbd;
+            border-top-right-radius: 0.25rem;
+            border-bottom-right-radius: 0.25rem;
+        }
     </style>
 
 
@@ -1547,16 +1556,32 @@ p {
       }
     ?>
     
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<!--    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>-->
+<!--<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>-->
+<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>-->
   
-<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet"/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
+<!--<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet"/>-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>-->
+      <link rel="stylesheet" href="../css/mdb.min.css">
+      <!-- Font Awesome -->
+<!--      <link-->
+<!--              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"-->
+<!--              rel="stylesheet"-->
+<!--      />-->
+      <!-- Google Fonts -->
+<!--      <link-->
+<!--              href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"-->
+<!--              rel="stylesheet"-->
+<!--      />-->
+      <!-- MDB -->
+<!--      <link-->
+<!--              href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css"-->
+<!--              rel="stylesheet"-->
+<!--      />-->
+
 </head>
 
   <body>
-
 
   <!-- <div class="toast toast-bottom-center" id="toastID" role="alert" aria-live="assertive" aria-atomic="true">
   <div class="toast-header">
@@ -1602,7 +1627,8 @@ p {
               <h3 class="mb-0">Event Registration</h3>
             </div>
             <div class="table-responsive">
-            <form action="reg.php" method="POST" id="myForm" name="myForm" >
+<!--                reg.php-->
+            <form action="" method="POST" id="myForm" name="myForm" >
               <table class="table align-items-center table-flush">
                 <thead class="thead-light">
 
@@ -1643,6 +1669,23 @@ p {
                   
                 </thead>
                 <tbody>
+                <?php
+                    $sql4="select * from info";
+                    $result=mysqli_query($con,$sql4);
+                    if($result){
+                        while ($row1=mysqli_fetch_assoc($result)){
+                            if($row1['ikey']=='totalpart'){
+                                $totalpart=(int)$row1['ivalue'];
+                            }
+                            if($row1['ikey']=='npevent'){
+                                $npevent=(int)$row1['ivalue'];
+                            }
+                            if($row1['ikey']=='rpteam'){
+                                $rpteam=(int)$row1['ivalue'];
+                            }
+                        }
+                    }
+                ?>
                   <?php
                   $sql1='SELECT count(events.event_id) as count from events';
                   $result1=mysqli_query($con,$sql1);
@@ -1666,7 +1709,7 @@ p {
                 $sql="Select * from events";
                     $result=mysqli_query($con,$sql);
                     if($result){
-                      for ($x = 0; $x < 7; $x++) {
+                      for ($x = 0; $x < $totalpart; $x++) {
                         
                           echo '
                           <tr>
@@ -1675,13 +1718,21 @@ p {
                               
                               <div class="media-body">
                                 <span class="mb-0 text-sm">
-                                  <div class="form-outline">
-                                      <input type="text"  name=name[] class="form-control" id="name'.$var.'" />
-                                      <label class="form-label text-muted" for="typeText">Name:</label>
-                                      <input type="text"  name=regno[] class="form-control" id="reg'.$var.'"/>
-                                      <label class="form-label text-muted" for="typeText">Reg no:</label>
-                                      <input type="email"  name=email[] class="form-control" id=""/>
-                                      <label class="form-label text-muted" for="typeText">Email(optional):</label>
+                                  <div class="form-outline mb-0">
+                                      <input type="text"  name=name[] class="form-control" id="name'.$var.'" onkeyup="nameValidate(this.id)"/>
+                                      <label class="form-label" for="name'.$var.'">Name:</label>
+                                  </div>
+                                  <div class="text-danger mb-3" id="username_error"></div>
+                                   <div class="form-outline mb-3">
+
+                                        <input type="text"  name=regno[] class="form-control" id="reg'.$var.'"/>
+                                        <label class="form-label" for="reg'.$var.'">Reg no:</label>
+                                   </div>
+                                   <div class="form-outline">
+                                        <input type="email"  name=email[] class="form-control" id="email'.$var.'"/>
+                                        <label class="form-label" for="email'.$var.'">Email(optional):</label>
+                                   </div>
+                                   
                                   </div>
                                 </span>
                               </div>
@@ -1733,6 +1784,9 @@ p {
          let count=0;
          let count1=0;
 
+         let npevent = <?php echo $npevent; ?>;
+         let rpteam = <?php echo $rpteam; ?>;
+         // console.log(npevent);
          //MyFunction
         function myFun(b){
             console.log(b);
@@ -1772,8 +1826,8 @@ p {
                     }
 
                 }
-                if(count1>3){
-                    alert('One participant can only participate on 3 events only..');
+                if(count1>npevent){
+                    alert(`One participant can only participate on ${npevent} events only..`);
                     b.checked=false;
                 }
                 
@@ -1804,44 +1858,48 @@ p {
             
             console.log(arr);
             for(let i=0;i<7;i++){
-            const nameID="name"+String(i);
-            const regID="reg"+String(i);
-            console.log(nameID);
-            
-            const nameElement=document.getElementById(nameID);
-            console.log(nameElement.value);
-            console.log(nameElement);
-            const regElement=document.getElementById(regID);
-            console.log(regElement);
-            
-            
+                const nameID="name"+String(i);
+                const regID="reg"+String(i);
+                console.log(nameID);
 
-            for(let j=0;j<participants.length;j++){
-                const chkBoxID=String(i)+String(j);
-                const checkBoxElement=document.getElementById(chkBoxID);
-                
-                if(checkBoxElement.checked){
-                   
-                    
-                    if(nameElement.value === ""){
-                        //event.preventDefault();
-                        console.log("hello");
-                        nameElement.focus();
-                        //return false;
-                    } else if(regElement.value === ""){
-                        //event.preventDefault();
-                        regElement.focus();
-                        return false;
+                const nameElement=document.getElementById(nameID);
+                // console.log(nameElement.value);
+                // console.log(nameElement);
+                const regElement=document.getElementById(regID);
+                // console.log(regElement);
+
+
+
+                for(let j=0;j<participants.length;j++){
+                    const chkBoxID=String(i)+String(j);
+                    const checkBoxElement=document.getElementById(chkBoxID);
+
+                    if(checkBoxElement.checked){
+
+
+                        if(nameElement.value === ""){
+                            //event.preventDefault();
+                            console.log("hello");
+                            nameElement.focus();
+                            //return false;
+                        } else if(regElement.value === ""){
+                            //event.preventDefault();
+                            regElement.focus();
+                            return false;
+                        }
                     }
-                }     
+                }
+
             }
-        }
-          
+
         }
         
         const form = document.getElementById('myForm');
-            form.addEventListener("submit", function(event){
-                for(let i=0;i<7;i++){
+
+        form.addEventListener("submit", function(event){
+            let nameCount = 0;
+
+            for(let i=0;i<7;i++){
                     const nameID="name"+String(i);
                     const regID="reg"+String(i);
                 
@@ -1876,6 +1934,11 @@ p {
                         checkBoxElement2.focus();
                     }
                     }
+                    console.log("Count Element",nameElement.value);
+                    if(nameElement.value !== ""){
+                        nameCount++;
+                        console.log("nameCount",nameCount);
+                    }
                     for(let j=0;j<participants.length;j++){
                         const chkBoxID=String(i)+String(j);
                         const checkBoxElement=document.getElementById(chkBoxID);
@@ -1895,13 +1958,29 @@ p {
                         
                     }
                     
-                }           
+                }
+
+            if(nameCount<rpteam){
+                alert(`Atleast ${rpteam} participants required for each team`);
+            }
+
             });
-        
+        const nameValidate = (id) => {
+            console.log("validate",id);
+            const regex = /\d/;
+            const nameElement = document.getElementById(id);
+            if (regex.test(nameElement.value)){
+                nameElement.focus();
+                document.getElementById("username_error").innerHTML = "Please enter a valid username.";
+            }else{
+                document.getElementById("username_error").innerHTML = "";
+            }
+        }
 
 
         
 
     </script>
-    
+  <script src="../admin1/js/mdb.min.js"></script>
+
 </html>

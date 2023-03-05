@@ -38,6 +38,18 @@
         if($row1['ikey']=='date'){
             $date=$row1['ivalue'];
         }
+        if($row1['id']=='4'){
+            $ahead1=$row1['ikey'];
+            $avalue1=$row1['ivalue'];
+        }
+        if($row1['id']=='5'){
+            $ahead2=$row1['ikey'];
+            $avalue2=$row1['ivalue'];
+        }
+        if($row1['id']=='6'){
+            $ahead3=$row1['ikey'];
+            $avalue3=$row1['ivalue'];
+        }
     }
     // session_destroy();
     ?>
@@ -104,30 +116,24 @@
                             <i class="fas fa-circle fa-stack-2x text-primary"></i>
                             <i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
                         </span> -->
-                        <h4 class="my-3">Updates</h4>
-                        <marquee height="60%" direction="up" height="100px" onmouseover="this.stop();" onmouseout="this.start();"><p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p></marquee>
+                        <h4 class="my-3"><?php echo $ahead1?></h4>
+                        <marquee height="60%" direction="up" height="100px" onmouseover="this.stop();" onmouseout="this.start();"><p class="text-muted"><?php echo $avalue1; ?></p></marquee>
                     </div>
                     <div class="col-md-4">
                         <!-- <span class="fa-stack fa-4x">
                             <i class="fas fa-circle fa-stack-2x text-primary"></i>
                             <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
                         </span> -->
-                        <h4 class="my-3">welcome</h4>
-                        <marquee onmouseover="this.stop();" onmouseout="this.start();" height="60%" direction="up" height="100px"><p class="text-muted">We are pleased to inform you that Departments of Computer Science and Application,Arul Anandar College, Karumathur organizing a One Day National Conference on Innovative Computing Technologies on 21" Feb. 2018 and Intercollegiate Meet (Technical Symposium) TECHNOWAR 18" on 22nd Feb, 2018 at our college campus. In this regard, all staff, research scholars and students are invited to participate and present their paper in the Conference.
-
-The Technical symposium Technowar '18 aims at providing a platform for exhibiting talents of your students in the form of paper presentation and other skills of your students can he brought to limelight.
-
-I request you to inform the UG & PG students of your institution and encourage them for their active participation. We also request you to kindly display the poster on your department notice board and other prominent places for more publicity. Looking forward your continuous co-operation in making the event a grand success.
-
-Thanking You</p></marquee>
+                        <h4 class="my-3"><?php echo $ahead2?></h4>
+                        <marquee onmouseover="this.stop();" onmouseout="this.start();" height="60%" direction="up" height="100px"><p class="text-muted"><?php echo $avalue2?></p></marquee>
                     </div>
                     <div class="col-md-4">
                         <!-- <span class="fa-stack fa-4x">
                             <i class="fas fa-circle fa-stack-2x text-primary"></i>
                             <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
                         </span> -->
-                        <h4 class="my-3">Links</h4>
-                        <marquee onmouseover="this.stop();" onmouseout="this.start();" height="60%" direction="up" height="100px"><p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p></marquee>
+                        <h4 class="my-3"><?php echo $ahead3?></h4>
+                        <marquee onmouseover="this.stop();" onmouseout="this.start();" height="60%" direction="up" height="100px"><p class="text-muted"><?php echo $avalue3?></p></marquee>
                     </div>
                     <!-- <div class="col-md-4">
                         <span class="fa-stack fa-4x">
@@ -449,7 +455,7 @@ Thanking You</p></marquee>
                 </div>
                 <div class="row">
                     <?php
-                     $sql="Select * from staff";
+                     $sql="Select * from staff where status!='requested'";
                      $result=mysqli_query($con,$sql);
                      if($result){
                          while($row=mysqli_fetch_assoc($result)){
