@@ -38,6 +38,7 @@
             }
         }
     </style>
+
 </head>
 <body>
 <section class="vh-100" style="background-color: #eee;">
@@ -130,5 +131,7 @@
         </div>
     </div>
 </section>
+<script src="../js/mdb.min.js"></script>
+
 </body>
 </html>

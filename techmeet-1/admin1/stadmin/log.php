@@ -11,7 +11,7 @@ if (isset($_POST['submit'])) {
         $user=$_POST['username'];
         $pass=$_POST['password'];
 
-        $sql="Select username from staff where username='$user' and password='$pass'";
+        $sql="Select username from staff where username='$user' and password='$pass' and status!='requested'";
 
         $result=mysqli_query($con,$sql);
         if(($row=mysqli_fetch_assoc($result))!=null){
