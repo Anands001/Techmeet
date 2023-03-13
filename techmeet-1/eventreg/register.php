@@ -1722,7 +1722,7 @@ p {
                                       <input type="text"  name=name[] class="form-control" id="name'.$var.'" onkeyup="nameValidate(this.id)"/>
                                       <label class="form-label" for="name'.$var.'">Name</label>
                                   </div>
-                                  <div class="text-danger mb-3" id="username_error"></div>
+                                  <div class="text-danger mb-3" id="username_error'.$var.'"></div>
                                    <div class="form-outline mb-3">
 
                                         <input type="text"  name=regno[] class="form-control" id="reg'.$var.'"/>
@@ -1967,13 +1967,14 @@ p {
             });
         const nameValidate = (id) => {
             console.log("validate",id);
-            const regex = /\d/;
+            const regex = /[^a-zA-Z]/g;
             const nameElement = document.getElementById(id);
+            const num = id.replace("name","");
             if (regex.test(nameElement.value)){
                 nameElement.focus();
-                document.getElementById("username_error").innerHTML = "Please enter a valid username.";
+                document.getElementById("username_error"+num).innerHTML = "Please enter a valid username.";
             }else{
-                document.getElementById("username_error").innerHTML = "";
+                document.getElementById("username_error"+num).innerHTML = "";
             }
         }
 
