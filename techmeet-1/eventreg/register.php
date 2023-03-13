@@ -1628,7 +1628,7 @@ p {
             </div>
             <div class="table-responsive">
 <!--                reg.php-->
-            <form action="" method="POST" id="myForm" name="myForm" >
+            <form action="reg.php" method="POST" id="myForm" name="myForm" >
               <table class="table align-items-center table-flush">
                 <thead class="thead-light">
 
@@ -1720,17 +1720,17 @@ p {
                                 <span class="mb-0 text-sm">
                                   <div class="form-outline mb-0">
                                       <input type="text"  name=name[] class="form-control" id="name'.$var.'" onkeyup="nameValidate(this.id)"/>
-                                      <label class="form-label" for="name'.$var.'">Name:</label>
+                                      <label class="form-label" for="name'.$var.'">Name</label>
                                   </div>
                                   <div class="text-danger mb-3" id="username_error"></div>
                                    <div class="form-outline mb-3">
 
                                         <input type="text"  name=regno[] class="form-control" id="reg'.$var.'"/>
-                                        <label class="form-label" for="reg'.$var.'">Reg no:</label>
+                                        <label class="form-label" for="reg'.$var.'">Reg no</label>
                                    </div>
                                    <div class="form-outline">
                                         <input type="email"  name=email[] class="form-control" id="email'.$var.'"/>
-                                        <label class="form-label" for="email'.$var.'">Email(optional):</label>
+                                        <label class="form-label" for="email'.$var.'">Email(optional)</label>
                                    </div>
                                    
                                   </div>
