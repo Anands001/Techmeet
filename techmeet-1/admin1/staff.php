@@ -149,6 +149,9 @@
                 $gmail=$row['gmail'];
                 $mobile=$row['mobile'];
                 $simg=$row['image'];
+                $eid=$row['event_id'];
+                $role=$row['roles'];
+
                 if($simg!=null){
                     $icode='<div><img src="../images/staff/'.$img.'" style="object-fit: contain" alt="" class="avatar-md rounded-circle img-thumbnail" /></div>';
                 }else{
@@ -168,6 +171,8 @@
                         <div class="flex-1 ms-3">
                             <h6 class="font-size-16 mb-1" data-toggle="tooltip" data-placement="top" title="'.$name.'" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 16ch;">'.$name.'</h6>
                             <span class="badge badge-soft-success mb-0">'.$desg.'</span>
+                            <span class="badge badge-soft-danger mb-0">'.$role.'</span>
+                            <span class="badge badge-soft-success mb-0">'.$eid.'</span>
                         </div>
                     </div>
                     <div class="mt-3 pt-1">
@@ -179,20 +184,27 @@
 
                     
                     <div class="d-flex gap-2 pt-4">
-                        <form>
+                        <form action="stadmin/editstaff.php" method="post">
+                            <input type="hidden" name="sid" value="<?php echo $sid;?>">
                             <div class="row">
                                 <div class="col-6">
         <!--                            <input type="button" class="btn btn-soft-primary btn-sm w-50"><i class="bx bx-user me-1"></i> Profile</input>-->
-                                    <select class="form-select form-select mb-3" aria-label=".form-select-lg example" name="clgname">
-                                        <option disabled="disabled" selected="selected">Assign Event</option>
+                                    <select class="form-select form-select mb-3" aria-label=".form-select-lg example" name="eid">
+<!--                                        <option disabled="disabled" selected="selected">Assign Event</option>-->
 
                                         <?php
                                         $sql1="Select * from events";
                                         $result1=mysqli_query($con,$sql1);
                                         if($result1){
+                                            $i=0;
                                             while($row1=mysqli_fetch_assoc($result1)){
-                                                $cname=$row1['event_name'];
-                                                echo '<option>'.$cname.'</option>';
+                                                $ename=$row1['event_name'];
+                                                $eid=$row1['event_id'];
+                                                if($i=0) {
+                                                    echo '<option value="' . $eid . '" selected>' . $ename . '</option>';
+                                                }else{
+                                                    echo '<option value="' . $eid . '">' . $ename . '</option>';
+                                                }
                                             }
                                         }
                                         ?>
@@ -200,14 +212,17 @@
                                     </select>
                                 </div>
                                 <div class="col-6">
-                                    <select class="form-select form-select mb-3" aria-label=".form-select-lg example" name="clgname">
-                                        <option disabled="disabled" selected="selected">Select Role</option>
-                                        <option selected="selected">Staff</option>
-                                        <option selected="selected">Admin</option>
+                                    <select class="form-select form-select mb-3" aria-label=".form-select-lg example" name="role">
+                                        <option disabled="disabled">Select Role</option>
+                                        <option value="staff">Staff</option>
+                                        <option value="admin">Admin</option>
                                     </select>
                                 </div>
+
                             </div>
-<!--                            <input type="button" class="btn btn-primary btn-sm w-50"><i class="bx bx-message-square-dots me-1"></i> Contact</input>-->
+                            <input type="submit" class="btn btn-outline-primary ml-auto" value="save">
+
+                            <!--                            <input type="button" class="btn btn-primary btn-sm w-50"><i class="bx bx-message-square-dots me-1"></i> Contact</input>-->
                         </form>
                     </div>
                 </div>
