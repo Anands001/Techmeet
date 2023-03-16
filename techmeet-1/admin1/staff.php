@@ -174,17 +174,49 @@
                         <p class="text-muted mb-0"><i class="mdi mdi-phone font-size-15 align-middle pe-2 text-primary"></i> '.$mobile.'</p>
                         <p class="text-muted mb-0 mt-2"><i class="mdi mdi-email font-size-15 align-middle pe-2 text-primary"></i> '.$gmail.'</p>
                         
-                    </div>
+                    </div>';
+        ?>
+
+                    
                     <div class="d-flex gap-2 pt-4">
-                        <button type="button" class="btn btn-soft-primary btn-sm w-50"><i class="bx bx-user me-1"></i> Profile</button>
-                        <button type="button" class="btn btn-primary btn-sm w-50"><i class="bx bx-message-square-dots me-1"></i> Contact</button>
+                        <form>
+                            <div class="row">
+                                <div class="col-6">
+        <!--                            <input type="button" class="btn btn-soft-primary btn-sm w-50"><i class="bx bx-user me-1"></i> Profile</input>-->
+                                    <select class="form-select form-select mb-3" aria-label=".form-select-lg example" name="clgname">
+                                        <option disabled="disabled" selected="selected">Assign Event</option>
+
+                                        <?php
+                                        $sql1="Select * from events";
+                                        $result1=mysqli_query($con,$sql1);
+                                        if($result1){
+                                            while($row1=mysqli_fetch_assoc($result1)){
+                                                $cname=$row1['event_name'];
+                                                echo '<option>'.$cname.'</option>';
+                                            }
+                                        }
+                                        ?>
+
+                                    </select>
+                                </div>
+                                <div class="col-6">
+                                    <select class="form-select form-select mb-3" aria-label=".form-select-lg example" name="clgname">
+                                        <option disabled="disabled" selected="selected">Select Role</option>
+                                        <option selected="selected">Staff</option>
+                                        <option selected="selected">Admin</option>
+                                    </select>
+                                </div>
+                            </div>
+<!--                            <input type="button" class="btn btn-primary btn-sm w-50"><i class="bx bx-message-square-dots me-1"></i> Contact</input>-->
+                        </form>
                     </div>
                 </div>
             </div>
-        </div>';
+        </div>
+<?php
             }
         }
-        ?>
+?>
 
 <!--        <div class="col-xl-3 col-sm-6">-->
 <!--            <div class="card">-->
