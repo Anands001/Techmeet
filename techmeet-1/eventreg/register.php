@@ -1725,7 +1725,7 @@ p {
                                   <div class="text-danger mb-3" id="username_error'.$var.'"></div>
                                    <div class="form-outline mb-3">
 
-                                        <input type="text"  name=regno[] class="form-control" id="reg'.$var.'"/>
+                                        <input type="text"  name=regno[] class="form-control" id="reg'.$var.'" />
                                         <label class="form-label" for="reg'.$var.'">Reg no</label>
                                    </div>
                                    <div class="form-outline">
@@ -1898,14 +1898,17 @@ p {
 
         form.addEventListener("submit", function(event){
             let nameCount = 0;
+            let regArray =[];
 
-            for(let i=0;i<7;i++){
+                for(let i=0;i<7;i++){
                     const nameID="name"+String(i);
                     const regID="reg"+String(i);
                 
                     const nameElement=document.getElementById(nameID);
-                    
+                    console.log(nameElement);
                     const regElement=document.getElementById(regID);
+                    console.log(regElement);
+                    regArray.push(regElement);
                     if(nameElement.value === "" && regElement.value !== ""){
                         nameElement.focus();
                          event.preventDefault();
@@ -1928,6 +1931,7 @@ p {
                     if(!value){
                         event.preventDefault();
                         alert("Please select atleast one event");
+                        break;
                         let myID="label"+String(i)+"0";
                         const checkBoxElement2=document.getElementById(myID);
                         console.log(checkBoxElement2);
@@ -1962,12 +1966,22 @@ p {
 
             if(nameCount<rpteam){
                 alert(`Atleast ${rpteam} participants required for each team`);
+                event.preventDefault();
+            }
+                const res = regValidate(regArray);
+            console.log("reg validate ",res);
+                if(!res){
+                    alert("Please enter a valid reg no.");
+                    event.preventDefault();
+                }
+
+
             }
 
-            });
+            );
         const nameValidate = (id) => {
-            console.log("validate",id);
-            const regex = /[^a-zA-Z]/g;
+            // console.log("validate",id);
+            const regex = /[^a-zA-Z ]/g;
             const nameElement = document.getElementById(id);
             const num = id.replace("name","");
             if (regex.test(nameElement.value)){
@@ -1976,6 +1990,34 @@ p {
             }else{
                 document.getElementById("username_error"+num).innerHTML = "";
             }
+        }
+
+        const regValidate = (arr) => {
+            console.log("Reg Array",arr);
+            let values = [];
+            for(let el=0;el<arr.length;el++){
+                values.push(arr[el].value === "" ? null: arr[el].value);
+            }
+            for(let i=0;i<arr.length;i++){
+                const regno = values[i];
+                for(let j=0;j<values.length;j++){
+                    if(j===i)
+                        continue;
+                    else if(values[j] === null)
+                        continue;
+                    else{
+                        console.log(regno,values[j]);
+                        if(regno === values[j]){
+
+                            return false;
+                        }
+                    }
+                }
+            }
+            console.log("Values ",values);
+
+
+            return true;
         }
 
 
