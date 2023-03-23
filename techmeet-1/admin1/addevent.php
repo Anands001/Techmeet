@@ -14,6 +14,7 @@
 	$time=$_POST['time'];
 	$nop=$_POST['nop'];
 	$protocols=$_POST['protocols'];	
+	$venue=$_POST['venue'];
 
 	$target_dir = "C:/xampp/htdocs/techmeet-1/eventimgs/";
 $target_file = $target_dir . basename($_FILES["image"]["name"]);
@@ -67,11 +68,12 @@ if ($uploadOk == 0) {
 			die(mysqli_error($con));
 		}
 
-		$sql="INSERT INTO `events` (`event_id`, `event_name`, `event_name1`, `date`, `time`, `details`, `rules`, `partic_no`, `cimage`) VALUES (NULL, '$ename', '$ename1', '$date', '$time', '', '$protocols', '$nop', '$file_name')";
+		$sql="INSERT INTO `events` (`event_id`, `event_name`, `event_name1`, `date`, `time`, `details`, `rules`, `venue` , `partic_no`, `cimage`) VALUES (NULL, '$ename', '$ename1', '$date', '$time', '', '$protocols', '$venue', '$nop', '$file_name')";
 		$result=mysqli_query($con,$sql);
 
 		if(isset($result)){
-			header("location:/techmeet-1/home.php");
+            $_SESSION['tmsg']="event added successfully";
+			header("location:index.php?inc=../ecard2.php");
 		}
 
 		if(isset($_SESSION['msg'])){
@@ -210,6 +212,13 @@ border-bottom-right-radius: 15px;
                       <label class="form-label" for="form3Examplev4">No. of Participants per team</label>
                     </div>
                   </div>
+
+                    <div class="mb-4 pb-2">
+                        <div class="form-outline">
+                            <input type="text" id="form3Examplev4" class="form-control form-control-lg" name="venue"/>
+                            <label class="form-label" for="form3Examplev4">Venue</label>
+                        </div>
+                    </div>
 
 				  <!-- <div class="mb-4 pb-2">
                     <div class="form-outline">

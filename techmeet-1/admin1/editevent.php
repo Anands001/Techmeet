@@ -5,7 +5,7 @@ $con=new mysqli('localhost','root','','techmeet');
 if(!$con){
     die(mysqli_error($con));
 }
-session_start();
+//session_start();
  if(isset($_POST['submit'])){
 	$ename=$_POST['event_name'];
 	$ename1=$_POST['event_name1'];
@@ -74,6 +74,7 @@ if ($uploadOk == 0) {
 		$result=mysqli_query($con,$sql);
 
 		if(isset($result)){
+            $_SESSION['tmsg']="Event edited successfully";
 			header("location:/techmeet-1/home.php");
 		}
 
@@ -90,6 +91,7 @@ if ($uploadOk == 0) {
 		$result=mysqli_query($con,$sql);
 
 		if(isset($result)){
+            $_SESSION['tmsg']="Event edited successfully";
 			header("location:index.php?inc=ecard2.php");
 		}
 
@@ -180,6 +182,7 @@ border-bottom-right-radius: 15px;
                     $nop=$row['partic_no'];
                     $protocols=$row['rules'];
                     $cimg=$row['cimage'];
+                    $venue=$row['venue'];
                     
                     echo '
                     <input type="hidden" value="'.$cimg.'" id="form3Examplev2" class="form-control form-control-lg" name="cimg" />
@@ -228,6 +231,12 @@ border-bottom-right-radius: 15px;
                     <div class="form-outline">
                       <input type="number" value="'.$nop.'" id="form3Examplev4" class="form-control form-control-lg" name="nop"/>
                       <label class="form-label" for="form3Examplev4">No. of Participants per team</label>
+                    </div>
+                  </div>
+                  <div class="mb-4 pb-2">
+                    <div class="form-outline">
+                      <input type="text" value="'.$venue.'" id="form3Examplev4" class="form-control form-control-lg" name="venue"/>
+                      <label class="form-label" for="form3Examplev4">Venue</label>
                     </div>
                   </div>
 
