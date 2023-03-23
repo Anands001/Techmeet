@@ -56,7 +56,7 @@ if(isset($_POST['clgname'])){
         session_start();
         $_SESSION['clg_name']=$clg_name;
         $_SESSION['dept']=$dept;
-        header("Location:/techmeet-1/eventreg/register.php");       
+        header("Location:/techmeet-1/eventreg/register.php?method=post&clgname=$clg_name&dept=$dept");
     }
 }
 ?>
