@@ -227,9 +227,9 @@ if(isset($_GET['inc'])){
           </li>
         <!-- Nav Item - Charts -->
         <li class="nav-item">
-          <a class="nav-link" href="charts.html">
+          <a class="nav-link" href="index.php?inc=queries.php">
             <i class="fas fa-fw fa-chart-area"></i>
-            <span>Charts</span></a
+            <span>Queries</span></a
           >
         </li>
 
@@ -562,7 +562,52 @@ if(isset($_GET['inc'])){
             <!-- Page Heading -->
             <h1 class="h3 mb-1 text-gray-800"></h1>
 
+                <!--Toast-->
 
+              <div class="toast-container position-absolute p-3 top-0 end-0" id="toastPlacement">
+                  <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="5000">
+                      <div class="toast-header">
+<!--                          <img src="..." class="rounded me-2" alt="...">-->
+                          <strong class="me-auto">Alert</strong>
+                          <small class="text-muted">just now</small>
+                          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                      </div>
+                      <div class="toast-body">
+                          Event added successfully
+                      </div>
+                  </div>
+              </div>
+              <?php
+              if(isset($_SESSION['tmsg'])){
+//                  echo '<button type="button" class="btn btn-primary" id="toastbtn">Show Toast</button>';
+                  echo "
+                  <script>
+                  var toastEl = document.querySelector('.toast');
+                    var toast = new bootstrap.Toast(toastEl);
+                    toast.show();
+                    </script>
+                  ";
+//                  $_SESSION['tmsg']=null;
+//                  unset($_SESSION['counter']);
+              }
+//              if(isset($_SESSION['tmsg'])){
+//                  unset($_SESSION['tmsg']);
+//              }
+              ?>
+            <script>
+                document.getElementById("toastbtn").onclick = function() {
+                    // var toastElList = [].slice.call(document.querySelectorAll('.toast'))
+                    // var toastList = toastElList.map(function(toastEl) {
+                    //     return new bootstrap.Toast(toastEl)
+                    // })
+                    // toastList.forEach(toast => toast.show())
+                    var toastEl = document.querySelector('.toast');
+                    var toast = new bootstrap.Toast(toastEl);
+                    toast.show();
+                }
+
+            </script>
+<!--            End of toast-->
 
             <!-- add event -->
             <?php
