@@ -112,7 +112,7 @@ while($row=mysqli_fetch_assoc($result)){
                     <div class="text center">Upload new image</div>
                     <form method="post" action="stadmin/updateprofimg.php" enctype="multipart/form-data">
                         <input type="hidden" name="username" value="<?php $username ?>">
-                        <input class="btn btn-primary" name="profile" type="file"></input><br><br>
+                        <input class="btn btn-primary" name="profile" type="file"><br><br>
                         <input class="btn btn-primary" type="submit" value="Upload"></input>
                     </form>
                 </div>

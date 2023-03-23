@@ -151,7 +151,12 @@
                 $simg=$row['image'];
                 $eid=$row['event_id'];
                 $role=$row['roles'];
-
+                $sql1="Select event_name from events where event_id=$eid";
+                $result1=mysqli_query($con,$sql1);
+                if($result1) {
+                    while ($row1 = mysqli_fetch_assoc($result1))
+                    $ename = $row1['event_name'];
+                }
                 if($simg!=null){
                     $icode='<div><img src="../images/staff/'.$img.'" style="object-fit: contain" alt="" class="avatar-md rounded-circle img-thumbnail" /></div>';
                 }else{
@@ -172,7 +177,8 @@
                             <h6 class="font-size-16 mb-1" data-toggle="tooltip" data-placement="top" title="'.$name.'" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 16ch;">'.$name.'</h6>
                             <span class="badge badge-soft-success mb-0">'.$desg.'</span>
                             <span class="badge badge-soft-danger mb-0">'.$role.'</span>
-                            <span class="badge badge-soft-success mb-0">'.$eid.'</span>
+                            
+                            <span class="badge badge-soft-success mb-0">'.$ename.'</span>
                         </div>
                     </div>
                     <div class="mt-3 pt-1">
