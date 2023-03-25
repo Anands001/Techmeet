@@ -146,6 +146,12 @@ if(isset($_GET['inc'])){
             </div>
           </div>
         </li>
+          <li class="nav-item">
+              <a class="nav-link" href="index.php?inc=clganddept.php">
+                  <i class="fas fa-fw fa-table"></i>
+                  <span>Details</span></a
+              >
+          </li>
 
         <!-- Nav Item - Utilities Collapse Menu -->
 <!--        <li class="nav-item">-->
@@ -243,6 +249,8 @@ if(isset($_GET['inc'])){
 
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block" />
+
+
 
           <li class="nav-item">
               <a class="nav-link" href="index.php?inc=settings.php">
