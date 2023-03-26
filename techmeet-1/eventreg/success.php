@@ -27,16 +27,23 @@
         }
      </style>
 </head>
+
+    <header>
+        <img src="../assets/img/partheader/img.png" style="width: 100%; height: 20%; object-fit: contain" alt="Header Image">
+    </header>
 <body class="container">
-<div id="table">hi</div>
+<!--<div id="table"></div>-->
 
 <div class="alert alert-success d-flex align-items-center mt-4" role="alert">
-  <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
-  <div>
-    <h4>Registered Successfully</h4>
-  </div>
-</div>                  
-<input type="button" id="btnExport" value="Download" onclick="Export()" />
+    <svg class="bi flex-shrink-0 me-2" width="10" height="10" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+    <div>
+        <h4>Registered Successfully</h4>
+    </div>
+</div>
+
+<!--<input type="button" id="btnExport" value="Download" onclick="Export()" />-->
+<a class="btn btn-outline-info ml-2 mb-3 d-print-none" href="#" onclick="javascript:window.print();" data-abc="true">Print</a>
+
 
 <!-- <input type="button" id="btnExport" value="Export" /> -->
 

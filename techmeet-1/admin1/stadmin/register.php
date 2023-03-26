@@ -55,7 +55,7 @@
                                 <form class="mx-1 mx-md-4" method="post" action="sreg.php">
 
                                     <div class="d-flex flex-row align-items-center mb-4">
-                                        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+<!--                                        <i class="fas fa-user fa-lg me-3 fa-fw"></i>-->
                                         <div class="form-outline flex-fill mb-0">
                                             <input type="text" id="form3Example1c" name="name" class="form-control" required/>
                                             <label class="form-label" for="form3Example1c">Your Name</label>
@@ -63,7 +63,7 @@
                                     </div>
 
                                     <div class="d-flex flex-row align-items-center mb-4">
-                                        <i class="fas fa-book fa-lg me-3 fa-fw"></i>
+<!--                                        <i class="fas fa-book fa-lg me-3 fa-fw"></i>-->
                                         <div class="form-outline flex-fill mb-0">
                                             <input type="text" id="form3Example1z" name="designation" class="form-control" required/>
                                             <label class="form-label" for="form3Example1z">Designation</label>
@@ -71,7 +71,7 @@
                                     </div>
 
                                     <div class="d-flex flex-row align-items-center mb-4">
-                                        <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+<!--                                        <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>-->
                                         <div class="form-outline flex-fill mb-0">
                                             <input type="email" id="form3Example3c" name="email" class="form-control" required/>
                                             <label class="form-label" for="form3Example3c">Your Email</label>
@@ -79,28 +79,37 @@
                                     </div>
 
                                     <div class="d-flex flex-row align-items-center mb-4">
-                                        <i class="fas fa-user-alt fa-lg me-3 fa-fw"></i>
+<!--                                        <i class="fas fa-user-alt fa-lg me-3 fa-fw"></i>-->
                                         <div class="form-outline flex-fill mb-0">
                                             <input type="text" id="form3Example8c" name="username" class="form-control" required/>
                                             <label class="form-label" for="form3Example8c">username</label>
                                         </div>
                                     </div>
 
-                                    <div class="d-flex flex-row align-items-center mb-4">
-                                        <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                                    <div class=" align-items-center mb-4">
+<!--                                        <i class="fas fa-lock fa-lg me-3 fa-fw"></i>-->
                                         <div class="form-outline flex-fill mb-0">
-                                            <input type="password" id="form3Example4c" name="password" class="form-control" required/>
+                                            <input type="password" id="form3Example4c" name="password" class="form-control" minlength="6" onkeyup="validation()" required/>
                                             <label class="form-label" for="form3Example4c">Password</label>
+                                            <div id="errormsg" class="invalid-feedback">Password must be of length 6</div>
+                                            <div id="errormsg" class="valid-feedback" aria-required="true">Looks good...!</div>
                                         </div>
                                     </div>
 
-                                    <div class="d-flex flex-row align-items-center mb-4">
-                                        <i class="fas fa-key fa-lg me-3 fa-fw"></i>
-                                        <div class="form-outline flex-fill mb-0">
-                                            <input type="password" id="form3Example4cd" class="form-control" required/>
+                                    <div class=" align-items-center mb-4">
+<!--                                        <i class="fas fa-key fa-lg me-3 fa-fw"></i>-->
+                                        <div class="form-outline">
+                                            <input type="password" id="form3Example4cd" class="form-control" oninput="passcheck()" required/>
                                             <label class="form-label" for="form3Example4cd">Repeat your password</label>
+                                            <div id="errormsg" class="invalid-feedback">Password and repeat password must be same</div>
+                                            <div id="errormsg" class="valid-feedback" aria-required="true">Looks good...!</div>
+
                                         </div>
+
+
                                     </div>
+
+
 
                                     <div class="form-check d-flex justify-content-center mb-5">
                                         <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3c" required/>
@@ -110,7 +119,7 @@
                                     </div>
 
                                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                        <button type="submit" class="btn btn-primary btn-lg">Register</button>
+                                        <button type="submit" id='sbmt'class="btn btn-primary btn-lg" >Register</button>
                                     </div>
 
                                 </form>
@@ -122,7 +131,7 @@
                                      class="img-fluid" alt="Sample image">
 
                             </div>
-                            <p class="small fw-bold mb-2 pt-1 mb-0 mr-auto">Already have an account? <a href="login.php"
+                            <p class="small fw-bold mb-2 pt-1 mb-0">Already have an account? <a href="login.php"
                                                                                                 class="link-info">Login</a></p>
                         </div>
                     </div>
@@ -132,6 +141,59 @@
     </div>
 </section>
 <script src="../js/mdb.min.js"></script>
+<script>
+    'use strict'
+    const passcheck = () => {
+        console.log('helo')
+        const pass = document.getElementById('form3Example4c').value;
+        const  reppass = document.getElementById('form3Example4cd').value;
+        const feedback = document.getElementById('form3Example4cd');
+        console.log(pass,reppass);
+        if(pass !== reppass)
+        {
+            event.preventDefault();
+            document.getElementById('form3Example4cd').focus();
+            // document.getElementById('errormsg').textContent = 'Password and repeat password must be same';
+            feedback.classList ='form-control is-invalid';
+            document.getElementById('sbmt').disabled = true;
+        }
+        else
+        {
+            document.getElementById('errormsg').textContent = '';
+            feedback.classList ='form-control is-valid';
+            document.getElementById('sbmt').disabled = false;
+
+        }
+        if(reppass === ''){
+            console.log('if')
+            feedback.classList ='form-control';
+            document.getElementById('sbmt').disabled = true;
+
+
+        }
+    };
+
+    const validation = () => {
+        const pass = document.getElementById('form3Example4c').value;
+        const ele = document.getElementById('form3Example4c');
+        if(pass.length <=6){
+            document.getElementById('sbmt').disabled = true;
+            ele.classList = 'form-control is-invalid';
+        }else{
+            ele.classList ='form-control is-valid';
+            document.getElementById('sbmt').disabled = false;
+
+        }
+        if(pass === ''){
+            ele.classList ='form-control';
+            document.getElementById('sbmt').disabled = true;
+
+
+        }
+    }
+
+
+</script>
 
 </body>
 </html>

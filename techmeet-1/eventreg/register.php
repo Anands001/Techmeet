@@ -1638,7 +1638,7 @@ p {
                     echo'<tr>
                           <th scope="col">Participants(7 per dept)</th>';
 
-                    $sql="Select * from events";
+                    $sql="Select * from events where status='IN'";
                     $result=mysqli_query($con,$sql);
                     if($result){
                         while($row=mysqli_fetch_assoc($result)){
@@ -1687,7 +1687,7 @@ p {
                     }
                 ?>
                   <?php
-                  $sql1='SELECT count(events.event_id) as count from events';
+                  $sql1="SELECT count(events.event_id) as count from events where status='IN'";
                   $result1=mysqli_query($con,$sql1);
                   if($result1){
                     $row1=mysqli_fetch_assoc($result1);
@@ -1695,7 +1695,7 @@ p {
                   }
                   $eid[]=null;
                   $t=0;
-                  $sql2='SELECT events.event_id from events';
+                  $sql2="SELECT events.event_id from events where status='IN'";
                   $result2=mysqli_query($con,$sql2);
                   if($result2){
                     while($row2=mysqli_fetch_assoc($result2)){
@@ -1706,7 +1706,7 @@ p {
 
                   $var=0;
                   
-                $sql="Select * from events";
+                $sql="Select * from events where status='IN'";
                     $result=mysqli_query($con,$sql);
                     if($result){
                       for ($x = 0; $x < $totalpart; $x++) {

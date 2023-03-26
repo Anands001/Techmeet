@@ -338,7 +338,7 @@
                 </div>
                 <ul class="timeline">
                     <?php
-                     $sql="SELECT * FROM `events` ORDER BY date,time;";
+                     $sql="SELECT * FROM `events` where status='IN' ORDER BY date,time;";
                      $result=mysqli_query($con,$sql);
                      if($result){
                         $t=1;

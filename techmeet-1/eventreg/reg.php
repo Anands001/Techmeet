@@ -16,7 +16,7 @@
     // var_dump($name);
     // echo '0,0='.$revents[1][3].'-';
     include 'dbconnect.php';
-    $sql="Select count(event_id) as count from events";
+    $sql="Select count(event_id) as count from events where status='IN'";
     $result=mysqli_query($con,$sql);
     if($result){
         $row=mysqli_fetch_assoc($result);
