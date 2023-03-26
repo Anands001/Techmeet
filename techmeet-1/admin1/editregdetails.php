@@ -26,6 +26,18 @@ if(isset($_POST['adddept'])) {
         header('location:index.php?inc=clganddept.php');
     }
 }
+if(isset($_POST['addteam'])) {
+    $tname = $_POST['tname'];
+
+    $tname = mysqli_real_escape_string($con, $tname);
+
+
+    $sql1 = "INSERT INTO `teams`(`tname`) VALUES ('$tname')";
+    $result=mysqli_query($con, $sql1);
+    if(isset($result)){
+        header('location:index.php?inc=clganddept.php');
+    }
+}
 
 if(isset($_GET['delclg'])) {
     $clg_name = $_GET['delclg'];
@@ -46,6 +58,18 @@ if(isset($_GET['deldept'])) {
     $dept_name = mysqli_real_escape_string($con, $dept_name);
 
     $sql1 = "DELETE FROM `department` WHERE dept_name='$dept_name'";
+    $result=mysqli_query($con, $sql1);
+    if(isset($result)){
+        header('location:index.php?inc=clganddept.php');
+    }
+}
+
+if(isset($_GET['delteam'])) {
+    $tname = $_GET['delteam'];
+
+    $tname = mysqli_real_escape_string($con, $tname);
+
+    $sql1 = "DELETE FROM `teams` WHERE tname='$tname'";
     $result=mysqli_query($con, $sql1);
     if(isset($result)){
         header('location:index.php?inc=clganddept.php');

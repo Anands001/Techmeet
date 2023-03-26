@@ -105,7 +105,7 @@
         <!-- Main Content -->
         <div id="content">
             <div class="row">
-            <div class="col-xl-6">
+            <div class="col-xl-5">
                 <!-- Account details card-->
                 <div class="card mb-4">
                     <div class="card-header">College</div>
@@ -120,13 +120,13 @@
 
 
                             <!-- Save changes button-->
-                            <input class="btn btn-primary" type="submit" name="addclg" value="Save changes"></input>
+                            <input class="btn btn-primary" type="submit" name="addclg" value="Add"></input>
                         </form>
                     </div>
                 </div>
             </div>
 
-            <div class="col-xl-6">
+            <div class="col-xl-4">
                 <!-- Account details card-->
                 <div class="card mb-4">
                     <div class="card-header">Department</div>
@@ -141,11 +141,31 @@
 
 
                             <!-- Save changes button-->
-                            <input class="btn btn-primary" type="submit" name="adddept" value="Save changes"></input>
+                            <input class="btn btn-primary" type="submit" name="adddept" value="Add"></input>
                         </form>
                     </div>
                 </div>
             </div>
+                <div class="col-xl-3">
+                    <!-- Account details card-->
+                    <div class="card mb-4">
+                        <div class="card-header">Team Names</div>
+                        <div class="card-body">
+                            <form method="post" action="editregdetails.php">
+                                <!-- Form Group (username)-->
+                                <div class="mb-3">
+                                    <label class="small mb-1" for="inputUsername">Add Team Name</label>
+                                    <input class="form-control" id="inputUsername" type="text" name="tname">
+                                </div>
+                                <!-- Form Row-->
+
+
+                                <!-- Save changes button-->
+                                <input class="btn btn-primary" type="submit" name="addteam" value="Add"></input>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
             <!-- Begin Page Content -->
             <div class="container-fluid">
@@ -177,7 +197,7 @@
 
                 <!-- DataTales Example -->
                 <div class="row">
-                    <div class="col-xl-6">
+                    <div class="col-xl-5">
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
                         <h6 class="m-0 font-weight-bold text-primary">Colleges</h6>
@@ -227,7 +247,7 @@
                 </div>
             </div>
                 </div>
-                <div class="col-xl-6">
+                <div class="col-xl-4">
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">Departments</h6>
@@ -276,7 +296,59 @@
                 </div>
             </div>
                 </div>
+
+<!--                teams-->
+
         </div>
+            <div class="col-xl-3">
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Team Names</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="50%" cellspacing="0">
+
+                        </div>
+                        <thead>
+                        <!--                        <center><h4 class="m-0 mb-2 font-weight-bold text-primary">--><?php //echo $ename ?><!--</h4></center>-->
+
+                        <tr>
+                            <th>Sno</th>
+                            <th>College Name</th>
+                            <th>Edit</th>
+                        </tr>
+                        </thead>
+                        <tfoot>
+                        <tr>
+                            <th>Sno</th>
+                            <th>College Name</th>
+                            <th>Edit</th>
+                        </tr>
+                        </tfoot>
+                        <tbody>
+                        <?php
+                        $sql="Select * from teams;";
+                        $result=mysqli_query($con,$sql);
+                        $i=1;
+                        if($result) {
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                echo '<tr>';
+                                echo '<td>'.$i.'</td>';
+                                echo '<td>'.$row['tname'].'</td>';
+                                echo '<td><a class="btn btn-outline-danger" href="editregdetails.php?delteam='.$row['tname'].'">Delete</a></td>';
+                                echo '</tr>';
+                                $i++;
+                            }
+                        }
+                        ?>
+                        </tbody>
+                        </table>
+
+
+                    </div>
+                </div>
+            </div>
         </div>
 
         </div>
