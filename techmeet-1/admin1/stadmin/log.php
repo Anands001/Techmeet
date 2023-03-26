@@ -23,6 +23,7 @@ if (isset($_POST['submit'])) {
                 header('Location:../index.php?inc=dashboard.php');
             }
         }else{
+            $_SESSION['logmsg']='Username or password is incorrect';
             header('Location:login.php');
         }
     }

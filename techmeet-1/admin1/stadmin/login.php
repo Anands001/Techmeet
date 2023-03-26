@@ -9,6 +9,11 @@
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
+    <link
+            rel="stylesheet"
+            href="../css/bootstrap.min.css"
+    />
+
     <!-- Google Fonts Roboto -->
     <link
         rel="stylesheet"
@@ -67,6 +72,16 @@
 <!--                    <div class="divider d-flex align-items-center my-4">-->
 <!--                        <p class="text-center fw-bold mx-3 mb-0">Or</p>-->
 <!--                    </div>-->
+                    <?php
+                    session_start();
+                    if(isset($_SESSION['logmsg'])){
+                        echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>Alert!</strong> Username or password is incorrect
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>';
+                        unset($_SESSION['logmsg']);
+                    }
+                    ?>
 
                     <!-- Email input -->
                     <div class="form-outline mb-4">
@@ -85,10 +100,7 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <!-- Checkbox -->
                         <div class="form-check mb-0">
-                            <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
-                            <label class="form-check-label" for="form2Example3">
-                                Remember me
-                            </label>
+
                         </div>
                         <a href="#!" class="text-body">Forgot password?</a>
                     </div>
@@ -130,6 +142,8 @@
         <!-- Right -->
     </div>
 </section>
+<script rel="text/javascript" src="../js/bootstrap.bundle.js"></script>
+
 </body>
 </html>
 
