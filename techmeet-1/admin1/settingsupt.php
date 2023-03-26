@@ -1,5 +1,6 @@
 <?php
 include 'dbconnect.php';
+session_start();
 if(isset($_POST['home'])) {
     $title = $_POST['title'];
     $navtitle = $_POST['navtitle'];
@@ -28,7 +29,7 @@ if(isset($_POST['home'])) {
     mysqli_query($con, $sql5);
     $sql6 = "update info set ikey='$ahead3',ivalue='$avalue3' where id=6";
     mysqli_query($con, $sql6);
-
+    $_SESSION['tmsg']='Updated successfully';
     header('Location:index.php?inc=settings.php');
 }
 if(isset($_POST['event'])) {
@@ -41,6 +42,7 @@ if(isset($_POST['event'])) {
     mysqli_query($con, $sql8);
     $sql9 = "update info set ivalue='$rpteam' where ikey='rpteam'";
     mysqli_query($con, $sql9);
+    $_SESSION['tmsg']='Updated successfully';
 
     header('Location:index.php?inc=settings.php');
 

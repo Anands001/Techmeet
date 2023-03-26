@@ -45,11 +45,17 @@ if(isset($_GET['inc'])){
       rel="stylesheet"
     />
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-<!--      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">-->
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
 
 
       <?php
+      if(isset($inc)) {
+          if ($inc == '../ecard2.php') {
+              echo '  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+';
+          }
+      }
 //      if($inc=='../home.php'){
 //          echo '
 // <!-- Favicon-->
@@ -569,39 +575,60 @@ if(isset($_GET['inc'])){
           <div class="container-fluid">
             <!-- Page Heading -->
             <h1 class="h3 mb-1 text-gray-800"></h1>
-
-                <!--Toast-->
-
-              <div class="toast-container position-absolute p-3 top-0 end-0" id="toastPlacement">
-                  <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="5000">
-                      <div class="toast-header">
-<!--                          <img src="..." class="rounded me-2" alt="...">-->
-                          <strong class="me-auto">Alert</strong>
-                          <small class="text-muted">just now</small>
-                          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                      </div>
-                      <div class="toast-body">
-                          Event added successfully
-                      </div>
-                  </div>
-              </div>
               <?php
               if(isset($_SESSION['tmsg'])){
-//                  echo '<button type="button" class="btn btn-primary" id="toastbtn">Show Toast</button>';
-                  echo "
-                  <script>
-                  var toastEl = document.querySelector('.toast');
-                    var toast = new bootstrap.Toast(toastEl);
-                    toast.show();
-                    </script>
-                  ";
-//                  $_SESSION['tmsg']=null;
-//                  unset($_SESSION['counter']);
-              }
-//              if(isset($_SESSION['tmsg'])){
+
+                  echo '
+    <div class="toast-container position-absolute p-3 top-0 end-0" id="toastPlacement">
+        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="5000">
+            <div class="toast-header">
+                <strong class="me-auto">Alert</strong>
+                <small class="text-muted">just now</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                '.$_SESSION['tmsg'].'
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var toastEl = document.querySelector(".toast");
+        var toast = new bootstrap.Toast(toastEl);
+        toast.show();
+        setTimeout(function(){
+            toast.hide();
+            setTimeout(function(){
+                document.querySelector(".toast-container").remove();
+            }, 1000);
+        }, 5000);
+        
+        var xhr = new XMLHttpRequest();
+xhr.open("GET", "unset.php", true);
+xhr.onload = function() {
+    if (xhr.status === 200) {
+        // handle the response here
+    } else {
+        // handle errors here
+    }
+};
+xhr.send();
+
+    </script>
+    ';
+
 //                  unset($_SESSION['tmsg']);
-//              }
+              }
               ?>
+
+
+
+
+
+
+
+              <!--Toast-->
+
             <script>
                 document.getElementById("toastbtn").onclick = function() {
                     // var toastElList = [].slice.call(document.querySelectorAll('.toast'))

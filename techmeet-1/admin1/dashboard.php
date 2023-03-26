@@ -4,6 +4,11 @@ $sql="select count(std_id) as total from user";
 $result=mysqli_query($con,$sql);
 $row=mysqli_fetch_assoc($result);
 $total=$row['total'];
+
+$sql1="SELECT COUNT(DISTINCT tname) AS num_teams FROM user;";
+$result1=mysqli_query($con,$sql1);
+$row1=mysqli_fetch_assoc($result1);
+$num_teams=$row1['num_teams'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -85,28 +90,28 @@ $total=$row['total'];
                 </div>
               </div>
 
-              <!-- Earnings (Monthly) Card Example -->
-<!--              <div class="col-xl-3 col-md-6 mb-4">-->
-<!--                <div class="card border-left-success shadow h-100 py-2">-->
-<!--                  <div class="card-body">-->
-<!--                    <div class="row no-gutters align-items-center">-->
-<!--                      <div class="col mr-2">-->
-<!--                        <div-->
-<!--                          class="text-xs font-weight-bold text-success text-uppercase mb-1"-->
-<!--                        >-->
-<!--                          Earnings (Annual)-->
-<!--                        </div>-->
-<!--                        <div class="h5 mb-0 font-weight-bold text-gray-800">-->
-<!--                          $215,000-->
-<!--                        </div>-->
-<!--                      </div>-->
-<!--                      <div class="col-auto">-->
-<!--                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>-->
-<!--                      </div>-->
-<!--                    </div>-->
-<!--                  </div>-->
-<!--                </div>-->
-<!--              </div>-->
+<!--               Earnings (Monthly) Card Example-->
+              <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div
+                          class="text-xs font-weight-bold text-success text-uppercase mb-1"
+                        >
+                          Registered (No. of teams)
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                          <?php echo $num_teams?>
+                        </div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
               <!-- Earnings (Monthly) Card Example -->
 <!--              <div class="col-xl-3 col-md-6 mb-4">-->

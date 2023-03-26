@@ -41,6 +41,7 @@ if ($uploadOk == 0) {
         $imgname=$_FILES["profile"]["name"];
         $sql = "UPDATE staff SET image='$imgname' where username='$username';";
         if(mysqli_query($con,$sql)){
+            $_SESSION['tmsg']='profile image updated successfully';
             header('Location:../index.php?inc=stadmin/profile.php');
         }
     } else {

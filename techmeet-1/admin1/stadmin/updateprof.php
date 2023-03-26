@@ -13,6 +13,7 @@ if($_POST['profile']==null) {
     $sql = "UPDATE staff SET name = '$name', desg = '$desg', gmail = '$email' , mobile = '$mobile' , linkedin = '$linkedin' WHERE username='$username';";
     $result = mysqli_query($con, $sql);
     if (isset($result)) {
+        $_SESSION['tmsg']='profile updated successfully';
         header('Location:../index.php?inc=stadmin/profile.php');
     }
 }

@@ -392,7 +392,7 @@
   <div class="row">
   <?php
   include 'dbconnect.php';
-    $sql="Select * from events";
+    $sql="Select * from events where status='IN'";
     $result=mysqli_query($con,$sql);
     if($result){
       $cnt=40;
