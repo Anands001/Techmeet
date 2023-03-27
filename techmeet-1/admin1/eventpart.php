@@ -191,7 +191,8 @@
                         </tfoot>
                         <tbody>
                         <?php
-                        $sql="select user.std_name,user.std_regno,user.mobile,user.email,user.clg_name,user.dept,user.tname,events.event_name from user JOIN (manage_events JOIN events USING(event_id)) USING(std_id) where events.event_name='$ename' ORDER BY user.clg_name, user.dept;
+                        $year = date("Y");
+                        $sql="select user.std_name,user.std_regno,user.mobile,user.email,user.clg_name,user.dept,user.tname,events.event_name from user JOIN (manage_events JOIN events USING(event_id)) USING(std_id) where YEAR(user.created_at)=$year and events.event_name='$ename' ORDER BY user.clg_name, user.dept;
 ;";
                         //                        $sql="select * from user";
                         $result=mysqli_query($con,$sql);

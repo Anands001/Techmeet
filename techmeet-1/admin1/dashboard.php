@@ -1,11 +1,11 @@
 <?php
 include 'dbconnect.php';
-$sql="select count(std_id) as total from user";
+$sql="select count(std_id) as total from user where YEAR(user.created_at) = YEAR(CURDATE())";
 $result=mysqli_query($con,$sql);
 $row=mysqli_fetch_assoc($result);
 $total=$row['total'];
 
-$sql1="SELECT COUNT(DISTINCT tname) AS num_teams FROM user;";
+$sql1="SELECT COUNT(DISTINCT tname) AS num_teams FROM user where YEAR(user.created_at) = YEAR(CURDATE());";
 $result1=mysqli_query($con,$sql1);
 $row1=mysqli_fetch_assoc($result1);
 $num_teams=$row1['num_teams'];

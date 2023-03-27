@@ -271,6 +271,12 @@ if(isset($_GET['inc'])){
                   <span>Settings</span></a
               >
           </li>
+    <li class="nav-item">
+        <a class="nav-link" href="index.php?inc=ryearselect.php">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Records</span></a
+        >
+    </li>
           <?php } ?>
 
         <!-- Sidebar Toggler (Sidebar) -->
