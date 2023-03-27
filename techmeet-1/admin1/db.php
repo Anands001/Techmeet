@@ -15,9 +15,12 @@
   
   // Fetch the data from the database
   $sql = "SELECT events.event_name, COUNT(manage_events.std_id) as count
-  FROM manage_events 
-  INNER JOIN events ON manage_events.event_id=events.event_id WHERE events.STATUS='IN'
-  GROUP BY events.event_name ;";
+FROM manage_events 
+INNER JOIN events ON manage_events.event_id=events.event_id 
+INNER JOIN user ON manage_events.std_id=user.std_id 
+WHERE events.STATUS='IN' AND YEAR(user.created_at) = YEAR(CURDATE())
+GROUP BY events.event_name;
+";
   $result = $conn->query($sql);
   
   $data1 = array();
