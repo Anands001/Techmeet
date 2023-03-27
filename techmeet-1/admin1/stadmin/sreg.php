@@ -1,6 +1,6 @@
 <?php
 include '../dbconnect.php';
-
+session_start();
 $name=$_POST['name'];
 $username=$_POST['username'];
 $email=$_POST['email'];
@@ -11,7 +11,7 @@ $sql="INSERT INTO `staff` (`staff_id`, `username`, `password`, `name`, `desg`, `
 
 $result=mysqli_query($con,$sql);
 if(isset($result)){
-    $session['lmsg']='Registered successfully';
+    $_SESSION['rmsg']='Registered successfully';
     header('Location:register.php');
 }
 ?>

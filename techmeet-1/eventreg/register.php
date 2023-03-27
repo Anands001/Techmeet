@@ -1986,7 +1986,7 @@ p {
             const num = id.replace("name","");
             if (regex.test(nameElement.value)){
                 nameElement.focus();
-                document.getElementById("username_error"+num).innerHTML = "Please enter a valid username.";
+                document.getElementById("username_error"+num).innerHTML = "Please enter a valid name.";
             }else{
                 document.getElementById("username_error"+num).innerHTML = "";
             }

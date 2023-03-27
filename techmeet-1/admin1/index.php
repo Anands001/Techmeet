@@ -91,9 +91,9 @@ if(isset($_GET['inc'])){
           class="sidebar-brand d-flex align-items-center justify-content-center"
           href="index.html"
         >
-          <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-laugh-wink"></i>
-          </div>
+<!--          <div class="sidebar-brand-icon rotate-n-15">-->
+<!--            <i class="fas fa-laugh-wink"></i>-->
+<!--          </div>-->
           <div class="sidebar-brand-text mx-3">Admin <sup></sup></div>
         </a>
 
@@ -147,17 +147,25 @@ if(isset($_GET['inc'])){
             <div class="bg-white py-2 collapse-inner rounded">
               <h6 class="collapse-header">Custom Components:</h6>
                 <a class="collapse-item" href="index.php?inc=../ecard2.php">View events</a>
+                <?php if($_SESSION['role']=='admin'){ ?>
               <a class="collapse-item" href="index.php?inc=addevent.php">Add event</a>
+                <?php } ?>
+                <?php if($_SESSION['role']=='admin'){ ?>
               <a class="collapse-item" href="index.php?inc=ecard2.php">Edit event</a>
+                <?php }else{?>
+                    <a class="collapse-item" href="index.php?inc=editevent.php&event_id=<?php echo $_SESSION['eid'] ?>">Edit event</a>
+               <?php } ?>
             </div>
           </div>
         </li>
+          <?php if($_SESSION['role']=='admin'){?>
           <li class="nav-item">
               <a class="nav-link" href="index.php?inc=clganddept.php">
                   <i class="fas fa-fw fa-table"></i>
                   <span>Details</span></a
               >
           </li>
+          <?php } ?>
 
         <!-- Nav Item - Utilities Collapse Menu -->
 <!--        <li class="nav-item">-->
@@ -241,8 +249,7 @@ if(isset($_GET['inc'])){
         <li class="nav-item">
           <a class="nav-link" href="index.php?inc=queries.php">
             <i class="fas fa-fw fa-chart-area"></i>
-            <span>Queries</span></a
-          >
+            <span>Queries</span></a>
         </li>
 
         <!-- Nav Item - Tables -->
@@ -257,13 +264,14 @@ if(isset($_GET['inc'])){
         <hr class="sidebar-divider d-none d-md-block" />
 
 
-
+<?php if($_SESSION['role']=='admin'){ ?>
           <li class="nav-item">
               <a class="nav-link" href="index.php?inc=settings.php">
                   <i class="fas fa-fw fa-table"></i>
                   <span>Settings</span></a
               >
           </li>
+          <?php } ?>
 
         <!-- Sidebar Toggler (Sidebar) -->
         <div class="text-center d-none d-md-inline">
@@ -289,24 +297,24 @@ if(isset($_GET['inc'])){
             </button>
 
             <!-- Topbar Search -->
-            <form
-              class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"
-            >
-              <div class="input-group">
-                <input
-                  type="text"
-                  class="form-control bg-light border-0 small"
-                  placeholder="Search for..."
-                  aria-label="Search"
-                  aria-describedby="basic-addon2"
-                />
-                <div class="input-group-append">
-                  <button class="btn btn-primary" type="button">
-                    <i class="fas fa-search fa-sm"></i>
-                  </button>
-                </div>
-              </div>
-            </form>
+<!--            <form-->
+<!--              class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"-->
+<!--            >-->
+<!--              <div class="input-group">-->
+<!--                <input-->
+<!--                  type="text"-->
+<!--                  class="form-control bg-light border-0 small"-->
+<!--                  placeholder="Search for..."-->
+<!--                  aria-label="Search"-->
+<!--                  aria-describedby="basic-addon2"-->
+<!--                />-->
+<!--                <div class="input-group-append">-->
+<!--                  <button class="btn btn-primary" type="button">-->
+<!--                    <i class="fas fa-search fa-sm"></i>-->
+<!--                  </button>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </form>-->
 
             <!-- Topbar Navbar -->
             <ul class="navbar-nav ml-auto">

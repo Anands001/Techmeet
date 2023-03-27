@@ -121,12 +121,12 @@
                         <!--                                        <i class="fas fa-search"></i>-->
                         <!--                                    </button>-->
                     </div>
-                    <select id ="dropDown" onchange="handleSelect(this)" class="ml-auto form-select form-select-lg mb-3" aria-label="" name="eventfilter">
+                    <select id ="dropDown" onchange="handleSelect(this)" class="ml-auto form-select form-select-lg mb-2 col-2" aria-label="" name="eventfilter">
 
                                                         <option disabled="disabled" selected="selected">filter</option>
                         <?php
                         $ename=null;
-                        $sql="select event_name from events";
+                        $sql="select event_name from events where status='IN'";
                         $result=mysqli_query($con,$sql);
                         $i =0;
                         if($result){

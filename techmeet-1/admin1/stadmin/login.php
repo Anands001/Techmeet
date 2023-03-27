@@ -102,7 +102,7 @@
                         <div class="form-check mb-0">
 
                         </div>
-                        <a href="#!" class="text-body">Forgot password?</a>
+<!--                        <a href="#!" class="text-body">Forgot password?</a>-->
                     </div>
 
                     <div class="text-center text-lg-start mt-4 pt-2">

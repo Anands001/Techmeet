@@ -121,9 +121,13 @@
                     $rtot=$row2['count'];
                 }
                 ?>
+                <?php
+                if($_SESSION['role']=='admin'){
+                ?>
                 <div>
                     <a href="#" data-bs-toggle="modal" data-bs-target="#staffreqmodal" class="btn btn-primary"><span class="badge badge-soft-danger ms-2"><?php echo $rtot;?></span> Requests</a>
                 </div>
+                <?php } ?>
 <!--                <div class="dropdown">-->
 <!--                    <a class="btn btn-link text-muted py-1 font-size-16 shadow-none dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bx bx-dots-horizontal-rounded"></i></a>-->
 <!--                    <ul class="dropdown-menu dropdown-menu-end">-->
@@ -188,7 +192,7 @@
                     </div>';
         ?>
 
-                    
+                    <?php if($_SESSION['role']=='admin'){ ?>
                     <div class="d-flex gap-2 pt-4">
                         <form action="stadmin/editstaff.php" method="post">
                             <input type="hidden" name="sid" value="<?php echo $sid;?>">
@@ -231,6 +235,7 @@
                             <!--                            <input type="button" class="btn btn-primary btn-sm w-50"><i class="bx bx-message-square-dots me-1"></i> Contact</input>-->
                         </form>
                     </div>
+        <?php } ?>
                 </div>
             </div>
         </div>
