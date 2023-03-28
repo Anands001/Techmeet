@@ -63,12 +63,85 @@ if ($uploadOk == 0) {
     $_SESSION['error']= "Sorry, there was an error uploading your file.";
   }
  }
-		$con=new mysqli('localhost','root','','techmeet');
+
+//Evaluation sheet
+     $target_dir = "docs/";
+     $target_file = $target_dir . basename($_FILES["evsheet"]["name"]);
+     $evalname = $_FILES['evsheet']['name'];
+     $uploadOkk = 1;
+
+// Check if file is a DOC or PDF file
+//     $fileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+//     if ($fileType != "doc" && $fileType != "pdf") {
+//         echo "Sorry, only DOC and PDF files are allowed.";
+//         $uploadOkk = 0;
+//     }
+
+     if ($uploadOkk == 0) {
+         echo "Sorry, your file was not uploaded.";
+         // if everything is ok, try to upload file
+     } else {
+         if (move_uploaded_file($_FILES["evsheet"]["tmp_name"], $target_file)) {
+             echo "The file " . basename($_FILES["evsheet"]["name"]) . " has been uploaded.";
+         } else {
+             echo "Sorry, there was an error uploading your file.";
+         }
+     }
+
+//Final score sheet
+     $target_dir = "docs/";
+     $target_file = $target_dir . basename($_FILES["fsheet"]["name"]);
+     $fsheetname = $_FILES['fsheet']['name'];
+     $uploadOkk1 = 1;
+
+// Check if file is a DOC or PDF file
+     $fileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+//     if ($fileType != "doc" && $fileType != "pdf") {
+//         echo "Sorry, only DOC and PDF files are allowed.";
+//         $uploadOkk1 = 0;
+//     }
+
+     if ($uploadOkk1 == 0) {
+         echo "Sorry, your file was not uploaded.";
+         // if everything is ok, try to upload file
+     } else {
+         if (move_uploaded_file($_FILES["fsheet"]["tmp_name"], $target_file)) {
+             echo "The file " . basename($_FILES["fsheet"]["name"]) . " has been uploaded.";
+         } else {
+             echo "Sorry, there was an error uploading your file.";
+         }
+     }
+
+     //Winners list
+     $target_dir = "docs/";
+     $target_file = $target_dir . basename($_FILES["winlist"]["name"]);
+     $winlist = $_FILES['winlist']['name'];
+     $uploadOkk2 = 1;
+
+    // Check if file is a DOC or PDF file
+     $fileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+//     if ($fileType != "doc" && $fileType != "pdf") {
+//         echo "Sorry, only DOC and PDF files are allowed.";
+//         $uploadOkk2 = 0;
+//     }
+
+     if ($uploadOkk2 == 0) {
+         echo "Sorry, your file was not uploaded.";
+         // if everything is ok, try to upload file
+     } else {
+         if (move_uploaded_file($_FILES["winlist"]["tmp_name"], $target_file)) {
+             echo "The file " . basename($_FILES["winlist"]["name"]) . " has been uploaded.";
+         } else {
+             echo "Sorry, there was an error uploading your file.";
+         }
+     }
+
+     $con=new mysqli('localhost','root','','techmeet');
 		if(!$con){
 			die(mysqli_error($con));
 		}
 
-		$sql="INSERT INTO `events` (`event_id`, `event_name`, `event_name1`, `date`, `time`, `details`, `rules`, `venue` , `partic_no`, `cimage`) VALUES (NULL, '$ename', '$ename1', '$date', '$time', '', '$protocols', '$venue', '$nop', '$file_name')";
+		$sql="INSERT INTO `events` (`event_id`, `event_name`, `event_name1`, `date`, `time`, `details`, `rules`, `venue` , `partic_no`, `cimage`, `evalsheet`, `fsheet`, `winlist`) VALUES (NULL, '$ename', '$ename1', '$date', '$time', '', '$protocols', '$venue', '$nop', '$file_name','$evalname','$fsheetname','$winlist')";
 		$result=mysqli_query($con,$sql);
 
 		if(isset($result)){
@@ -220,12 +293,26 @@ border-bottom-right-radius: 15px;
                         </div>
                     </div>
 
-				  <!-- <div class="mb-4 pb-2">
+				   <div class="mb-4 pb-2">
                     <div class="form-outline">
-                      <input type="file" id="form3Examplev4" class="form-control form-control-lg" name="image"/>
-                      <label class="form-label" for="form3Examplev4">Cover Image</label>
+                      <input type="file" id="form3Examplev4" class="form-control form-control-lg" name="evsheet"/>
+                      <label class="form-label" for="form3Examplev4">Evaluation Sheet</label>
                     </div>
-                  </div> -->
+                  </div>
+
+                    <div class="mb-4 pb-2">
+                        <div class="form-outline">
+                            <input type="file" id="form3Examplev4" class="form-control form-control-lg" name="fsheet"/>
+                            <label class="form-label" for="form3Examplev4">Final Score Sheet</label>
+                        </div>
+                    </div>
+
+                    <div class="mb-4 pb-2">
+                        <div class="form-outline">
+                            <input type="file" id="form3Examplev4" class="form-control form-control-lg" name="winlist"/>
+                            <label class="form-label" for="form3Examplev4">Winners List</label>
+                        </div>
+                    </div>
 
                 </div>
               </div>

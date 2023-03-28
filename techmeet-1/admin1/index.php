@@ -152,6 +152,8 @@ if(isset($_GET['inc'])){
                 <?php } ?>
                 <?php if($_SESSION['role']=='admin'){ ?>
               <a class="collapse-item" href="index.php?inc=ecard2.php">Edit event</a>
+                    <a class="collapse-item" href="index.php?inc=docdownload.php">Docs downloads</a>
+
                 <?php }else{?>
                     <a class="collapse-item" href="index.php?inc=editevent.php&event_id=<?php echo $_SESSION['eid'] ?>">Edit event</a>
                <?php } ?>
