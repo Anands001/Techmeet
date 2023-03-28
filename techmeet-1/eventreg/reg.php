@@ -33,7 +33,7 @@
 
 $tname = null;
 $team2 = array();
-$query = "select tname from user";
+$query = "select tname from user where YEAR(created_at)=YEAR(CURDATE())";
 $result5 = mysqli_query($con, $query);
 if ($result5) {
     while ($row = mysqli_fetch_assoc($result5)) {

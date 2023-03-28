@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php include 'C:\xampp\htdocs\techmeet-1\dbconnect.php' ?>
+<?php include '../dbconnect.php' ?>
 <head>
 
     <meta charset="utf-8">
@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Tables</title>
+    <title> Tables</title>
 
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -215,7 +215,7 @@
                                 $tname=$row['tname'];
 
                                 if($flag==1) {
-                                    $query = "select count(user.std_name) as count from user JOIN (manage_events JOIN events USING(event_id)) USING(std_id) where events.event_name='$ename' and user.tname='$tname' ORDER BY user.clg_name, user.dept";
+                                    $query = "select count(user.std_name) as count from user JOIN (manage_events JOIN events USING(event_id)) USING(std_id) where YEAR(user.created_at)=$year and events.event_name='$ename' and user.tname='$tname' ORDER BY user.clg_name, user.dept";
                                     $result1 = mysqli_query($con, $query);
                                     $row1 = mysqli_fetch_assoc($result1);
                                     $rowspan = $row1['count'];
