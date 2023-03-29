@@ -27,9 +27,22 @@
         }
      </style>
 </head>
+<?php
+include 'dbconnect.php';
 
+$sql="select * from info";
+$result=mysqli_query($con,$sql);
+while($row1=mysqli_fetch_assoc($result)) {
+    $id = $row1['id'];
+    $key = $row1['ikey'];
+    $value = $row1['ivalue'];
+    if ($row1['ikey'] == 'successheader') {
+        $header = $row1['ivalue'];
+    }
+}
+?>
     <header>
-        <img src="../assets/img/partheader/img.png" style="width: 100%; height: 20%; object-fit: contain" alt="Header Image">
+        <img src="../assets/img/partheader/<?php echo $header; ?>" style="width: 100%; height: 20%; object-fit: contain" alt="Header Image">
     </header>
 <body class="container">
 <!--<div id="table"></div>-->
@@ -64,7 +77,6 @@
         });
     </script>
 <?php
-include 'dbconnect.php';
 
      $clgname=$_GET['clg_name'];
      $dept=$_GET['dept'];
