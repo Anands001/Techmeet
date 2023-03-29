@@ -65,7 +65,7 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
                         <li class="nav-item"><a class="nav-link" href="#services">Announcements</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
+<!--                        <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>-->
                         <li class="nav-item"><a class="nav-link" href="#about">Shedule</a></li>
                         <li class="nav-item"><a class="nav-link" href="#team">Team</a></li>
                         <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
@@ -147,188 +147,59 @@
             </div>
         </section>
         <!-- Portfolio Grid-->
-        <section class="page-section bg-light" id="portfolio">
-            <div class="container">
-                <div class="text-center">
-                    <h2 class="section-heading text-uppercase">Portfolio</h2>
-                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
-                </div>
-                <div class="row">
-                <div class="col-lg-4 col-sm-6 mb-4">
+<!--        <section class="page-section bg-light" id="portfolio">-->
+<!--            <div class="container">-->
+<!--                <div class="text-center">-->
+<!--                    <h2 class="section-heading text-uppercase">Portfolio</h2>-->
+<!--                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>-->
+<!--                </div>-->
+<!--                <div class="row">-->
+<!--                <div class="col-lg-4 col-sm-6 mb-4">-->
                             <!-- Portfolio item 1-->
-                            <div class="portfolio-item">
-                                <a class="portfolio-link" data-bs-toggle="modal" href="#scheduleModal">
-                                    <div class="portfolio-hover">
-                                        <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                                    </div>
-                                    <img class="img-fluid" src="/techmeet-1/eventimgs/kevin-ku-w7ZyuGYNpRQ-unsplash.jpg" alt="..." />
-                                </a>
-                                <div class="portfolio-caption">
-                                    <div class="portfolio-caption-heading">GENERAL PROTOCOLS</div>
-                                    <div class="portfolio-caption-subheading text-muted"></div>
-                                </div>
-                            </div>
-                        </div>';
-                    
-                      
-                            
-                            
-                            
+<!--                            <div class="portfolio-item">-->
+<!--                                <a class="portfolio-link" data-bs-toggle="modal" href="#scheduleModal">-->
+<!--                                    <div class="portfolio-hover">-->
+<!--                                        <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>-->
+<!--                                    </div>-->
+<!--                                    <img class="img-fluid" src="/techmeet-1/eventimgs/kevin-ku-w7ZyuGYNpRQ-unsplash.jpg" alt="..." />-->
+<!--                                </a>-->
+<!--                                <div class="portfolio-caption">-->
+<!--                                    <div class="portfolio-caption-heading">GENERAL PROTOCOLS</div>-->
+<!--                                    <div class="portfolio-caption-subheading text-muted"></div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>';-->
+<!--                    -->
+<!--                      -->
+<!--                            -->
+<!--                            -->
+<!--                            -->
                         <!-- Modal -->
-                        <div class="modal fade" id="scheduleModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                        
-                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                            <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Event Schedule</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                            <?php
-                            $sql="Select * from events";
-                            $result=mysqli_query($con,$sql);
-                            if($result){
-                              $cnt=10;
-                                while($row=mysqli_fetch_assoc($result)){
-                                  $id=$row['event_id'];
-                                  $name=$row['event_name'];
-                                  $name1=$row['event_name1'];
-                                  $date=$row['date'];
-                                  $time=$row['time'];
-                                  $det=$row['details'];
-                                  $rules=$row['rules'];
-                                  $nop=$row['partic_no'];
-                                  $img=$row['cimage'];
-                                  $date=explode("-",$row['date']);
-                            echo '
-                            <ul class="timeline">
-                            <li>
-                             <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/1.jpg" alt="..." /></div>
-                             <div class="timeline-panel">
-                                 <div class="timeline-heading">
-                                     <h4>Head</h4>
-                                     <h4 class="subheading">sss</h4>
-                                 </div>
-                                 <div class="timeline-body"><p class="text-muted">ss</p></div>
-                             </div>
-                             </li>
-                             <li class="timeline-inverted">
-                                    <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/2.jpg" alt="..." /></div>
-                                    <div class="timeline-panel">
-                                        <div class="timeline-heading">
-                                            <h4>March 2011</h4>
-                                            <h4 class="subheading">An Agency is Born</h4>
-                                        </div>
-                                        <div class="timeline-body"><p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p></div>
-                                    </div>
-                             </li>
-                             </ul>
-                            ';
-                             }
-                            }
-                            ?>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            </div>
-                            </div>
-                        </div>
-                        </div>
-                            
-                          
-                        
-
-                    <!-- <div class="col-lg-4 col-sm-6 mb-4">
-                        
-                        <div class="portfolio-item">
-                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal1">
-                                <div class="portfolio-hover">
-                                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                                </div>
-                                <img class="img-fluid" src="assets/img/portfolio/1.jpg" alt="..." />
-                            </a>
-                            <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">GENERAL PROTOCOLS</div>
-                                <div class="portfolio-caption-subheading text-muted">RULES</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6 mb-4">
-                        
-                        <div class="portfolio-item">
-                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal2">
-                                <div class="portfolio-hover">
-                                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                                </div>
-                                <img class="img-fluid" src="assets/img/portfolio/2.jpg" alt="..." />
-                            </a>
-                            <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">Explore</div>
-                                <div class="portfolio-caption-subheading text-muted">Graphic Design</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6 mb-4">
-                        
-                        <div class="portfolio-item">
-                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal3">
-                                <div class="portfolio-hover">
-                                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                                </div>
-                                <img class="img-fluid" src="assets/img/portfolio/3.jpg" alt="..." />
-                            </a>
-                            <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">Finish</div>
-                                <div class="portfolio-caption-subheading text-muted">Identity</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
-                        
-                        <div class="portfolio-item">
-                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal4">
-                                <div class="portfolio-hover">
-                                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                                </div>
-                                <img class="img-fluid" src="assets/img/portfolio/4.jpg" alt="..." />
-                            </a>
-                            <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">Lines</div>
-                                <div class="portfolio-caption-subheading text-muted">Branding</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6 mb-4 mb-sm-0">
-                        <div class="portfolio-item">
-                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal5">
-                                <div class="portfolio-hover">
-                                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                                </div>
-                                <img class="img-fluid" src="assets/img/portfolio/5.jpg" alt="..." />
-                            </a>
-                            <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">Southwest</div>
-                                <div class="portfolio-caption-subheading text-muted">Website Design</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <div class="portfolio-item">
-                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal6">
-                                <div class="portfolio-hover">
-                                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                                </div>
-                                <img class="img-fluid" src="assets/img/portfolio/6.jpg" alt="..." />
-                            </a>
-                            <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">Window</div>
-                                <div class="portfolio-caption-subheading text-muted">Photography</div>
-                            </div>
-                        </div>
-                    </div> -->
-                </div>
-            </div>
-        </section>
+<!--                        <div class="modal fade" id="scheduleModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">-->
+<!--                        -->
+<!--                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">-->
+<!--                            <div class="modal-content">-->
+<!--                            <div class="modal-header">-->
+<!--                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Event Schedule</h1>-->
+<!--                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+<!--                            </div>-->
+<!--                            <div class="modal-body">-->
+<!---->
+<!--                            </div>-->
+<!--                            <div class="modal-footer">-->
+<!--                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>-->
+<!--                            </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        </div>-->
+<!--                            -->
+<!--                          -->
+<!--                        -->
+<!---->
+<!--                   -->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </section>-->
         <!-- About-->
         <section class="page-section" id="about">
             <div class="container">
