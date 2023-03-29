@@ -405,6 +405,7 @@
           $det=$row['details'];
           $rules=$row['rules'];
           $nop=$row['partic_no'];
+          $venue=$row['venue'];
           $date=explode("-",$row['date']);
           
           $mon = array("01"=>"JAN", "02"=>"FEB", "03"=>"MAR", "04"=>"APR", "05"=>"MAY", "06"=>"JUN", "07"=>"JUL", "08"=>"AUG", "09"=>"SEP", "10"=>"OCT", "11"=>"NOV", "12"=>"DEC");
@@ -430,13 +431,11 @@
                 </div>
                 <ol class="widget-49-meeting-points" style="text-align:left;">
                   <li class="widget-49-meeting-item">
-                    <span>Participants allowed: '.$nop.'</span>
+                    <span>Participants per team: '.$nop.'</span>
                   </li>
+
                   <li class="widget-49-meeting-item">
-                    <span>Data migration is in scope</span>
-                  </li>
-                  <li class="widget-49-meeting-item">
-                    <span>Session timeout increase to 30 minutes</span>
+                    <span>Venue: '.$venue.'</span>
                   </li>
                 </ol>
                 <div class="widget-49-meeting-action">

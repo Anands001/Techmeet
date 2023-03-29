@@ -507,6 +507,7 @@ if(isset($_POST['submit'])=='uploadprize'){
                 $det=$row['details'];
                 $rules=$row['rules'];
                 $nop=$row['partic_no'];
+                $venue=$row['venue'];
                 $evsheet=$row['evalsheet'];
 //                echo $evsheet;
                 $fsheet=$row['fsheet'];
@@ -539,19 +540,32 @@ if(isset($_POST['submit'])=='uploadprize'){
                     <span>Participants allowed: '.$nop.'</span>
                   </li>
                   <li class="widget-49-meeting-item">
-                    <span>Data migration is in scope</span>
+                    <span>Venue: '.$venue.'</span>
                   </li>
-                  <li class="widget-49-meeting-item">
-                    <span>Session timeout increase to 30 minutes</span>
-                  </li>
+                  
                 </ol>
-                <div class="widget-5-meeting-action">
+                <div class="widget-5-meeting-action">';
+                ?>
+                <?php
+                if($evsheet!=''){
+                echo'
+                
                   <a href="docs/'.$evsheet.'" download class="btn btn-sm btn-outline-secondary"
-                    >Evaluation sheet</a>
-                  <a href="docs/'.$fsheet.'" download class="btn btn-sm btn-outline-primary" 
-                    >Final score sheet</a>
-                  <a href="docs/'.$winlist.'" download class="btn btn-sm btn-outline-info"
+                    >Evaluation sheet</a>';
+                    }
+                if($fsheet!='') {
+                    echo '
+                    <a href = "docs/'.$fsheet.'" download class="btn btn-sm btn-outline-primary"
+                    >final score sheet</a>
+                    ';
+                }
+                    if($winlist!='') {
+                        echo '
+                  <a href="docs/' . $winlist . '" download class="btn btn-sm btn-outline-info"
                     >Winner List</a>
+                    ';
+                    }
+                        echo'
                 </div>
               </div>
             </div>
@@ -562,6 +576,7 @@ if(isset($_POST['submit'])=='uploadprize'){
             }
         }
         ?>
+
         <!-- <div class="col-lg-4">
           <div class="card card-margin">
             <div class="card-header no-border">
