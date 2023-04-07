@@ -44,6 +44,16 @@
                 }
             });
         }
+        function printDiv(divName) {
+            var printContents = document.getElementById(divName).innerHTML;
+            var originalContents = document.body.innerHTML;
+
+            document.body.innerHTML = printContents;
+
+            window.print();
+
+            document.body.innerHTML = originalContents;
+        }
     </script>
     <script>
         'use strict'
@@ -108,12 +118,12 @@
                 <div class="d-flex">
                     <input type="button" class="btn btn-outline-primary mb-3" id="btnExport" value="Download" onclick="Export()" />
 
-                    <a class="btn btn-outline-info ml-2 mb-3 d-print-none" href="#" onclick="javascript:window.print();" data-abc="true">Print</a>
+                    <a class="btn btn-outline-info ml-2 mb-3 d-print-none" href="#" onclick="printDiv('printableArea')" data-abc="true">Print</a>
 
                     <!--search-->
                     <div class="input-group ml-auto">
                         <div class="form-outline ml-auto mr-3">
-                            <input type="search" id="form1" placeholder="Search" class="form-control" />
+<!--                            <input type="search" id="form1" placeholder="Search" class="form-control" onkeyup="searchFilter(event.target.value)"/>-->
                             <!--                                        <label class="form-label" for="form1">Search</label>-->
                         </div>
 
@@ -154,7 +164,7 @@
                 ?>
 
                 <!-- DataTales Example -->
-                <div class="card shadow mb-4">
+                <div class="card shadow mb-4" id="printableArea">
                     <div class="card-header py-3">
                         <h6 class="m-0 font-weight-bold text-primary"><?php echo $ename?></h6>
                     </div>
@@ -331,7 +341,28 @@
 <script src="js/demo/datatables-demo.js"></script>
 
 <!--    <script src="js/mdb.min.js"></script>-->
+<script>
+    // const searchFilter = (value) => {
+    //     var input, filter, table, tr, td, i, txtValue;
+    //     filter = value.toUpperCase();
+    //     table = document.getElementById("dataTable");
+    //     tr = table.getElementsByTagName("tr");
+    //
+    //     // Loop through all table rows, and hide those who don't match the search query
+    //     for (i = 1; i < tr.length; i++) {
+    //         td = tr[i];
+    //         if (td) {
+    //             txtValue = td.textContent || td.innerText;
+    //             if (txtValue.toUpperCase().indexOf(filter) > -1) {
+    //                 tr[i].style.display = "";
+    //             } else {
+    //                 tr[i].style.display = "none";
+    //             }
+    //         }
+    //     }
+    // }
 
+</script>
 </body>
 
 </html>

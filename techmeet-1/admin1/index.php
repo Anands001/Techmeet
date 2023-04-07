@@ -89,7 +89,7 @@ if(isset($_GET['inc'])){
         <!-- Sidebar - Brand -->
         <a
           class="sidebar-brand d-flex align-items-center justify-content-center"
-          href="index.html"
+          href="index.php?inc=dashboard.php"
         >
 <!--          <div class="sidebar-brand-icon rotate-n-15">-->
 <!--            <i class="fas fa-laugh-wink"></i>-->
@@ -561,14 +561,11 @@ if(isset($_GET['inc'])){
                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                     Profile
                   </a>
-                  <a class="dropdown-item" href="#">
+                  <a class="dropdown-item" href="index.php?inc=settings.php">
                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                     Settings
                   </a>
-                  <a class="dropdown-item" href="#">
-                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Activity Log
-                  </a>
+
                   <div class="dropdown-divider"></div>
                   <a
                     class="dropdown-item"
@@ -690,7 +687,7 @@ xhr.send();
         <footer class="sticky-footer bg-white">
           <div class="container my-auto">
             <div class="copyright text-center my-auto">
-              <span>Copyright &copy; Your Website 2020</span>
+              <span>Copyright &copy; "Anand" 2023</span>
             </div>
           </div>
         </footer>

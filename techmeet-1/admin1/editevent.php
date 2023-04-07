@@ -14,6 +14,7 @@ if(!$con){
 	$nop=$_POST['nop'];
 	$protocols=$_POST['protocols'];
     $venue=$_POST['venue'];
+
      $cimg=$_POST['cimg'];
 
 
@@ -160,7 +161,7 @@ if ($uploadOk == 0) {
         }
 
 
-        $sql="UPDATE `events` SET `event_name` = '$ename',event_name1='$ename1',date='$date',time='$time',rules='$protocols',partic_no='$nop',cimage='$file_name',evalsheet='$evalname',fsheet='$fsheetname',winlist='$winlist' WHERE `events`.`event_id` = $eid;";
+        $sql="UPDATE `events` SET `event_name` = '$ename',event_name1='$ename1',date='$date',time='$time',rules='$protocols',partic_no='$nop',cimage='$file_name',evalsheet='$evalname',fsheet='$fsheetname', venue='$venue',winlist='$winlist' WHERE `events`.`event_id` = $eid;";
 		$result=mysqli_query($con,$sql);
 
 		if(isset($result)){

@@ -14,10 +14,11 @@
   } 
   
   // Fetch the data from the database
-  $sql = "SELECT COUNT(std_id) as count, DATE(created_at) as date
+  $sql = "SELECT COUNT(DISTINCT tname) as count, DATE(created_at) as date
   FROM user
   WHERE created_at >= DATE_SUB(NOW(), INTERVAL 7 DAY)
-  GROUP BY DATE(created_at);";
+  GROUP BY DATE(created_at);
+";
   $result = $conn->query($sql);
   
   $data = array();

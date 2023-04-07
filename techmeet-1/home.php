@@ -96,7 +96,7 @@
             <div class="container">
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">Events</h2>
-                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                    <h3 class="section-subheading text-muted">  </h3>
                 </div>
                 <div class="row text-center">
                     <?php include 'ecard2.php'?>
@@ -108,16 +108,16 @@
             <div class="container">
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">Announcements</h2>
-                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                    <h3 class="section-subheading text-muted"></h3>
                 </div>
-                <div class="row text-center" style="height:400px;">
+                <div class="row text-center" style="">
                     <div class="col-md-4">
                         <!-- <span class="fa-stack fa-4x">
                             <i class="fas fa-circle fa-stack-2x text-primary"></i>
                             <i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
                         </span> -->
                         <h4 class="my-3"><?php echo $ahead1?></h4>
-                        <marquee height="60%" direction="up" height="100px" onmouseover="this.stop();" onmouseout="this.start();"><p class="text-muted"><?php echo $avalue1; ?></p></marquee>
+                        <marquee direction="up" height="500px" onmouseover="this.stop();" onmouseout="this.start();"><centre><p class="text-muted"><?php echo $avalue1; ?></p></centre></marquee>
                     </div>
                     <div class="col-md-4">
                         <!-- <span class="fa-stack fa-4x">
@@ -125,7 +125,7 @@
                             <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
                         </span> -->
                         <h4 class="my-3"><?php echo $ahead2?></h4>
-                        <marquee onmouseover="this.stop();" onmouseout="this.start();" height="60%" direction="up" height="100px"><p class="text-muted"><?php echo $avalue2?></p></marquee>
+                        <marquee onmouseover="this.stop();" onmouseout="this.start();" height="500px" direction="up" ><p class="text-muted"><?php echo $avalue2?></p></marquee>
                     </div>
                     <div class="col-md-4">
                         <!-- <span class="fa-stack fa-4x">
@@ -133,7 +133,7 @@
                             <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
                         </span> -->
                         <h4 class="my-3"><?php echo $ahead3?></h4>
-                        <marquee onmouseover="this.stop();" onmouseout="this.start();" height="60%" direction="up" height="100px"><p class="text-muted"><?php echo $avalue3?></p></marquee>
+                        <marquee onmouseover="this.stop();" onmouseout="this.start();" height="500px" direction="up" height=""><p class="text-muted"><?php echo $avalue3?></p></marquee>
                     </div>
                     <!-- <div class="col-md-4">
                         <span class="fa-stack fa-4x">
@@ -205,7 +205,7 @@
             <div class="container">
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">Event Schedule</h2>
-                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                    <h3 class="section-subheading text-muted"></h3>
                 </div>
                 <ul class="timeline">
                     <?php
@@ -322,7 +322,7 @@
             <div class="container">
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">Our Amazing Team</h2>
-                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                    <h3 class="section-subheading text-muted"></h3>
                 </div>
                 <div class="row">
                     <?php
@@ -380,7 +380,7 @@
                     </div> -->
                 </div>
                 <div class="row">
-                    <div class="col-lg-8 mx-auto text-center"><p class="large text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p></div>
+                    <div class="col-lg-8 mx-auto text-center"><p class="large text-muted"></p></div>
                 </div>
             </div>
         </section>

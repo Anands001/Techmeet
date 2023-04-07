@@ -1653,7 +1653,7 @@ p {
                           $date=explode("-",$row['date']);
                 
                           $mon = array("01"=>"JAN", "02"=>"FEB", "03"=>"MAR", "04"=>"APR", "05"=>"MAY", "06"=>"JUN", "07"=>"JUL", "08"=>"AUG", "09"=>"SEP", "10"=>"OCT", "11"=>"NOV", "12"=>"DEC");
-                          echo '<th scope="col">'.$name.'</th>'
+                          echo '<th scope="col">'.$name.' ('.$nop.')</th>'
                           ;
                           
                         }
@@ -1744,7 +1744,7 @@ p {
                           <section class="ftco-section">
                               <ul class="ks-cboxtags">
                               <li>
-                                <input type="checkbox" id="'.$var.''.$var2.'" name="check['.$x.']['.$y.']" value="'.$eid[$y].'" onclick="return myFun(this)">
+                                <input type="checkbox" id="'.$var.''.$var2.'" name="check['.$x.']['.$y.']" value="'.$eid[$y].'" onclick="return myFun(this.id)">
                                 <label for="'.$var.''.$var2.'" id="label'.$var.''.$var2.'">Select('.$eid[$y].')</label>
                               </li>
                              
@@ -1762,7 +1762,7 @@ p {
                 </tbody>
               </table>
 
-              <input type="submit" class="btn btn-secondary" value="Register" name="submit" onclick= return submit();>
+              <input type="submit" class="btn btn-secondary btn-block mb-2" value="Register" name="submit" onclick= return submit();>
             </form>
             </div>
             
@@ -1780,37 +1780,44 @@ p {
         const toastEl=document.getElementById('toastID');
         let toast=new bootstrap.Toast(toastEl);
          let participants=<?php echo json_encode($n); ?>;
-         console.log(participants);
+         console.log('particpants',participants);
          let count=0;
          let count1=0;
 
          let npevent = <?php echo $npevent; ?>;
          let rpteam = <?php echo $rpteam; ?>;
-         // console.log(npevent);
+        let totalPart = <?php echo $totalpart; ?>;
+
+        // console.log(npevent);
+
          //MyFunction
         function myFun(b){
             console.log(b);
-            console.log(b.id);
-                const chkID=b.id;
+            // console.log(b.id);
+                const chkID=b;
+                const ele = document.getElementById(chkID);
                 let index= chkID.toString().split("");
                 console.log(index);
-            if(b.checked){
-                for(let i=0; i<7; i++) {
+            if(ele.checked){
+                console.log('is checked')
+                for(let i=0; i<totalPart; i++) {
                     const str=String(i);
                     const indIndex=str+index[1];
-                    //console.log(indIndex);
+                    console.log('indIndex',indIndex);
                     const temp=document.getElementById(indIndex);
-                    //console.log(temp);
+                    console.log(temp);
                     if(temp.checked){
                         count++;
                     }
-                    console.log(count);
+                    console.log('count' ,count);
                 }
-                console.log(count,participants[index[1]]);
+                console.log('-----------------------',count,participants[index[1]]);
                 if(String(count)>participants[index[1]]){
                     alert(`You have reached the limit..There are only ${participants[index[1]]} participants allowed for this event`);
                     //toast.show();
-                    b.checked=false;
+                    console.log('--------------------------------------------')
+                    console.log(ele, b);
+                    ele.checked=false;
                 }
                 count=0;
 
@@ -1828,7 +1835,7 @@ p {
                 }
                 if(count1>npevent){
                     alert(`One participant can only participate on ${npevent} events only..`);
-                    b.checked=false;
+                    ele.checked=false;
                 }
                 
                count1=0;

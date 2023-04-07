@@ -38,15 +38,15 @@ include 'dbconnect.php';
 if(isset($_POST['clgname'])){
     $clg_name=$_POST['clgname'];
     $dept=$_POST['dept'];
-    echo $clg_name;
-    echo $dept;
+//    echo $clg_name;
+//    echo $dept;
     $sql2="SELECT COUNT(std_id) as count from user WHERE UPPER(clg_name)=UPPER('$clg_name') AND UPPER(dept)=UPPER('$dept')";
     $result2=mysqli_query($con,$sql2);
     if($result2){
         $row2=mysqli_fetch_assoc($result2);
         $count=$row2['count'];
         }
-    echo $count;
+//    echo $count;
     if($count>0){
         
         echo '<script>

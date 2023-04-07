@@ -434,7 +434,7 @@
                 </div>
                 <ol class="widget-49-meeting-points" style="text-align:left;">
                   <li class="widget-49-meeting-item">
-                    <span>Participants allowed: '.$nop.'</span>
+                    <span>Participants per team: '.$nop.'</span>
                   </li>
                   <li class="widget-49-meeting-item">
                     <span>Venue: '.$venue.'</span>
