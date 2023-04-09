@@ -155,11 +155,15 @@
                 $simg=$row['image'];
                 $eid=$row['event_id'];
                 $role=$row['roles'];
-                $sql1="Select event_name from events where event_id=$eid";
-                $result1=mysqli_query($con,$sql1);
-                if($result1) {
-                    while ($row1 = mysqli_fetch_assoc($result1))
-                    $ename = $row1['event_name'];
+                if(isset($eid)) {
+                    $sql1 = "Select event_name from events where event_id=$eid";
+                    $result1 = mysqli_query($con, $sql1);
+                    if ($result1) {
+                        while ($row1 = mysqli_fetch_assoc($result1))
+                            $ename = $row1['event_name'];
+                    }
+                }else{
+                    $ename="Not assigned";
                 }
                 if($simg!=null){
                     $icode='<div><img src="../images/staff/'.$img.'" style="object-fit: contain" alt="" class="avatar-md rounded-circle img-thumbnail" /></div>';
