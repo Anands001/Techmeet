@@ -184,7 +184,7 @@
                             <th>Email</th>
                             <th>clg_Name</th>
                             <th>Dept</th>
-                            <th>Event Name</th>
+<!--                            <th>Event Name</th>-->
                         </tr>
                         </thead>
                         <tfoot>
@@ -196,7 +196,7 @@
                             <th>Email</th>
                             <th>clg_Name</th>
                             <th>Dept</th>
-                            <th>Event Name</th>
+<!--                            <th>Event Name</th>-->
                         </tr>
                         </tfoot>
                         <tbody>
@@ -239,7 +239,7 @@
                                     echo '  <td>' . $email . '</td>';
                                     echo '  <td>' . $clgname . '</td>';
                                     echo '  <td>' . $dept . '</td>';
-                                    echo '  <td>' . $eventname . '</td>';
+//                                    echo '  <td>' . $eventname . '</td>';
                                     echo '  </tr>';
                                 } else{
                                     echo '<tr>';
@@ -249,7 +249,7 @@
                                     echo '  <td>'.$email.'</td>';
                                     echo '  <td>'.$clgname.'</td>';
                                     echo '  <td>'.$dept.'</td>';
-                                    echo '  <td>'.$eventname.'</td>';
+//                                    echo '  <td>'.$eventname.'</td>';
                                     echo  '  </tr>';
 
                                 }

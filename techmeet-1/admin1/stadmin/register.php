@@ -160,9 +160,9 @@ if(isset($_SESSION['rmsg'])){
 
 
                                     <div class="form-check d-flex justify-content-center mb-5">
-                                        <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3c" required/>
+<!--                                        <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3c" required/>-->
                                         <label class="form-check-label" for="form2Example3">
-                                            I agree all statements in <a href="#!">Terms of service</a>
+<!--                                            I agree all statements in <a href="#!">Terms of service</a>-->
                                         </label>
                                     </div>
 
