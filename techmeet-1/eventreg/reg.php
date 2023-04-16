@@ -27,6 +27,8 @@
     if(isset($_SESSION['clg_name'])&&isset($_SESSION['dept'])){
         $clg_name=$_SESSION['clg_name'];
         $dept=$_SESSION['dept'];
+    }else{
+        header('Location:step1.php');
     }
 
 
@@ -37,7 +39,7 @@ $query = "select tname from user where YEAR(created_at)=YEAR(CURDATE())";
 $result5 = mysqli_query($con, $query);
 if ($result5) {
     while ($row = mysqli_fetch_assoc($result5)) {
-        $teams = $row['tname'];
+        $teams = strtolower($row['tname']);
         array_push($team2, $teams);
     }
 }
@@ -47,7 +49,7 @@ $query = "select tname from teams";
 $result5 = mysqli_query($con, $query);
 if ($result5) {
     while ($row = mysqli_fetch_assoc($result5)) {
-        $teams = $row['tname'];
+        $teams = strtolower($row['tname']);
         if (!in_array($teams, $team2)) {
             $tname = $teams;
             break;
@@ -105,7 +107,7 @@ for($i=0;$i<7;$i++){
 //         echo $_SESSION['err'];
 //     }
 //
-
+session_destroy();
 header("Location:success.php?clg_name=$clg_name&dept=$dept");
 ?>
 

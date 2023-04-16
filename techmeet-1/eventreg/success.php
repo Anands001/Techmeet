@@ -30,6 +30,7 @@
 <?php
 include 'dbconnect.php';
 
+//session_destroy();
 $sql="select * from info";
 $result=mysqli_query($con,$sql);
 while($row1=mysqli_fetch_assoc($result)) {

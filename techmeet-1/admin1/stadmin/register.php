@@ -17,10 +17,7 @@
     <!-- MDB -->
     <link rel="stylesheet" href="css/mdb.min.css" />
     <!-- MDB -->
-    <script
-            type="text/javascript"
-            src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"
-    ></script>
+
     <style>
         .divider:after,
         .divider:before {
@@ -94,12 +91,15 @@ if(isset($_SESSION['rmsg'])){
 
                                 <form class="mx-1 mx-md-4" method="post" action="sreg.php">
 
-                                    <div class="d-flex flex-row align-items-center mb-4">
+                                    <div class="align-items-center mb-4">
 <!--                                        <i class="fas fa-user fa-lg me-3 fa-fw"></i>-->
                                         <div class="form-outline flex-fill mb-0">
-                                            <input type="text" id="form3Example1c" name="name" class="form-control" required/>
+                                            <input type="text" id="form3Example1c" name="name" class="form-control" onkeyup="nameValidation(event)" required/>
                                             <label class="form-label" for="form3Example1c">Your Name</label>
+                                            <div id="errormsg" class="invalid-feedback">Please enter a valid name</div>
+                                            <div id="errormsg" class="valid-feedback" aria-required="true"></div>
                                         </div>
+
                                     </div>
 
                                     <div class="d-flex flex-row align-items-center mb-4">
@@ -127,7 +127,6 @@ if(isset($_SESSION['rmsg'])){
 <!--                                    </div>-->
 
                                     <div class="d-flex flex-row align-items-center mb-4">
-<!--                                        <i class="fas fa-user-alt fa-lg me-3 fa-fw"></i>-->
                                         <div class="form-outline flex-fill mb-0">
                                             <input type="text" id="form3Example8c" name="username" class="form-control" required/>
                                             <label class="form-label" for="form3Example8c">username</label>
@@ -135,7 +134,6 @@ if(isset($_SESSION['rmsg'])){
                                     </div>
 
                                     <div class=" align-items-center mb-4">
-<!--                                        <i class="fas fa-lock fa-lg me-3 fa-fw"></i>-->
                                         <div class="form-outline flex-fill">
                                             <input type="password" id="form3Example4c" name="password" class="form-control" minlength="6" onkeyup="validation()" required/>
                                             <label class="form-label" for="form3Example4c">Password</label>
@@ -143,8 +141,8 @@ if(isset($_SESSION['rmsg'])){
                                             <div id="errormsg" class="valid-feedback" aria-required="true">Looks good...!</div>
                                         </div>
                                     </div>
-
-                                    <div class=" align-items-center mb-4 mt-2">
+                                    <div class=""></div>
+                                    <div class=" align-items-center mb-4 flex-fill">
 <!--                                        <i class="fas fa-key fa-lg me-3 fa-fw"></i>-->
                                         <div class="form-outline">
                                             <input type="password" id="form3Example4cd" class="form-control" oninput="passcheck()" required/>
@@ -189,10 +187,15 @@ if(isset($_SESSION['rmsg'])){
     </div>
 </section>
                             <?php } ?>
-<script src="../js/mdb.min.js"></script>
+
+
+<!--<script src="../js/mdb.min.js"></script>-->
 <!--<script src="../js/bootstrap.bundle.js"></script>-->
 <script>
     'use strict'
+    const sbmtValidation = () => {
+
+    }
     const passcheck = () => {
         console.log('helo')
         const pass = document.getElementById('form3Example4c').value;
@@ -215,12 +218,13 @@ if(isset($_SESSION['rmsg'])){
 
         }
         if(reppass === ''){
-            console.log('if')
             feedback.classList ='form-control';
             document.getElementById('sbmt').disabled = true;
 
 
         }
+
+
     };
 
     const validation = () => {
@@ -242,8 +246,38 @@ if(isset($_SESSION['rmsg'])){
         }
     }
 
+    const nameValidation = (event) => {
+        const id = document.getElementById('form3Example1c');
+        const feedback = document.getElementById('form3Example1c');
+
+        console.log(id)
+        const regex = /[^a-zA-Z ]/g;
+        if(regex.test(id.value))
+        {
+            document.getElementById('sbmt').disabled = true;
+            feedback.classList ='form-control is-invalid';
+            id.focus();
+        }
+        else if(id.value === ''){
+            document.getElementById('sbmt').disabled = true;
+
+            feedback.classList ='form-control';
+
+        }
+        else{
+            feedback.classList ='form-control is-valid';
+            passcheck();
+
+
+        }
+
+    }
+
 
 </script>
-
+    <script
+            type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"
+    ></script>
 </body>
 </html>

@@ -143,6 +143,7 @@
     </div>
 </section>
 <script rel="text/javascript" src="../js/bootstrap.bundle.js"></script>
+<script rel="text/javascript" src="../js/mdb.min.js"></script>
 
 </body>
 </html>

@@ -1653,7 +1653,7 @@ p {
                           $date=explode("-",$row['date']);
                 
                           $mon = array("01"=>"JAN", "02"=>"FEB", "03"=>"MAR", "04"=>"APR", "05"=>"MAY", "06"=>"JUN", "07"=>"JUL", "08"=>"AUG", "09"=>"SEP", "10"=>"OCT", "11"=>"NOV", "12"=>"DEC");
-                          echo '<th scope="col">'.$name.' ('.$nop.')</th>'
+                          echo '<th scope="col">'.$name.' ('.$nop.') <br>'.$time.'</th>'
                           ;
                           
                         }
@@ -1745,7 +1745,7 @@ p {
                               <ul class="ks-cboxtags">
                               <li>
                                 <input type="checkbox" id="'.$var.''.$var2.'" name="check['.$x.']['.$y.']" value="'.$eid[$y].'" onclick="return myFun(this.id)">
-                                <label for="'.$var.''.$var2.'" id="label'.$var.''.$var2.'">Select('.$eid[$y].')</label>
+                                <label for="'.$var.''.$var2.'" id="label'.$var.''.$var2.'">Select</label>
                               </li>
                              
                             </ul>
@@ -1762,7 +1762,7 @@ p {
                 </tbody>
               </table>
 
-              <input type="submit" class="btn btn-secondary btn-block mb-2" value="Register" name="submit" onclick= return submit();>
+              <input type="submit" id = "formSubmit"class="btn btn-secondary btn-block mb-2" value="Register" name="submit" disabled onclick= return submit();>
             </form>
             </div>
             
@@ -1882,8 +1882,6 @@ p {
                     const checkBoxElement=document.getElementById(chkBoxID);
 
                     if(checkBoxElement.checked){
-
-
                         if(nameElement.value === ""){
                             //event.preventDefault();
                             console.log("hello");
@@ -2023,14 +2021,32 @@ p {
             }
             console.log("Values ",values);
 
-
             return true;
         }
 
+        const submitValidation = () => {
+            for(let i=0; i< totalPart;i++){
+                const ele = document.getElementById(`name${i}`);
+                if(ele.value !== ''){
+                    document.getElementById('formSubmit').disabled = false;
+                    break;
+                }else{
+                    document.getElementById('formSubmit').disabled = true;
 
-        
+                }
+            }
+        }
 
-    </script>
+        $(document).ready(function(){
+            const a  = setInterval("submitValidation()", 500);
+        });
+
+        console.log('----------------------',totalPart);
+
+
+
+
+  </script>
   <script src="../admin1/js/mdb.min.js"></script>
 
 </html>
