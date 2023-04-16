@@ -1578,7 +1578,10 @@ p {
 <!--              href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css"-->
 <!--              rel="stylesheet"-->
 <!--      />-->
-
+<script>
+    'use strict'
+    let time = [];
+</script>
 </head>
 
   <body>
@@ -1638,7 +1641,7 @@ p {
                     echo'<tr>
                           <th scope="col">Participants(7 per dept)</th>';
 
-                    $sql="Select * from events where status='IN'";
+                    $sql="Select * from events where status='IN' order by event_id asc";
                     $result=mysqli_query($con,$sql);
                     if($result){
                         while($row=mysqli_fetch_assoc($result)){
@@ -1647,11 +1650,13 @@ p {
                           $name1=$row['event_name1'];
                           $date=$row['date'];
                           $time=$row['time'];
+                          echo '<script> time.push( "'.$time.'"); </script>';
+
                           $det=$row['details'];
                           $rules=$row['rules'];
                           $nop=$row['partic_no'];
                           $date=explode("-",$row['date']);
-                
+
                           $mon = array("01"=>"JAN", "02"=>"FEB", "03"=>"MAR", "04"=>"APR", "05"=>"MAY", "06"=>"JUN", "07"=>"JUL", "08"=>"AUG", "09"=>"SEP", "10"=>"OCT", "11"=>"NOV", "12"=>"DEC");
                           echo '<th scope="col">'.$name.' ('.$nop.') <br>'.$time.'</th>'
                           ;
@@ -1841,13 +1846,33 @@ p {
                count1=0;
                     
             }
+
+            if(ele.checked){
+                console.log('time',time);
+                console.log('ele' , ele.id);
+                const [first,second] = ele.id.slice();
+                console.log('main time',time[second]);
+                for(let i =0; i<time.length; i++){
+                    if(`${i}` === second){
+                        console.log('hello')
+                        continue;
+                    }
+                    else{
+                    const ele = document.getElementById(`${first}${i}`);
+                    if(time[second] === time[i] && `${i}` !== second && ele.checked){
+                        console.log('',ele)
+                        alert('Both events are happening at a same time, Please make sure you have can attend both the events')
+                    }
+                    }
+                }
+            }
         }
         
         //submit function
         let arr = [];
         const submit=function() {
             
-            for(let i=0;i<7;i++){
+            for(let i=0;i<totalPart;i++){
                 arr[i] = new Array(participants.length);
                 for(let j=0;j<participants.length;j++){
                     const chkBoxID=String(i)+String(j);
@@ -1864,7 +1889,7 @@ p {
             }
             
             console.log(arr);
-            for(let i=0;i<7;i++){
+            for(let i=0;i<totalPart;i++){
                 const nameID="name"+String(i);
                 const regID="reg"+String(i);
                 console.log(nameID);
@@ -2032,7 +2057,6 @@ p {
                     break;
                 }else{
                     document.getElementById('formSubmit').disabled = true;
-
                 }
             }
         }
@@ -2042,6 +2066,7 @@ p {
         });
 
         console.log('----------------------',totalPart);
+
 
 
 
