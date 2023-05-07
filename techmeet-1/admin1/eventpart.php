@@ -133,7 +133,7 @@
                     </div>
                     <select id ="dropDown" onchange="handleSelect(this)" class="ml-auto form-select form-select-lg mb-2 col-2" aria-label="" name="eventfilter">
 
-                                                        <option disabled="disabled" selected="selected">filter</option>
+                                                        <option disabled="disabled" selected="selected">Select Event</option>
                         <?php
                         $ename=null;
                         $sql="select event_name from events where status='IN'";

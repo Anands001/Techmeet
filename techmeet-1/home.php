@@ -66,7 +66,7 @@
                     <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
                         <li class="nav-item"><a class="nav-link" href="#services">Announcements</a></li>
 <!--                        <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>-->
-                        <li class="nav-item"><a class="nav-link" href="#about">Shedule</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#about">Schedule</a></li>
                         <li class="nav-item"><a class="nav-link" href="#team">Team</a></li>
                         <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                     </ul>
@@ -334,15 +334,16 @@
                            $desg=$row['desg'];
                            $img=$row['image'];
                            $gmail=$row['gmail'];
+                           $lin=$row['linkedin'];
                            $simg=$row['image'];
                            echo '<div class="col-lg-4">
                            <div class="team-member">
                                <img class="mx-auto rounded-circle" style="object-fit: cover" src="/techmeet-1/images/staff/'.$img.'" alt="..." />
                                <h4>'.$name.'</h4>
                                <p class="text-muted">'.$desg.'</p>
-                               <a class="btn btn-dark btn-social mx-2" href="'.$gmail.'" aria-label="Parveen Anand Twitter Profile"><i class="fab fa-solid fa-envelope"></i></a>
+                               <a class="btn btn-dark btn-social mx-2" href="mailto:'.$gmail.'" aria-label="Parveen Anand Twitter Profile"><i class="fab fa-solid fa-envelope"></i></a>
                                <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand Facebook Profile"><i class="fab fa-facebook-f"></i></a>
-                               <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
+                               <a class="btn btn-dark btn-social mx-2" href="'.$lin.'" aria-label="Parveen Anand LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
                            </div>
                        </div>';
                          }
