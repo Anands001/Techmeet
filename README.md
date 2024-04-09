@@ -57,6 +57,11 @@ Traditional Techmeet Management Systems suffer from inefficiency, limited functi
 2. View and register for events.
 3. Send queries.
 
+## Images
+
+### Admin Dashboard
+![Admin Dashboard]()
+
 ## [Documentation.pdf](https://github.com/Anands001/tech-repo/files/11280138/20UCA515.Techmeet.project.pdf)
 
 For detailed information, refer to the provided documentation.
