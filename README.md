@@ -1,4 +1,4 @@
-# Online Techmeet Management System
+![image](https://github.com/Anands001/Techmeet/assets/110816114/bef59f50-fef9-4eb1-b701-5d80ac66f7d1)# Online Techmeet Management System
 
 ## Abstract
 
@@ -59,8 +59,34 @@ Traditional Techmeet Management Systems suffer from inefficiency, limited functi
 
 ## Images
 
-### Admin Dashboard
-![Admin Dashboard]()
+### Home Page
+![homepage](https://github.com/Anands001/Techmeet/assets/110816114/c0dd91ef-b99e-4766-ae42-bb43e1f1bb02)
+
+
+### View Events
+![events](https://github.com/Anands001/Techmeet/assets/110816114/92cf8d6c-d9ac-45cd-aa1c-9987eb68c251)
+
+
+### Announcements
+![announcements](https://github.com/Anands001/Techmeet/assets/110816114/8fb474f8-bf32-4726-ada3-8dd0b0a3957b)
+
+### Contact us
+![contact us](https://github.com/Anands001/Techmeet/assets/110816114/fde821f9-ae28-4036-802b-0179ac3f40a1)
+
+### Register Event
+![reg1](https://github.com/Anands001/Techmeet/assets/110816114/c6103b3b-28af-461e-98b4-20d617b04536)
+![register](https://github.com/Anands001/Techmeet/assets/110816114/8174d467-6953-4e06-ab98-05368a7744a9)
+![register1](https://github.com/Anands001/Techmeet/assets/110816114/10d055b7-4a77-4e3b-9664-b03285b591ed)
+
+### Event Schedule
+![event schedule](https://github.com/Anands001/Techmeet/assets/110816114/51a5bcbd-1a52-48fe-81b8-167dd45f49b1)
+
+### Add event
+![addeventUI(1) jpg](https://github.com/Anands001/Techmeet/assets/110816114/874de4ac-db1d-467a-b4c8-7dd26246a6a5)
+
+### Edit Event
+![EditeventUI(1) jpg](https://github.com/Anands001/Techmeet/assets/110816114/994b77f8-2869-44a3-872e-e1c60300de21)
+
 
 ## [Documentation.pdf](https://github.com/Anands001/tech-repo/files/11280138/20UCA515.Techmeet.project.pdf)
 
