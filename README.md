@@ -1,4 +1,4 @@
-![image](https://github.com/Anands001/Techmeet/assets/110816114/bef59f50-fef9-4eb1-b701-5d80ac66f7d1)# Online Techmeet Management System
+# Online Techmeet Management System
 
 ## Abstract
 
